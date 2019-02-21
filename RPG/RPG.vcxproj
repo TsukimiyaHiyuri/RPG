@@ -153,6 +153,7 @@
     <ClCompile Include="Armors.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="BattleWindow.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Armors.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="BattleWindow.h" />
     <ClInclude Include="ComandType.h" />
     <ClInclude Include="ComandWindow.h" />
     <ClInclude Include="Dim.h" />

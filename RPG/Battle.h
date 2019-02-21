@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Enemy.h"
 #include "ComandWindow.h"
+#include "BattleWindow.h"
 #define BATTLEINTEBAL 15
 #define WIDTH 640
 
@@ -11,20 +12,26 @@ class Player;
 class Map;
 class Enemy;
 class ComandWindow;
+class BattleWindow;
 
 class Battle {
 	int gold;	// í“¬‚ÅŠl“¾‚·‚é‚¨‹à
 	int exp;	// í“¬‚ÅŠl“¾‚·‚éŒoŒ±’l
-	int enemyNum;	// “G‚Ì”
+	int enemyNum;	// ¶‚«‚Ä‚¢‚é“G‚Ì”
+	int lookEnemyNum;	// Œ»İQÆ‚µ‚Ä‚¢‚é“G‚Ì“Y‚¦š
 	bool isMyTurn;	// Œ»İ©•ª‚Ìƒ^[ƒ“‚©H
 	bool isFinish;	// í“¬‚ÍI—¹‚µ‚½‚©H
 	Enemy *enemy[MAXENEMYNUM];	// “G‚Ì”z—ñ
 	ComandWindow *comandWindow;
+	BattleWindow *battleWindow;
+
 public:
 	Battle();
 	int encount(Player *player, Map *nowMap);
 	void battle(Player *p);
 	void init();
+	void sortEnemy();
+	int countLiveEnemy();
 	bool getIsFinish() { return isFinish; }
 };
 

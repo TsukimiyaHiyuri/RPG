@@ -29,7 +29,9 @@ int Battle::encount(Player *player, Map *nowMap) {
 		}
 
 		this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum);	// コマンドウィンドウのインスタンスを生成
+		this->battleWindow = new BattleWindow();
 		this->isFinish = false;
+		this->isMyTurn = true;
 		return this->enemyNum;
 	}
 	return 0;
@@ -43,48 +45,43 @@ void Battle::battle(Player *player) {
 			this->enemy[i]->drawGraphic();
 		}
 
-		if (this->isMyTurn) {
+		if (!this->battleWindow->strIsEmpty()) {
+			this->battleWindow->drawBattleWindow();
+		}
+
+		if (this->isMyTurn && this->battleWindow->strIsEmpty()) {
 			this->isMyTurn = !this->comandWindow->drawAll();
+
+			if (!this->isMyTurn) {
+				
+				this->sortEnemy();
+
+				// 生きている敵の数を更新
+				this->enemyNum = this->countLiveEnemy();
+
+				this->battleWindow->setStr("テストだよ～");
+
+				// コマンドウィンドウの初期化
+				this->comandWindow->init();
+			}
 		}
 		else {
-			// コマンドウィンドウの初期化
-			this->comandWindow->init();
+			if (this->lookEnemyNum < this->enemyNum) {
+				if (this->battleWindow->strIsEmpty()) {
+					this->battleWindow->setStr("敵からの攻撃だよ～");
+					this->lookEnemyNum++;
+					if (this->lookEnemyNum >= enemyNum) {
 
-			int liveNum = 0;
+						this->lookEnemyNum = 0;
 
-			// 生きてる敵を先頭に持ってくる
-			for (int i = 0; i < this->enemyNum; i++) {
-				if (this->enemy[i]->getHp() <= 0) {
-					for (int j = i; j < this->enemyNum; j++) {
-						if (this->enemy[j]->getHp() > 0) {
-							Enemy *tmp = enemy[j];
-							enemy[j] = enemy[i];
-							enemy[i] = tmp;
-						}
+						// 自分のターンに切り替える
+						this->isMyTurn = true;
 					}
 				}
-			}
-
-			// 生きている敵からの攻撃を実行
-			// 死んでいる敵が所持している経験値とお金を蓄積
-			for (int i = 0; i < this->enemyNum; i++) {
-				if (this->enemy[i]->getHp() > 0) {
-
-					this->enemy[i]->attack(player);
-
-					liveNum++;
-				}
 				else {
-					this->exp += this->enemy[i]->getExp();
-					this->gold += this->enemy[i]->getGold();
+					;
 				}
 			}
-
-			// 自分のターンに切り替える
-			this->isMyTurn = true;
-
-			// 生きている敵の数を更新
-			this->enemyNum = liveNum;
 		}
 
 		if (player->getHp() <= 0) {
@@ -98,6 +95,37 @@ void Battle::battle(Player *player) {
 			this->init();
 		}
 	}
+}
+
+// 生きてる敵を先頭に持ってくる
+void Battle::sortEnemy() {
+	for (int i = 0; i < this->enemyNum; i++) {
+		if (this->enemy[i]->getHp() <= 0) {
+			for (int j = i; j < this->enemyNum; j++) {
+				if (this->enemy[j]->getHp() > 0) {
+					Enemy *tmp = enemy[j];
+					enemy[j] = enemy[i];
+					enemy[i] = tmp;
+				}
+			}
+		}
+	}
+}
+
+int Battle::countLiveEnemy() {
+	int liveNum = 0;
+
+	// 死んでいる敵が所持している経験値とお金を蓄積
+	for (int i = 0; i < this->enemyNum; i++) {
+		if (this->enemy[i]->getHp() > 0) {
+			liveNum++;
+		}
+		else {
+			this->exp += this->enemy[i]->getExp();
+			this->gold += this->enemy[i]->getGold();
+		}
+	}
+	return liveNum;
 }
 
 void Battle::init() {

@@ -3,8 +3,8 @@
 
 BattleWindow::BattleWindow() {
 	this->str = "";
-	this->isFinish = true;
 	this->isHide = true;
+	this->cnt = 0;
 }
 
 void BattleWindow::setStr(std::string str) {
@@ -12,22 +12,25 @@ void BattleWindow::setStr(std::string str) {
 }
 
 void BattleWindow::drawBattleWindow() {
-	if (!this->isHide) {
-		DrawBox(BATTLEWINDOWX1, BATTLEWINDOWY1, BATTLEWINDOWX2, BATTLEWINDOWY2, GetColor(0, 0, 0), true);
+	DrawBox(BATTLEWINDOWX1, BATTLEWINDOWY1, BATTLEWINDOWX2, BATTLEWINDOWY2, GetColor(0, 0, 0), true);
 
-		if (!this->isFinish) {
-			DrawFormatString(BATTLEWINDOWX1 + 10, BATTLEWINDOWY1 + 10, GetColor(255, 255, 255), "%s", this->str.c_str());
+	DrawFormatString(BATTLEWINDOWX1 + 10, BATTLEWINDOWY1 + 10, GetColor(255, 255, 255), "%s", this->str.c_str());
 
-			cnt++;
-			if (cnt >= INTERBAL) {
-				cnt = 0;
-				isFinish = true;
-				this->setStr("");
-			}
-		}
+	cnt++;
+	if (cnt >= INTERBAL) {
+		cnt = 0;
+		this->setStr("");
 	}
 }
 
-void BattleWindow::drawAll() {
+bool BattleWindow::strIsEmpty() {
+	return this->str.empty();
+}
 
+void BattleWindow::changeIsHide() {
+	this->isHide = !this->isHide;
+}
+
+void BattleWindow::drawAll() {
+	this->drawBattleWindow();
 }
