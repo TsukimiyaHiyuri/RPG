@@ -1,0 +1,11 @@
+﻿cl : コマンド ライン warning D9025: '/D_UNICODE' より '/U_UNICODE' が優先されます。
+cl : コマンド ライン warning D9025: '/DUNICODE' より '/UUNICODE' が優先されます。
+  main.cpp
+c:\users\jupil\desktop\主要なファイル\program\dxlib_vc\game\rpg\rpg\menuwindow.h(8): warning C4005: 'MENUNUM': マクロが再定義されました。
+  c:\users\jupil\desktop\主要なファイル\program\dxlib_vc\game\rpg\rpg\statuswindow.h(10): note: 'MENUNUM' の以前の定義を確認してください
+c:\users\jupil\desktop\主要なファイル\program\dxlib_vc\game\rpg\rpg\menuwindow.h(13): warning C4005: 'INTERBAL': マクロが再定義されました。
+  c:\users\jupil\desktop\主要なファイル\program\dxlib_vc\game\rpg\rpg\statuswindow.h(11): note: 'INTERBAL' の以前の定義を確認してください
+  Enemy.cpp
+  BackGround.cpp
+  コードを生成中...
+  RPG.vcxproj -> C:\Users\jupil\Desktop\主要なファイル\program\DxLib_VC\game\RPG\Debug\RPG.exe
