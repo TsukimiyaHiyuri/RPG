@@ -75,6 +75,7 @@ public:
 	void addGold(long n) { status.gold += n; }
 	void setWeaponStr(int n) { weaponStr = n; }
 	void setWeaponDef(int n) { weaponDef = n; }
+	std::string getName() { return this->status.name; }
 	int getWeaponStr() { return weaponStr; }
 	int getWeaponDef() { return weaponDef; }
 	void setArmorStr(int n) { armorStr = n; }

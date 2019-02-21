@@ -1,11 +1,12 @@
 #pragma once
 #include "Enemy.h"
+#include <string>
 class Slime : public Enemy {
 
 public:
 	Slime(int x);
 
 	virtual void loadGraphic();
-	virtual void attack(Player *p);
+	virtual std::string attack(Player *p);
 };
 

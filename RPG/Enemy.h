@@ -31,7 +31,7 @@ public:
 	void drawGraphic();
 	int getCordinateX() { return this->x; }
 	virtual void loadGraphic() {}
-	virtual void attack(Player *p) {}
+	virtual std::string attack(Player *p) { return ""; }
 };
 
 #endif

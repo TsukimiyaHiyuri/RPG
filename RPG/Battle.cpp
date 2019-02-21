@@ -68,7 +68,7 @@ void Battle::battle(Player *player) {
 		else {
 			if (this->lookEnemyNum < this->enemyNum) {
 				if (this->battleWindow->strIsEmpty()) {
-					this->battleWindow->setStr("“G‚©‚ç‚ÌUŒ‚‚¾‚æ`");
+					this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
 					this->lookEnemyNum++;
 					if (this->lookEnemyNum >= enemyNum) {
 
@@ -84,11 +84,11 @@ void Battle::battle(Player *player) {
 			}
 		}
 
-		if (player->getHp() <= 0) {
+		if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
 			// ƒQ[ƒ€ƒI[ƒo[‚Ìˆ—
 			this->init();
 		}
-		else if (this->enemyNum <= 0) {
+		else if (this->enemyNum <= 0 && this->battleWindow->strIsEmpty()) {
 			// “|‚µ‚½“G‚ÌŒoŒ±’l‚Æ‚¨‹à‚ðƒvƒŒƒCƒ„[‚É‰ÁŽZ
 			player->addExp(this->exp);
 			player->addGold(this->gold);

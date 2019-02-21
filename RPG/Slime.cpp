@@ -24,6 +24,12 @@ void Slime::loadGraphic() {
 	a = 0;
 }
 
-void Slime::attack(Player *player) {
-	player->damege(2);
+std::string Slime::attack(Player *player) {
+	int d = 2;
+	player->damege(d);
+
+	std::string ans;
+	ans += this->getName() + "‚ÌUŒ‚\n";
+	ans += player->getName() + "‚É" + std::to_string(d) + "‚Ìƒ_ƒ[ƒW";
+	return ans;
 }
