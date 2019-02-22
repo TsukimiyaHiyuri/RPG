@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "ComandType.h"
 #include "ComandWindow.h"
+#include <string>
 #define ENEMYLISTWINDOWX1 210 
 #define ENEMYLISTWINDOWY1 300
 #define ENEMYLISTWINDOWX2 350
@@ -25,6 +26,8 @@ class EnemyListWindow {
 	ComandType comandType;
 	int magicNum;
 
+	std::string battleWindowStr;
+
 public:
 	EnemyListWindow() { this->isHide = true; }
 	EnemyListWindow(Player *p, Enemy *e[], int eneNum, int magicNum, ComandType comandType);
@@ -34,6 +37,7 @@ public:
 	bool select();
 	bool drawAll();
 	bool getIsHide() { return isHide; }
+	std::string getBattleWindowStr() { return this->battleWindowStr; }
 	void init();
 };
 

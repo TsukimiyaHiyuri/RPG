@@ -74,10 +74,10 @@ bool MagicWindow::selsect() {
 				return false;
 
 			case AttackAll:
-				return this->player->getMagic(this->selectNum)->use(this->player, this->enemy);
+				return this->player->getMagic(this->selectNum)->use(this->player, this->enemy, &this->battleWindowStr);
 
 			case CureSolo:
-				return this->player->getMagic(this->selectNum)->use(this->player);
+				return this->player->getMagic(this->selectNum)->use(this->player, &this->battleWindowStr);
 				
 
 			case CureAll:
@@ -98,6 +98,7 @@ bool MagicWindow::drawAll() {
 	this->drawMagicWindow();
 	this->moveSelector();
 	if (this->enemyListWindow->drawAll()) {
+		this->battleWindowStr = this->enemyListWindow->getBattleWindowStr();
 		return true;
 	}
 	return this->selsect();
@@ -105,6 +106,7 @@ bool MagicWindow::drawAll() {
 
 void MagicWindow::init() {
 	this->isHide = true;
+	this->battleWindowStr = "";
 	this->selectNum = 0;
 	this->enemyListWindow->init();
 }

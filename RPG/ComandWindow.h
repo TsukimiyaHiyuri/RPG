@@ -35,6 +35,8 @@ class ComandWindow {
 	MagicWindow *magicWindow;
 	EnemyListWindow *enemyListWindow;
 
+	std::string battleWindowStr;
+
 public:
 	ComandWindow(Player *player, Enemy *enemy[], int enemyNum);
 	void setList();
@@ -43,6 +45,7 @@ public:
 	bool select();
 	bool drawAll();
 	void init();
+	std::string getBattleWindowStr() { return this->battleWindowStr; }
 };
 
 #endif

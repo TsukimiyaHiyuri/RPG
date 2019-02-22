@@ -13,6 +13,7 @@ EnemyListWindow::EnemyListWindow(Player *p, Enemy *e[], int eneNum, int magicNum
 	this->liveNum = this->setEnemy();
 	this->selectNum = 0;
 	this->isHide = false;
+	this->battleWindowStr = "";
 }
 
 int EnemyListWindow::setEnemy() {
@@ -72,11 +73,11 @@ bool EnemyListWindow::select() {
 		if (Key[KEY_INPUT_Z] == 1) {
 			switch (this->comandType) {
 			case TypeFight:
-				this->player->attack(this->enemy[this->selectNum]);
+				this->player->attack(this->enemy[this->selectNum], &this->battleWindowStr);
 				this->liveNum = this->setEnemy();
 				break;
 			case TypeMagic:
-				if (this->player->getMagic(this->magicNum)->use(this->player, this->enemy[this->selectNum]) == false) {
+				if (this->player->getMagic(this->magicNum)->use(this->player, this->enemy[this->selectNum], &this->battleWindowStr) == false) {
 					return false;
 				}
 				this->liveNum = this->setEnemy();
@@ -104,5 +105,6 @@ bool EnemyListWindow::drawAll() {
 
 void EnemyListWindow::init() {
 	this->selectNum = 0;
+	this->battleWindowStr = "";
 	this->isHide = true;
 }

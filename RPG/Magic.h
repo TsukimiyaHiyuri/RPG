@@ -26,23 +26,24 @@ protected:
 
 public:
 	Magic();
-	virtual bool use(Player *p) { return true; }
-	virtual bool use(Player *p, Enemy *e) { return true; }
-	virtual bool use(Player *p, Enemy *e[]) { return true; }
+	virtual bool use(Player *p, std::string *n = 0) { return true; }
+	virtual bool use(Player *p, Enemy *e, std::string *n = 0) { return true; }
+	virtual bool use(Player *p, Enemy *e[], std::string *n = 0) { return true; }
 	MagicType getType() { return this->type; }
 	std::string getName() { return this->name; }
+	void setStr(std::string *n, int damage, Enemy *e);
 };
 
 class Fire : public Magic {
 public:
 	Fire();
-	virtual bool use(Player *p, Enemy *e);
+	virtual bool use(Player *p, Enemy *e, std::string *n = 0);
 };
 
 class Thunder : public Magic {
 public:
 	Thunder();
-	virtual bool use(Player *p, Enemy *e[]);
+	virtual bool use(Player *p, Enemy *e[], std::string *n = 0);
 };
 
 #endif

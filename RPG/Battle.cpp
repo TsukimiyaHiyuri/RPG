@@ -7,6 +7,7 @@ Battle::Battle() {
 	this->enemyNum = 0;
 	this->isMyTurn = true;
 	this->isFinish = true;
+	this->finishWindowFlag = false;
 	
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = new Enemy();
@@ -30,6 +31,7 @@ int Battle::encount(Player *player, Map *nowMap) {
 
 		this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum);	// コマンドウィンドウのインスタンスを生成
 		this->battleWindow = new BattleWindow();
+		this->finishWindow = new BattleWindow();
 		this->isFinish = false;
 		this->isMyTurn = true;
 		return this->enemyNum;
@@ -48,6 +50,9 @@ void Battle::battle(Player *player) {
 		if (!this->battleWindow->strIsEmpty()) {
 			this->battleWindow->drawBattleWindow();
 		}
+		if (!this->finishWindow->strIsEmpty() && this->battleWindow->strIsEmpty()) {
+			this->finishWindow->drawBattleWindow();
+		}
 
 		if (this->isMyTurn && this->battleWindow->strIsEmpty()) {
 			this->isMyTurn = !this->comandWindow->drawAll();
@@ -59,7 +64,7 @@ void Battle::battle(Player *player) {
 				// 生きている敵の数を更新
 				this->enemyNum = this->countLiveEnemy();
 
-				this->battleWindow->setStr("テストだよ～");
+				this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
 
 				// コマンドウィンドウの初期化
 				this->comandWindow->init();
@@ -78,9 +83,6 @@ void Battle::battle(Player *player) {
 						this->isMyTurn = true;
 					}
 				}
-				else {
-					;
-				}
 			}
 		}
 
@@ -88,11 +90,23 @@ void Battle::battle(Player *player) {
 			// ゲームオーバーの処理
 			this->init();
 		}
-		else if (this->enemyNum <= 0 && this->battleWindow->strIsEmpty()) {
-			// 倒した敵の経験値とお金をプレイヤーに加算
-			player->addExp(this->exp);
-			player->addGold(this->gold);
-			this->init();
+		else if (this->enemyNum <= 0 && this->finishWindow->strIsEmpty()) {
+			if (this->finishWindowFlag) {
+				this->init();
+			}
+			else {
+				// 倒した敵の経験値とお金をプレイヤーに加算
+				player->addExp(this->exp);
+				player->addGold(this->gold);
+
+				std::string tmp;
+				tmp = "経験値" + std::to_string(this->exp) + "と" + std::to_string(this->gold) + "ゴールドを獲得！";
+
+				/* レベルアップの処理 */
+
+				this->finishWindow->setStr(tmp);
+				this->finishWindowFlag = true;
+			}
 		}
 	}
 }
@@ -128,9 +142,14 @@ int Battle::countLiveEnemy() {
 	return liveNum;
 }
 
+void Battle::battleFinish() {
+	
+}
+
 void Battle::init() {
 	this->gold = 0;
 	this->exp = 0;
 	this->enemyNum = 0;
 	this->isFinish = true;
+	this->finishWindowFlag = false;
 }

@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "EnemyListWindow.h"
+#include <string>
 #define MAGICWINDOWX1 210
 #define MAGICWINDOWY1 300
 #define MAGICWINDOWX2 350
@@ -23,6 +24,8 @@ class MagicWindow {
 	EnemyListWindow *enemyListWindow;
 	Enemy *enemy[MAXENEMYNUM];
 
+	std::string battleWindowStr;
+
 public:
 	MagicWindow();
 	MagicWindow(Player *p, Enemy *e[], int enemyNum);
@@ -32,6 +35,7 @@ public:
 	bool drawAll();
 
 	bool getIsHide() { return isHide; }
+	std::string getBattleWindowStr() { return this->battleWindowStr; }
 	void init();
 };
 

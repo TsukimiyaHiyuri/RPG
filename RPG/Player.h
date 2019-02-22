@@ -89,7 +89,7 @@ public:
 	void passItem(int n,Player *p);
 
 	Magic *getMagic(int i) { return this->magic[i]; }
-	void attack(Enemy *e);
+	void attack(Enemy *e, std::string *n = 0);
 	int getLearnMagicNum() { return this->learnMagicNum; }
 	void damege(int n) { this->status.hp -= n; }
 	void addMp(int n) { this->status.mp += n; }

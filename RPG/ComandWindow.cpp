@@ -110,6 +110,14 @@ bool ComandWindow::drawAll() {
 		isFinish = this->itemWindow->drawAll();
 	}
 
+	if (this->battleWindowStr.empty()) {
+		this->battleWindowStr = this->enemyListWindow->getBattleWindowStr();
+	}
+	if (this->battleWindowStr.empty()) {
+		this->battleWindowStr = this->magicWindow->getBattleWindowStr();
+	}
+	
+
 	return isFinish;
 }
 
@@ -119,4 +127,5 @@ void ComandWindow::init() {
 	this->enemyListWindow->init();
 	this->itemWindow->init();
 	this->magicWindow->init();
+	this->battleWindowStr = "";
 }

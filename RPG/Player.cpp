@@ -214,9 +214,12 @@ int Player::getAllStr() {
 	return this->status.str + this->weaponStr + this->armorStr;
 }
 
-void Player::attack(Enemy *e) {
+void Player::attack(Enemy *e, std::string *n) {
 	int damage = this->getAllStr() - e->getDef() > 1 ? this->getAllStr() - e->getDef() : 1;
 	e->damage(damage);
+
+	*n = this->getName() + "の攻撃！\n";
+	*n += e->getName() + "に" + std::to_string(damage) + "のダメージ！";
 }
 
 void Player::learnMagic() {
