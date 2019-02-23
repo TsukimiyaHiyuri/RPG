@@ -66,6 +66,7 @@ public:
 	int getBelongingsNum() { return belongingsNum; }
 	Item* getBelonging(int i) { return belongings[i]; }
 	int getAllStr();
+	direct getDirect() { return this->direction; }
 
 	void setHp(int h) { status.hp = h; }
 	void setMp(int m) { status.mp = m; }
@@ -93,7 +94,6 @@ public:
 	int getLearnMagicNum() { return this->learnMagicNum; }
 	void damege(int n) { this->status.hp -= n; }
 	void addMp(int n) { this->status.mp += n; }
-
 
 	void learnMagic();
 };

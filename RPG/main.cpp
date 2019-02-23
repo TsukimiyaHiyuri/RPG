@@ -81,11 +81,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		player[0]->drawHero(&moveCounter);
 
 		window.drawMenuWindow();
+		nowMap->npcAction(player[0]);
 
 		if (moveEncountNum > BATTLEINTEBAL) {
 			tmp->encount(player[0], nowMap);
 
-			bg->drawGraph(0);
+			if (!tmp->getIsFinish()) {
+				bg->drawGraph(0);
+			}
 
 			tmp->battle(player[0]);
 			if (tmp->getIsFinish()) {

@@ -4,7 +4,12 @@
 #include "DxLib.h"
 #include <iostream>
 
-WorldMap world;
+WorldMap::WorldMap() {
+	this->loadMapTip();
+	this->setMap();
+	this->isEncount = false;
+	this->setNPC();
+}
 
 void WorldMap::setMap() {
 	this->map = {
@@ -56,4 +61,17 @@ void WorldMap::changeMap(Player *player) {
 		delete nowMap;
 		nowMap = new TownMap();
 	}
+}
+
+void WorldMap::setNPC() {
+	this->npcNum = 2;
+	std::vector<std::string> tmp;
+	tmp.push_back("これはテストです。");
+	tmp.push_back("上手くいきましたか？");
+
+	this->npc[0] = new NonPlayerCharacter(5, 5, "歩行ドットキャラ.bmp", tmp, DOWN);
+
+	tmp.push_back("おまけにもう一つ！");
+
+	this->npc[1] = new NonPlayerCharacter(7, 7, "歩行ドットキャラ.bmp", tmp, DOWN);
 }
