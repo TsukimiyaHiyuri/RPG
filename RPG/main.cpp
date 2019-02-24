@@ -42,7 +42,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// ŽålŒö‚ÌˆÚ“®
 		if (tmp->getIsFinish()) {
-			if (window.getIsHide()) {
+			if (window.getIsHide() && !player[0]->getIsSpeak()) {
 				player[0]->move();
 
 				// •Ç(áŠQ•¨)‚Æ‚Ì‚ ‚½‚è”»’è
@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				player[0]->learnMagic();
 			}
 
-			if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide()) {
+			if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
 				window.changeIsHide();
 			}
 		}

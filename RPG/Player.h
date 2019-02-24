@@ -42,6 +42,8 @@ class Player {
 	Magic *magic[MAXMAGICNUM];
 	int learnMagicNum;
 
+	bool isSpeak;
+
 public:
 	Player();
 	void move();
@@ -67,6 +69,7 @@ public:
 	Item* getBelonging(int i) { return belongings[i]; }
 	int getAllStr();
 	direct getDirect() { return this->direction; }
+	bool getIsSpeak() { return this->isSpeak; }
 
 	void setHp(int h) { status.hp = h; }
 	void setMp(int m) { status.mp = m; }
@@ -96,6 +99,8 @@ public:
 	void addMp(int n) { this->status.mp += n; }
 
 	void learnMagic();
+
+	void changeIsSpeak() { this->isSpeak = !this->isSpeak; }
 };
 
 extern Player *player[PLAYERNUM];

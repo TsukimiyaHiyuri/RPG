@@ -23,7 +23,7 @@ void NonPlayerCharacter::set(int x, int y) {
 	this->y = y;
 }
 
-void NonPlayerCharacter::select() {
+void NonPlayerCharacter::select(Player *player) {
 	if (this->isSpeak) {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
@@ -31,6 +31,7 @@ void NonPlayerCharacter::select() {
 			index++;
 			if (this->index >= this->speak.size()) {
 				this->init();
+				player->changeIsSpeak();
 			}
 		}
 	}
@@ -46,6 +47,7 @@ NonPlayerCharacter *NonPlayerCharacter::speakStart(Player *player, NonPlayerChar
 
 					this->direction = DOWN;
 					this->isSpeak = true;
+					player->changeIsSpeak();
 					return this;
 				}
 
@@ -56,6 +58,7 @@ NonPlayerCharacter *NonPlayerCharacter::speakStart(Player *player, NonPlayerChar
 
 					this->direction = UP;
 					this->isSpeak = true;
+					player->changeIsSpeak();
 					return this;
 				}
 			}
@@ -67,6 +70,7 @@ NonPlayerCharacter *NonPlayerCharacter::speakStart(Player *player, NonPlayerChar
 
 					this->direction = RIGHT;
 					this->isSpeak = true;
+					player->changeIsSpeak();
 					return this;
 				}
 			}
@@ -76,6 +80,7 @@ NonPlayerCharacter *NonPlayerCharacter::speakStart(Player *player, NonPlayerChar
 
 					this->direction = LEFT;
 					this->isSpeak = true;
+					player->changeIsSpeak();
 					return this;
 				}
 			}
@@ -85,12 +90,12 @@ NonPlayerCharacter *NonPlayerCharacter::speakStart(Player *player, NonPlayerChar
 	return NULL;
 }
 
-void NonPlayerCharacter::speaking() {
+void NonPlayerCharacter::speaking(Player *player) {
 	if (this->isSpeak) {
 		DrawBox(SPEAKWINDOWX1, SPEAKWINDOWY1, SPEAKWINDOWX2, SPEAKWINDOWY2, GetColor(0, 0, 0), true);
 		DrawFormatString(SPEAKWINDOWX1 + 10, SPEAKWINDOWY1 + 10, GetColor(255, 255, 255), "%s", this->speak[this->index].c_str());
 	}
-	this->select();
+	this->select(player);
 }
 
 void NonPlayerCharacter::init() {

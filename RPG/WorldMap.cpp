@@ -48,7 +48,7 @@ bool WorldMap::judgeWall(int x, int y) {
 		}
 	}
 
-	return false;
+	return this->judgeWallNPC(x, y);
 }
 
 //	ŽŸ‚Ìƒ}ƒbƒv‚ÉˆÚ“®‚·‚é‚©‚ðŠÄŽ‹‚·‚é

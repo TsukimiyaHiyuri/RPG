@@ -39,6 +39,7 @@ public:
 	void drawMap(int ScrollX, int ScrollY, Player *p);
 	void npcAction(Player *player);
 	bool getIsEncount() { return isEncount; }
+	bool judgeWallNPC(int x, int y);
 };
 
 extern Map *nowMap;

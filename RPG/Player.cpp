@@ -37,6 +37,8 @@ Player::Player() {
 
 	// 魔法系の初期値
 	this->learnMagicNum = 0;
+
+	this->isSpeak = false;
 }
 
 // 各キー入力にしたがって移動方向を取得

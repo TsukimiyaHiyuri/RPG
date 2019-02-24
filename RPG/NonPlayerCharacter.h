@@ -27,8 +27,8 @@ public:
 	void set(int x, int y);
 	void loadGraphic(std::string fileName);
 	void setSpeak(std::vector<std::string> s);
-	void select();
-	void speaking();
+	void select(Player *p);
+	void speaking(Player *p);
 	NonPlayerCharacter *speakStart(Player *p, NonPlayerCharacter * npc);
 	void init();
 

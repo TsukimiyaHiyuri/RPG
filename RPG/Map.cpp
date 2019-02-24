@@ -64,10 +64,19 @@ void Map::npcAction(Player *player) {
 	}
 
 	if (nowNPC != NULL) {
-		this->nowNPC->speaking();
+		this->nowNPC->speaking(player);
 	}
 }
 
 bool Map::judgeWall(int x, int y) {
 	return true;
+}
+
+bool Map::judgeWallNPC(int x, int y) {
+	for (int i = 0; i < this->npcNum; i++) {
+		if (this->npc[i]->getx() == x && this->npc[i]->gety() == y) {
+			return true;
+		}
+	}
+	return false;
 }
