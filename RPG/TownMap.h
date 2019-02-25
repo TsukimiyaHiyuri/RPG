@@ -6,16 +6,13 @@ class Player;
 
 class TownMap : public Map {
 public:
-	TownMap() {
-		this->loadMapTip();
-		this->setMap();
-		this->isEncount = false;
-	}
+	TownMap();
 
 	virtual void setMap();
 	virtual void loadMapTip();
 	bool judgeWall(int x, int y);
 	virtual void changeMap(Player *p);
+	virtual void setNPC();
 };
 
 extern TownMap town;

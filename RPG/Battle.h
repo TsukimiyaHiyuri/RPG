@@ -5,7 +5,7 @@
 #include "Enemy.h"
 #include "ComandWindow.h"
 #include "BattleWindow.h"
-#define BATTLEINTEBAL 15
+#define BATTLEINTEBAL 30
 #define WIDTH 640
 
 class Player;

@@ -3,7 +3,7 @@
 #include "Player.h"
 #define POTION 30
 
-class Potion : Item {
+class Potion : public Item {
 public:
 	Potion();
 	virtual void use(Player *p);

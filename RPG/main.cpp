@@ -81,7 +81,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		player[0]->drawHero(&moveCounter);
 
 		window.drawMenuWindow();
-		nowMap->npcAction(player[0]);
+
+		if (window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && window.getIsHide()) {
+			nowMap->npcAction(player[0]);
+		}
 
 		if (moveEncountNum > BATTLEINTEBAL) {
 			tmp->encount(player[0], nowMap);

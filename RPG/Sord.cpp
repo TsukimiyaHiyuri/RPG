@@ -9,12 +9,13 @@ Sord::Sord() {
 	this->description = "ˆê”Ê“I‚ÈŒ•";
 	this->type = Weapon;
 	this->isEquipt = false;
+	this->buyGold = 15;
+	this->sellGold = 7;
 }
 
 void Sord::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Sord());
-		player->setBelongingsNum(player->getBelongingsNum() + 1);
 	}
 }
 

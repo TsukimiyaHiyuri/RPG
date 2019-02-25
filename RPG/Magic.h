@@ -31,7 +31,7 @@ public:
 	virtual bool use(Player *p, Enemy *e[], std::string *n = 0) { return true; }
 	MagicType getType() { return this->type; }
 	std::string getName() { return this->name; }
-	void setStr(std::string *n, int damage, Enemy *e);
+	void setStr(std::string *n, int damage, Enemy *e, Player *p);
 };
 
 class Fire : public Magic {

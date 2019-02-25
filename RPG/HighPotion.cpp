@@ -6,6 +6,8 @@ HighPotion::HighPotion() {
 	this->name = "ハイポーション";
 	this->description = "大きく回復する";
 	this->isEquipt = false;
+	this->buyGold = 15;
+	this->sellGold = 7;
 }
 
 void HighPotion::use(Player *player) {
@@ -21,6 +23,5 @@ void HighPotion::use(Player *player) {
 void HighPotion::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new HighPotion());
-		player->setBelongingsNum(player->getBelongingsNum() + 1);
 	}
 }

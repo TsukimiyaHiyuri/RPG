@@ -9,12 +9,13 @@ Armors::Armors() {
 	this->description = "ˆê”Ê“I‚ÈŠZ";
 	this->type = Armor;
 	this->isEquipt = false;
+	this->buyGold = 15;
+	this->sellGold = 7;
 }
 
 void Armors::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Armors());
-		player->setBelongingsNum(player->getBelongingsNum() + 1);
 	}
 }
 

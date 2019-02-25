@@ -4,8 +4,8 @@ Magic::Magic()
 {
 }
 
-void Magic::setStr(std::string *n, int damage, Enemy *e) {
-	*n += this->getName() + "は" + this->getName() + "を唱えた！\n";
+void Magic::setStr(std::string *n, int damage, Enemy *e, Player *p) {
+	*n += p->getName() + "は" + this->getName() + "を唱えた！\n";
 	*n += e->getName() + "に" + std::to_string(damage) + "のダメージ！";
 }
 
@@ -22,7 +22,7 @@ bool Fire::use(Player *player, Enemy *e, std::string *n) {
 		e->damage(damage);
 		player->addMp(-this->useMp);
 
-		this->setStr(n, damage, e);
+		this->setStr(n, damage, e, player);
 
 		return true;
 	}
@@ -44,7 +44,7 @@ bool Thunder::use(Player *player, Enemy *e[], std::string *n) {
 		}
 		player->addMp(-this->useMp);
 
-		*n += this->getName() + "は" + this->getName() + "を唱えた！\n";
+		*n += player->getName() + "は" + this->getName() + "を唱えた！\n";
 		*n += "敵全体に" + std::to_string(damage) + "のダメージ！";
 
 		return true;

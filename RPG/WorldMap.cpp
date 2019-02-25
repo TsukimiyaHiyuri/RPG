@@ -7,7 +7,7 @@
 WorldMap::WorldMap() {
 	this->loadMapTip();
 	this->setMap();
-	this->isEncount = false;
+	this->isEncount = true;
 	this->setNPC();
 }
 

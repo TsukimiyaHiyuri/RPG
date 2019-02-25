@@ -1,14 +1,32 @@
 ﻿cl : コマンド ライン warning D9025: '/D_UNICODE' より '/U_UNICODE' が優先されます。
 cl : コマンド ライン warning D9025: '/DUNICODE' より '/UUNICODE' が優先されます。
-  WorldMap.cpp
-c:\cygwin64\home\jupil\game\rpg\rpg\worldmap.cpp(44): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  Map.cpp
-  コードを生成中...
-  コンパイル中...
-  Battle.cpp
+  Magic.cpp
   コードを生成中...
   スキップ中... (関連する変更は検出されませんでした)
   main.cpp
+  WorldMap.cpp
   TownMap.cpp
+  StatusWindow.cpp
+  Sord.cpp
+  Slime.cpp
+  ShopWindow.cpp
+  ShopNPC.cpp
+  ShopItemWindow.cpp
+  SelectWindow.cpp
+  Potion.cpp
   Player.cpp
+  NonPlayerCharacter.cpp
+  MenuWindow.cpp
+  Map.cpp
+  MagicWindow.cpp
+  ItemWindow.cpp
+  ItemSelectWindow.cpp
+  Item.cpp
+  HighPotion.cpp
+  EquipmentWindow.cpp
+  EnemyListWindow.cpp
+  Enemy.cpp
+  ComandWindow.cpp
+  Battle.cpp
+  Armors.cpp
   RPG.vcxproj -> C:\cygwin64\home\jupil\game\RPG\Debug\RPG.exe

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _StatusWindow_
+#define _StatusWindow_
 
 #include "Player.h"
 #include <vector>
@@ -41,3 +43,4 @@ public:
 	int getselectNum() { return selectNum; }
 };
 
+#endif

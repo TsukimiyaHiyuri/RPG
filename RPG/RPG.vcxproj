@@ -173,6 +173,9 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Potion.cpp" />
     <ClCompile Include="SelectWindow.cpp" />
+    <ClCompile Include="ShopItemWindow.cpp" />
+    <ClCompile Include="ShopNPC.cpp" />
+    <ClCompile Include="ShopWindow.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Sord.cpp" />
     <ClCompile Include="StatusWindow.cpp" />
@@ -203,6 +206,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Potion.h" />
     <ClInclude Include="SelectWindow.h" />
+    <ClInclude Include="ShopItemWindow.h" />
+    <ClInclude Include="ShopNPC.h" />
+    <ClInclude Include="ShopWindow.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Sord.h" />
     <ClInclude Include="Status.h" />

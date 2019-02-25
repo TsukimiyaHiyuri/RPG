@@ -9,6 +9,7 @@ Player *player[PLAYERNUM];
 
 Player::Player() {
 	// status‚Ì‰Šú’l
+	this->status.name = "—EŽÒ";
 	this->status.lv = 2;
 	this->status.maxHp = 100;
 	this->status.maxMp = 50;
@@ -17,7 +18,7 @@ Player::Player() {
 	this->status.str = 10;
 	this->status.def = 10;
 	this->status.exp = 0;
-	this->status.gold = 0;
+	this->status.gold = 500;
 
 	// ŠŽ•iŒn‚Ì‰Šú’l
 	this->belongingsNum = 0;
@@ -134,6 +135,23 @@ void Player::setPlayer(int x, int y) {
 void Player::addBelongings(Item *item) {
   	if (this->getBelongingsNum() < MAXBELONGINGS) {
 		this->belongings[this->getBelongingsNum()] = item;
+		this->setBelongingsNum(this->getBelongingsNum() + 1);
+	}
+}
+
+bool Player::sellItem(int n) {
+	if (this->getBelongingsNum() > 0 && !this->belongings[n]->getIsEquip()) {
+		this->status.gold += this->belongings[n]->getSellGold();
+		this->throwItem(n);
+		return true;
+	}
+	return false;
+}
+
+void Player::buyItem(Item *item) {
+	if (this->status.gold >= item->getBuyGold() && this->getBelongingsNum() < MAXBELONGINGS) {
+		this->status.gold -= item->getBuyGold();
+		this->addBelongings(item);
 	}
 }
 

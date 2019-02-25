@@ -20,6 +20,8 @@ protected:
 	bool canUse;
 	int str;
 	int def;
+	int buyGold;
+	int sellGold;
 	Equipment type;
 	bool isEquipt;
 public:
@@ -37,6 +39,8 @@ public:
 	bool getCanEquip() { return canEquip; }
 	bool getCanUse() { return canUse; }
 	void setIsEquip(bool f) { isEquipt = f; }
+	int getSellGold() { return this->sellGold; }
+	int getBuyGold() { return this->buyGold; }
 };
 
 #endif

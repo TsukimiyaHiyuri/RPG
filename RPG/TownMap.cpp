@@ -2,9 +2,19 @@
 #include "Player.h"
 #include "WorldMap.h"
 #include "DxLib.h"
+#include "ShopNPC.h"
+#include "Item.h"
+#include "Potion.h"
+#include "Armors.h"
+#include "Sord.h"
 #include <iostream>
 
-TownMap town;
+TownMap::TownMap() {
+	this->loadMapTip();
+	this->setMap();
+	this->isEncount = false;
+	this->setNPC();
+}
 
 void TownMap::setMap() {
 	this->map = {
@@ -45,7 +55,7 @@ bool TownMap::judgeWall(int x, int y) {
 		}
 	}
 
-	return false;
+	return this->judgeWallNPC(x, y);
 }
 
 //	次のマップに移動するかを監視する
@@ -58,4 +68,15 @@ void TownMap::changeMap(Player *player) {
 		delete nowMap;
 		nowMap = new WorldMap();
 	}
+}
+
+void TownMap::setNPC() {
+	this->npcNum = 1;
+	std::vector<std::string> tmp;
+	tmp.push_back("ここは何でも屋です");
+	tmp.push_back("何か買っていきませんか？");
+
+	Item *item[3] = { new Potion(), new Armors(), new Sord()};
+
+	this->npc[0] = new ShopNPC(5, 5, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3);
 }

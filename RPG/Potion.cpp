@@ -8,6 +8,8 @@ Potion::Potion(){
 	this->name = "ƒ|[ƒVƒ‡ƒ“";
 	this->description = "‰ñ•œ‚·‚é";
 	this->isEquipt = false;
+	this->buyGold = 15;
+	this->sellGold = 7;
 }
 
 void Potion::use(Player *player) {
@@ -22,6 +24,5 @@ void Potion::use(Player *player) {
 void Potion::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Potion());
-		player->setBelongingsNum(player->getBelongingsNum() + 1);
 	}
 }

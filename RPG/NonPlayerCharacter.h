@@ -14,6 +14,7 @@
 class Player;
 
 class NonPlayerCharacter {
+protected:
 	int x, y;
 	int graphic[TIPSIZEP];
 	direct direction;
@@ -28,7 +29,7 @@ public:
 	void loadGraphic(std::string fileName);
 	void setSpeak(std::vector<std::string> s);
 	void select(Player *p);
-	void speaking(Player *p);
+	virtual void speaking(Player *p);
 	NonPlayerCharacter *speakStart(Player *p, NonPlayerCharacter * npc);
 	void init();
 

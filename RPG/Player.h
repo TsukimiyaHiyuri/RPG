@@ -101,6 +101,10 @@ public:
 	void learnMagic();
 
 	void changeIsSpeak() { this->isSpeak = !this->isSpeak; }
+	void setIsSpeak(bool flag) { this->isSpeak = flag; }
+
+	bool sellItem(int n);
+	void buyItem(Item *item);
 };
 
 extern Player *player[PLAYERNUM];
