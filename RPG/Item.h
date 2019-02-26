@@ -7,7 +7,7 @@
 
 class Player;
 
-enum Equipment {
+enum EquipmentType {
 	Weapon = 0,
 	Armor = 1,
 };
@@ -22,19 +22,19 @@ protected:
 	int def;
 	int buyGold;
 	int sellGold;
-	Equipment type;
+	EquipmentType type;
 	bool isEquipt;
 public:
 
 	Item();
 	virtual void use(Player *p);
 	virtual void equip(Player *p) {}
-	virtual void addBelongings() {}
+	virtual void addBelongings(Player *p) {}
 	virtual void remove(Player *p) {}
 	std::string getName() { return this->name; }
 	std::string getDescription() { return this->description; }
 	bool getIsEquip() { return isEquipt; }
-	Equipment getType() { return type; }
+	EquipmentType getType() { return type; }
 	void changeIsEquript();
 	bool getCanEquip() { return canEquip; }
 	bool getCanUse() { return canUse; }

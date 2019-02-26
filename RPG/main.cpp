@@ -28,10 +28,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player[1] = new Player();
 	player[2] = new Player();
 
-	Potion p = Potion();
-	HighPotion hp = HighPotion();
-	Sord sord = Sord();
-	Armors armors = Armors();
+	Potion *p = new Potion();
+	HighPotion *hp = new HighPotion();
+	Sord *sord = new Sord();
+	Armors *armors = new Armors();
 	MenuWindow window = MenuWindow(player[0]);
 
 	Battle *tmp = new Battle();
@@ -56,15 +56,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			if (Key[KEY_INPUT_SPACE] == 1) {
-				armors.addBelongings(player[0]);
+				armors->addBelongings(player[0]);
 			}
 
 			if (Key[KEY_INPUT_H] == 1) {
-				hp.addBelongings(player[0]);
+				hp->addBelongings(player[0]);
 			}
 
 			if (Key[KEY_INPUT_S] == 1) {
-				sord.addBelongings(player[0]);
+				sord->addBelongings(player[0]);
 				player[0]->learnMagic();
 			}
 

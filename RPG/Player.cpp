@@ -151,7 +151,7 @@ bool Player::sellItem(int n) {
 void Player::buyItem(Item *item) {
 	if (this->status.gold >= item->getBuyGold() && this->getBelongingsNum() < MAXBELONGINGS) {
 		this->status.gold -= item->getBuyGold();
-		this->addBelongings(item);
+		item->addBelongings(this);
 	}
 }
 
