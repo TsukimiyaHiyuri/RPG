@@ -1,6 +1,7 @@
 #include "WorldMap.h"
 #include "Player.h"
 #include "TownMap.h"
+#include "Slime.h"
 #include "DxLib.h"
 #include <iostream>
 
@@ -9,6 +10,7 @@ WorldMap::WorldMap() {
 	this->setMap();
 	this->isEncount = true;
 	this->setNPC();
+	this->setEnemy();
 }
 
 void WorldMap::setMap() {
@@ -74,4 +76,9 @@ void WorldMap::setNPC() {
 	tmp.push_back("おまけにもう一つ！");
 
 	this->npc[1] = new NonPlayerCharacter(7, 7, "歩行ドットキャラ.bmp", tmp, DOWN);
+}
+
+void WorldMap::setEnemy() {
+	this->enemy[0] = new Slime(0);
+	this->enemyNum = 1;
 }

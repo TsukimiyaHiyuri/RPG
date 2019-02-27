@@ -13,6 +13,7 @@ public:
 	bool judgeWall(int x, int y);
 	virtual void changeMap(Player *p);
 	virtual void setNPC();
+	virtual void setEnemy();
 };
 
 extern WorldMap world;

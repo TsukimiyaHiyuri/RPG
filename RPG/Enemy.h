@@ -32,6 +32,7 @@ public:
 	int getCordinateX() { return this->x; }
 	virtual void loadGraphic() {}
 	virtual std::string attack(Player *p) { return ""; }
+	virtual Enemy *getEnemy(int x) { return new Enemy(); }
 };
 
 #endif

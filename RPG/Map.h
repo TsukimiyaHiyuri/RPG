@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "NonPlayerCharacter.h"
+#include "Enemy.h"
 #include <vector>
 #define MAP_SIZE 32          // マップチップ一つのドットサイズ
 #define TIPSIZE 256
@@ -28,6 +29,9 @@ protected:
 	NonPlayerCharacter *nowNPC;
 	int npcNum;
 
+	Enemy *enemy[MAXENEMYNUM];
+	int enemyNum;	// このマップで出現する敵の種類数
+
 public:
 	Map() {}
 	Map(int wid, int hei);
@@ -40,6 +44,9 @@ public:
 	void npcAction(Player *player);
 	bool getIsEncount() { return isEncount; }
 	bool judgeWallNPC(int x, int y);
+	virtual void setEnemy() {}
+	Enemy *getEnemy(int n, int x) { return this->enemy[n]->getEnemy(x); }
+	int getEnemyNum() { return this->enemyNum; }
 };
 
 extern Map *nowMap;

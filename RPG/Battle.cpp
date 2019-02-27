@@ -19,13 +19,13 @@ int Battle::encount(Player *player, Map *nowMap) {
 		// “G‚Ì’Ç‰Á
 		// ’Ç‰Á‚µ‚½“G‚Ì”‚ğenemyNum‚É‘ã“ü
 
-		this->enemyNum = 2;
+		this->enemyNum = (rand() % 3) + 1;
 		for (int i = 0; i < this->enemyNum; i++) {
 			if (i == 0) {
-				this->enemy[i] = new Slime(WIDTH / (this->enemyNum * 2));
+				this->enemy[i] = nowMap->getEnemy(rand() % nowMap->getEnemyNum(), WIDTH / (this->enemyNum * 2));
 			}
 			else {
-				this->enemy[i] = new Slime(this->enemy[i - 1]->getCordinateX() + (WIDTH / this->enemyNum));
+				this->enemy[i] = nowMap->getEnemy(rand() % nowMap->getEnemyNum(), this->enemy[i - 1]->getCordinateX() + (WIDTH / this->enemyNum));
 			}
 		}
 

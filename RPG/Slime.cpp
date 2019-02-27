@@ -33,3 +33,7 @@ std::string Slime::attack(Player *player) {
 	ans += player->getName() + "‚É" + std::to_string(d) + "‚Ìƒ_ƒ[ƒW";
 	return ans;
 }
+
+Enemy *Slime::getEnemy(int x) {
+	return new Slime(x);
+}

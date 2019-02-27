@@ -8,5 +8,6 @@ public:
 
 	virtual void loadGraphic();
 	virtual std::string attack(Player *p);
+	virtual Enemy *getEnemy(int x);
 };
 
