@@ -10,7 +10,7 @@ Player *player[PLAYERNUM];
 Player::Player() {
 	// statusの初期値
 	this->status.name = "勇者";
-	this->status.lv = 2;
+	this->status.lv = 1;
 	this->status.maxHp = 100;
 	this->status.maxMp = 50;
 	this->status.hp = 10;
@@ -40,6 +40,7 @@ Player::Player() {
 	this->learnMagicNum = 0;
 
 	this->isSpeak = false;
+	this->setLevelTable();
 }
 
 // 各キー入力にしたがって移動方向を取得
@@ -242,8 +243,43 @@ void Player::attack(Enemy *e, std::string *n) {
 	*n += e->getName() + "に" + std::to_string(damage) + "のダメージ！";
 }
 
-void Player::learnMagic() {
-	this->magic[0] = new Fire();
-	this->magic[1] = new Thunder();
-	this->learnMagicNum = 2;
+void Player::learnMagic(Magic *magic) {
+	this->magic[this->learnMagicNum] = magic;
+	this->learnMagicNum++;
+}
+
+void Player::setLevelTable() {
+	for (int i = 0; i < MAXLEVEL - 1; i++) {
+		this->levelTable[i] = (i + 1) * 6;
+	}
+}
+
+// レベルアップ時の関数
+void Player::levelUp(std::string *s) {
+	if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
+		// レベルをひとつあげる
+		this->status.lv++;
+
+		// 各ステータスを上げる
+		this->addMaxHp(15);
+		this->addMaxMp(5);
+		this->addStr(3);
+		this->addDef(2);
+		this->setHp(this->getMaxHp());
+		this->setMp(this->getMaxMp());
+
+		*s += this->getName() + "は Lv" + std::to_string(this->getLv()) + " になった！\n";
+
+		// レベルによって魔法を習得
+		switch (this->getLv()) {
+		case 2:
+			this->learnMagic(new Fire());
+			*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+			break;
+		case 5:
+			this->learnMagic(new Thunder());
+			*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+			break;
+		}
+	}
 }

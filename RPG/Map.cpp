@@ -5,8 +5,7 @@ Map *nowMap;
 extern Player *player[PLAYERNUM];
 
 // コンストラクタ
-Map::Map(int hei, int wid) 
-{
+Map::Map(int hei, int wid)  {
 	this->width = wid;
 	this->height = hei;
 }
@@ -22,10 +21,8 @@ void Map::drawMap(int ScrollX, int ScrollY, Player *player) {
 	int MapDrawPointY = player->gety() - (DrawMapChipNumY / 2 - 1);
 
 	// マップを描く
-	for (int i = -1; i < DrawMapChipNumY; i++)
-	{
-		for (int j = -1; j < DrawMapChipNumX; j++)
-		{
+	for (int i = -1; i < DrawMapChipNumY; i++) {
+		for (int j = -1; j < DrawMapChipNumX; j++) {
 			// 画面からはみ出た位置なら描画しない
 			if (j + MapDrawPointX < 0 || i + MapDrawPointY < 0 ||
 				j + MapDrawPointX >= this->width || i + MapDrawPointY >= this->height) continue;
@@ -36,10 +33,8 @@ void Map::drawMap(int ScrollX, int ScrollY, Player *player) {
 	}
 
 	// NPCの描画の例
-	for (int i = -1; i < DrawMapChipNumY; i++)
-	{
-		for (int j = -1; j < DrawMapChipNumX; j++)
-		{
+	for (int i = -1; i < DrawMapChipNumY; i++) {
+		for (int j = -1; j < DrawMapChipNumX; j++) {
 			// 画面からはみ出た位置なら描画しない
 			if (j + MapDrawPointX < 0 || i + MapDrawPointY < 0 ||
 				j + MapDrawPointX >= this->width || i + MapDrawPointY >= this->height) continue;

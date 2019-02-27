@@ -100,9 +100,10 @@ void Battle::battle(Player *player) {
 				player->addGold(this->gold);
 
 				std::string tmp;
-				tmp = "経験値" + std::to_string(this->exp) + "と" + std::to_string(this->gold) + "ゴールドを獲得！";
+				tmp = "経験値" + std::to_string(this->exp) + "と" + std::to_string(this->gold) + "ゴールドを獲得！\n";
 
 				/* レベルアップの処理 */
+				player->levelUp(&tmp);
 
 				this->finishWindow->setStr(tmp);
 				this->finishWindowFlag = true;

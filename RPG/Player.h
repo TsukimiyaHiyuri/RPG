@@ -14,6 +14,7 @@
 #define PLAYERNUM 3
 #define TIPSIZEP 128
 #define MAXMAGICNUM 8
+#define MAXLEVEL 99
 
 extern int moveX, moveY;
 class Item;
@@ -44,6 +45,7 @@ class Player {
 
 	bool isSpeak;
 
+	int levelTable[MAXLEVEL - 1];
 public:
 	Player();
 	void move();
@@ -75,8 +77,6 @@ public:
 	void setMp(int m) { status.mp = m; }
 	void setStr(int n) { status.str = n; }
 	void setDef(int n) { status.def = n; }
-	void addExp(long n) { status.exp += n; }
-	void addGold(long n) { status.gold += n; }
 	void setWeaponStr(int n) { weaponStr = n; }
 	void setWeaponDef(int n) { weaponDef = n; }
 	std::string getName() { return this->status.name; }
@@ -96,15 +96,25 @@ public:
 	void attack(Enemy *e, std::string *n = 0);
 	int getLearnMagicNum() { return this->learnMagicNum; }
 	void damege(int n) { this->status.hp -= n; }
-	void addMp(int n) { this->status.mp += n; }
 
-	void learnMagic();
+	void learnMagic(Magic *magic);
 
 	void changeIsSpeak() { this->isSpeak = !this->isSpeak; }
 	void setIsSpeak(bool flag) { this->isSpeak = flag; }
 
 	bool sellItem(int n);
 	void buyItem(Item *item);
+
+	void levelUp(std::string *s);
+	void setLevelTable();
+
+	void addExp(long n) { status.exp += n; }
+	void addGold(long n) { status.gold += n; }
+	void addMp(int n) { this->status.mp += n; }
+	void addMaxMp(int n) { this->status.maxMp += n; }
+	void addMaxHp(int n) { this->status.maxHp += n; }
+	void addStr(int n) { this->status.str += n; }
+	void addDef(int n) { this->status.def += n; }
 };
 
 extern Player *player[PLAYERNUM];

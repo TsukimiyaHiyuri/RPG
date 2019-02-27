@@ -55,19 +55,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				player[0]->scroll(&moveCounter, &ScrollX, &ScrollY, &moveEncountNum);
 			}
 
-			if (Key[KEY_INPUT_SPACE] == 1) {
-				armors->addBelongings(player[0]);
-			}
-
-			if (Key[KEY_INPUT_H] == 1) {
-				hp->addBelongings(player[0]);
-			}
-
-			if (Key[KEY_INPUT_S] == 1) {
-				sord->addBelongings(player[0]);
-				player[0]->learnMagic();
-			}
-
 			if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
 				window.changeIsHide();
 			}

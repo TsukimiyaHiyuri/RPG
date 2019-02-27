@@ -7,5 +7,6 @@ c:\cygwin64\home\jupil\game\rpg\rpg\menuwindow.h(13): warning C4005: 'INTERBAL':
   c:\cygwin64\home\jupil\game\rpg\rpg\statuswindow.h(13): note: 'INTERBAL' の以前の定義を確認してください
 c:\cygwin64\home\jupil\game\rpg\rpg\battlewindow.h(6): warning C4005: 'INTERBAL': マクロが再定義されました。
   c:\cygwin64\home\jupil\game\rpg\rpg\menuwindow.h(13): note: 'INTERBAL' の以前の定義を確認してください
-  LINK : 前回のインクリメンタル リンクで C:\cygwin64\home\jupil\game\RPG\Debug\RPG.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+  Battle.cpp
+  コードを生成中...
   RPG.vcxproj -> C:\cygwin64\home\jupil\game\RPG\Debug\RPG.exe
