@@ -11,14 +11,14 @@ Player::Player() {
 	// status‚Ì‰Šú’l
 	this->status.name = "—EŽÒ";
 	this->status.lv = 1;
-	this->status.maxHp = 100;
-	this->status.maxMp = 50;
-	this->status.hp = 10;
-	this->status.mp = 10;
+	this->status.maxHp = 20;
+	this->status.maxMp = 5;
+	this->status.hp = 20;
+	this->status.mp = 5;
 	this->status.str = 10;
 	this->status.def = 10;
 	this->status.exp = 0;
-	this->status.gold = 500;
+	this->status.gold = 100;
 
 	// ŠŽ•iŒn‚Ì‰Šú’l
 	this->belongingsNum = 0;

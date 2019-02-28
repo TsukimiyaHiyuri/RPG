@@ -20,8 +20,6 @@ Slime::Slime(int x) {
 
 void Slime::loadGraphic() {
 	this->graphic = LoadGraph("sraim.png");
-	int a;
-	a = 0;
 }
 
 std::string Slime::attack(Player *player) {

@@ -28,11 +28,10 @@ void Map::drawMap(int ScrollX, int ScrollY, Player *player) {
 				j + MapDrawPointX >= this->width || i + MapDrawPointY >= this->height) continue;
 
 			// マップデータを描画する
-			DrawGraph(j * MAP_SIZE + ScrollX, i * MAP_SIZE + ScrollY, this->mapTip[this->map[i + MapDrawPointY][j + MapDrawPointX]], TRUE);
+			this->drawMapTip(j * MAP_SIZE + ScrollX, i * MAP_SIZE + ScrollY, i + MapDrawPointY, j + MapDrawPointX);
 		}
 	}
 
-	// NPCの描画の例
 	for (int i = -1; i < DrawMapChipNumY; i++) {
 		for (int j = -1; j < DrawMapChipNumX; j++) {
 			// 画面からはみ出た位置なら描画しない
@@ -69,7 +68,7 @@ bool Map::judgeWall(int x, int y) {
 
 bool Map::judgeWallNPC(int x, int y) {
 	for (int i = 0; i < this->npcNum; i++) {
-		if (this->npc[i]->getx() == x && this->npc[i]->gety() == y) {
+		if (this->npc[i]->getx() == y && this->npc[i]->gety() == x) {
 			return true;
 		}
 	}

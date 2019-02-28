@@ -40,6 +40,7 @@ public:
 	virtual bool judgeWall(int x, int y);
 	virtual void changeMap(Player *p) {};
 	virtual void setNPC() {};
+	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy) {}
 	void drawMap(int ScrollX, int ScrollY, Player *p);
 	void npcAction(Player *player);
 	bool getIsEncount() { return isEncount; }

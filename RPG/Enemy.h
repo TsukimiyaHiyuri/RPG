@@ -19,7 +19,7 @@ protected:
 
 public:
 	Enemy();
-	void setStatus(std::string, int, int, int, int, int, int, int, long, long);
+	void setStatus(std::string n, int lv, int mh, int h, int mm, int m, int str, int def, long g, long e);
 	int getHp() { return this->status.hp; }
 	int getDef() { return this->status.def; }
 	long getGold() { return this->status.gold; }

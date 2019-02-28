@@ -26,6 +26,7 @@ int EnemyListWindow::setEnemy() {
 					enemy[j] = enemy[i];
 					enemy[i] = tmp;
 					liveNum++;
+					break;
 				}
 			}
 		}

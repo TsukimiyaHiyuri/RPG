@@ -86,7 +86,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 		}
 
-		DrawFormatString(0, 0, GetColor(255, 255, 255), "HP:%d", player[0]->getHp());
+		DrawFormatString(0, 0, GetColor(255, 255, 255), "X: %d, Y: %d", player[0]->getx(), player[0]->gety());
 	}
 
 	DxLib_End(); // DXƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—

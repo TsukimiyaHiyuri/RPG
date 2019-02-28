@@ -80,3 +80,7 @@ void TownMap::setNPC() {
 
 	this->npc[0] = new ShopNPC(5, 5, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3);
 }
+
+void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
+	DrawGraph(drawx, drawy, this->mapTip[this->map[pointx][pointy]], true);
+}

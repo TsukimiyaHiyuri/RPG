@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="Armors.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleWindow.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="Armors.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleWindow.h" />
     <ClInclude Include="ComandType.h" />
