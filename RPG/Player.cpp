@@ -236,6 +236,8 @@ int Player::getAllStr() {
 
 // ˆø”‚Ì“G‚ÉUŒ‚‚·‚é
 void Player::attack(Enemy *e, std::string *n) {
+	// SE‚ð‚È‚ç‚·
+	this->sound->playSE(AttackSE, true);
 	int damage = this->getAllStr() - e->getDef() > 1 ? this->getAllStr() - e->getDef() : 1;
 	e->damage(damage);
 

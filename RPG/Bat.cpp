@@ -1,7 +1,7 @@
 #include "Bat.h"
 #include "DxLib.h"
 
-Bat::Bat(int x) {
+Bat::Bat(int x, Sound *sound) {
 	this->setStatus(
 		"‚±‚¤‚à‚è",
 		1,
@@ -16,6 +16,7 @@ Bat::Bat(int x) {
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);
+	this->sound = sound;
 }
 
 void Bat::loadGraphic() {
@@ -23,6 +24,9 @@ void Bat::loadGraphic() {
 }
 
 std::string Bat::attack(Player *player) {
+	// SE‚ğ‚È‚ç‚·
+	this->sound->playSE(DamageSE, true);
+
 	int d = 4;
 	player->damege(d);
 
@@ -33,5 +37,5 @@ std::string Bat::attack(Player *player) {
 }
 
 Enemy *Bat::getEnemy(int x) {
-	return new Bat(x);
+	return new Bat(x, this->sound);
 }

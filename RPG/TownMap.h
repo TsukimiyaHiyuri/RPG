@@ -13,7 +13,7 @@ class TownMap : public Map {
 	std::vector<std::vector<int>> mapBridge;
 
 public:
-	TownMap();
+	TownMap(Sound *sound);
 
 	virtual void setMap();
 	virtual void loadMapTip();

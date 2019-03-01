@@ -3,8 +3,9 @@
 #include "Battle.h"
 #include "DxLib.h"
 
-SnowMap::SnowMap() {
+SnowMap::SnowMap(Sound *sound) {
 	this->loadMapTip();
+	this->sound = sound;
 	this->setMap();
 	this->isEncount = false;
 	this->setNPC();
@@ -161,7 +162,7 @@ void SnowMap::changeMap(Player *player) {
 	if (x == 14 && y == 22) {
 		player->setPlayer(25, 10);
 		delete nowMap;
-		nowMap = new TownMap();
+		nowMap = new TownMap(this->sound);
 	}
 
 	if (x == 25 && y == 8) {

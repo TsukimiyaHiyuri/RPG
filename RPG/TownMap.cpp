@@ -9,8 +9,9 @@
 #include "SnowMap.h"
 #include <iostream>
 
-TownMap::TownMap() {
+TownMap::TownMap(Sound *sound) {
 	this->loadMapTip();
+	this->sound = sound;
 	this->setMap();
 	this->isEncount = false;
 	this->setNPC();
@@ -164,13 +165,13 @@ void TownMap::changeMap(Player *player) {
 	if (x == 14 && y == 21) {
 		player->setPlayer(25, 10);
 		delete nowMap;
-		nowMap = new WorldMap();
+		nowMap = new WorldMap(this->sound);
 	}
 
 	if (x == 25 && y == 8) {
 		player->setPlayer(14, 20);
 		delete nowMap;
-		nowMap = new SnowMap();
+		nowMap = new SnowMap(this->sound);
 	}
 }
 

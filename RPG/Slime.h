@@ -4,7 +4,7 @@
 class Slime : public Enemy {
 
 public:
-	Slime(int x);
+	Slime(int x, Sound *sound);
 
 	virtual void loadGraphic();
 	virtual std::string attack(Player *p);

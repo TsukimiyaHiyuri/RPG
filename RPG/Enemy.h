@@ -4,11 +4,13 @@
 
 #include "Player.h"
 #include "Status.h"
+#include "Sound.h"
 #include <string>
 #define MAXENEMYNUM 8
 #define CORDINATEY 200
 
 class Player;
+class Sound;
 
 class Enemy {
 protected:
@@ -16,6 +18,7 @@ protected:
 	int graphic;
 	bool isHide;
 	int x, y;
+	Sound *sound;
 
 public:
 	Enemy();

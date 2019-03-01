@@ -12,7 +12,7 @@ class WorldMap : public Map {
 	std::vector<std::vector<int>> mapGrass;
 	std::vector<std::vector<int>> mapSea;
 public:
-	WorldMap();
+	WorldMap(Sound *sound);
 	virtual void setMap();
 	virtual void loadMapTip();
 	bool judgeWall(int x, int y);

@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "NonPlayerCharacter.h"
 #include "Enemy.h"
+#include "Sound.h"
 #include <vector>
 #define MAP_SIZE 32          // マップチップ一つのドットサイズ
 #define TIPSIZE 256
@@ -12,6 +13,7 @@
 
 class Player;
 class NonPlayerCharacter;
+class Sound;
 
 enum MapName {
 	World = 0,
@@ -28,6 +30,7 @@ protected:
 	NonPlayerCharacter *npc[MAXNPCNUM];
 	NonPlayerCharacter *nowNPC;
 	int npcNum;
+	Sound *sound;
 
 	Enemy *enemy[MAXENEMYNUM];
 	int enemyNum;	// このマップで出現する敵の種類数

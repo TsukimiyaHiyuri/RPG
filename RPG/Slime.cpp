@@ -1,7 +1,7 @@
 #include "Slime.h"
 #include "DxLib.h"
 
-Slime::Slime(int x) {
+Slime::Slime(int x, Sound *sound) {
 	this->setStatus(
 		"ƒXƒ‰ƒCƒ€",
 		1,
@@ -16,6 +16,7 @@ Slime::Slime(int x) {
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);
+	this->sound = sound;
 }
 
 void Slime::loadGraphic() {
@@ -23,6 +24,9 @@ void Slime::loadGraphic() {
 }
 
 std::string Slime::attack(Player *player) {
+	// SE‚ğ‚È‚ç‚·
+	this->sound->playSE(DamageSE, true);
+
 	int d = 2;
 	player->damege(d);
 
@@ -33,5 +37,5 @@ std::string Slime::attack(Player *player) {
 }
 
 Enemy *Slime::getEnemy(int x) {
-	return new Slime(x);
+	return new Slime(x, this->sound);
 }

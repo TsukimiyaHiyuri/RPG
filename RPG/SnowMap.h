@@ -11,7 +11,7 @@ class SnowMap : public Map {
 
 	int boss;
 public:
-	SnowMap();
+	SnowMap(Sound *sound);
 
 	virtual void setMap();
 	virtual void loadMapTip();

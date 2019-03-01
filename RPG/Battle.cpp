@@ -49,7 +49,7 @@ int Battle::bossEncount(Player *player) {
 	// 追加した敵の数をenemyNumに代入
 
 	this->enemyNum = 1;
-	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2));
+	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2), this->sound);
 
 	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum, this->sound);	// コマンドウィンドウのインスタンスを生成
 	this->battleWindow = new BattleWindow();
@@ -121,7 +121,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 			player->setHp(player->getMaxHp());
 			player->setMp(player->getMaxMp());
 			player->setGold(player->getGold() / 2);
-			nowMap = new WorldMap();
+			nowMap = new WorldMap(this->sound);
 
 			this->init();
 		}
