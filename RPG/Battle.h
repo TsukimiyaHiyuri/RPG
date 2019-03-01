@@ -7,6 +7,11 @@
 #include "BattleWindow.h"
 #define BATTLEINTEBAL 30
 #define WIDTH 640
+#define STATUSX1 5
+#define STATUSY1 300
+#define STATUSX2 95
+#define STATUSY2 400
+#define STATUSINTERBAL 20
 
 class Player;
 class Map;
@@ -21,6 +26,7 @@ class Battle {
 	int lookEnemyNum;	// 現在参照している敵の添え字
 	bool isMyTurn;	// 現在自分のターンか？
 	bool isFinish;	// 戦闘は終了したか？
+	bool isBoss;	// エンカウントしているのはボスか？
 	bool finishWindowFlag;	// 戦闘終了のウィンドウのフラグ
 	Enemy *enemy[MAXENEMYNUM];	// 敵の配列
 	ComandWindow *comandWindow;
@@ -30,11 +36,13 @@ class Battle {
 public:
 	Battle();
 	int encount(Player *player, Map *nowMap);
-	void battle(Player *p);
+	int bossEncount(Player *player);
+	void battle(Player *p, bool *clearFlag, Map *nowMap);
 	void init();
 	void sortEnemy();
 	int countLiveEnemy();
 	bool getIsFinish() { return isFinish; }
 	void battleFinish();
+	void drawStatus(Player *player);
 };
 

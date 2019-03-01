@@ -21,6 +21,7 @@ public:
 	void drawAll();
 	void changeIsHide();
 	bool strIsEmpty();
+	bool getIsHide() { return this->isHide; }
 };
 
 #endif

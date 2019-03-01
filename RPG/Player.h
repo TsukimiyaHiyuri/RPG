@@ -115,6 +115,7 @@ public:
 	void addMaxHp(int n) { this->status.maxHp += n; }
 	void addStr(int n) { this->status.str += n; }
 	void addDef(int n) { this->status.def += n; }
+	void setGold(int n) { this->status.gold = n; }
 };
 
 extern Player *player[PLAYERNUM];

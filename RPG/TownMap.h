@@ -1,10 +1,17 @@
 #pragma once
 #include "Map.h"
+#include "WorldMap.h"
 #include "Player.h"
 
 class Player;
 
 class TownMap : public Map {
+	int grass[GRASSNUM];
+	int sea[SEANUM];
+	std::vector<std::vector<int>> mapSea;
+	std::vector<std::vector<int>> mapGrass;
+	std::vector<std::vector<int>> mapBridge;
+
 public:
 	TownMap();
 

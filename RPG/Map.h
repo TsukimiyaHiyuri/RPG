@@ -48,6 +48,7 @@ public:
 	virtual void setEnemy() {}
 	Enemy *getEnemy(int n, int x) { return this->enemy[n]->getEnemy(x); }
 	int getEnemyNum() { return this->enemyNum; }
+	virtual bool bossIsEncount(int x, int y) { return false; }
 };
 
 extern Map *nowMap;

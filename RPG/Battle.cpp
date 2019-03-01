@@ -1,5 +1,8 @@
 #include "Battle.h"
 #include "Slime.h"
+#include "WorldMap.h"
+#include "Bat.h"
+#include "DxLib.h"
 
 Battle::Battle() {
 	this->gold = 0;
@@ -8,6 +11,7 @@ Battle::Battle() {
 	this->isMyTurn = true;
 	this->isFinish = true;
 	this->finishWindowFlag = false;
+	this->isBoss = false;
 	
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = new Enemy();
@@ -39,9 +43,27 @@ int Battle::encount(Player *player, Map *nowMap) {
 	return 0;
 }
 
-void Battle::battle(Player *player) {
+int Battle::bossEncount(Player *player) {
+	// 敵の追加
+	// 追加した敵の数をenemyNumに代入
+
+	this->enemyNum = 1;
+	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2));
+
+	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum);	// コマンドウィンドウのインスタンスを生成
+	this->battleWindow = new BattleWindow();
+	this->finishWindow = new BattleWindow();
+	this->isFinish = false;
+	this->isMyTurn = true;
+	this->isBoss = true;
+	return this->enemyNum;
+	
+	return 0;
+}
+
+void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 	if (!this->isFinish) {
-		// 自分のターンだったらコマンドウィンドウを表示
+		this->drawStatus(player);
 
 		for (int i = 0; i < this->enemyNum; i++) {
 			this->enemy[i]->drawGraphic();
@@ -54,6 +76,7 @@ void Battle::battle(Player *player) {
 			this->finishWindow->drawBattleWindow();
 		}
 
+		// 自分のターンだったらコマンドウィンドウを表示
 		if (this->isMyTurn && this->battleWindow->strIsEmpty()) {
 			this->isMyTurn = !this->comandWindow->drawAll();
 
@@ -88,10 +111,19 @@ void Battle::battle(Player *player) {
 
 		if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
 			// ゲームオーバーの処理
+
+			player->setHp(player->getMaxHp());
+			player->setMp(player->getMaxMp());
+			player->setGold(player->getGold() / 2);
+			nowMap = new WorldMap();
+
 			this->init();
 		}
 		else if (this->enemyNum <= 0 && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
+				if (this->isBoss) {
+					*clearFlag = true;
+				}
 				this->init();
 			}
 			else {
@@ -153,4 +185,13 @@ void Battle::init() {
 	this->enemyNum = 0;
 	this->isFinish = true;
 	this->finishWindowFlag = false;
+}
+
+void Battle::drawStatus(Player *player) {
+	DrawBox(STATUSX1, STATUSY1, STATUSX2, STATUSY2, GetColor(0, 0, 0), true);
+
+	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10, GetColor(255, 255, 255), "%s", player->getName().c_str());
+	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL, GetColor(255, 255, 255), "Lv: %d", player->getLv());
+	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL*2, GetColor(255, 255, 255), "HP: %d", player->getHp());
+	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL*3, GetColor(255, 255, 255), "MP: %d", player->getMp());
 }
