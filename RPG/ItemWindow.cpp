@@ -4,6 +4,7 @@
 
 ItemWindow::ItemWindow() {
 	this->isHide = true;
+	this->battleWindowStr = "";
 	this->itemSelectWindow = new ItemSelectWindow();
 }
 
@@ -79,16 +80,18 @@ bool ItemWindow::drawAll() {
 	this->drawItemWindow();
 	this->moveSelector();
 	this->select();
-	if (!this->itemSelectWindow->getIsHide()) {
-		return this->itemSelectWindow->drawAll();
+
+	if (this->itemSelectWindow->drawAll()) {
+		this->battleWindowStr = this->itemSelectWindow->getBattleWindowStr();
+		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
+
 }
 
 void ItemWindow::init() {
 	this->isHide = true;
 	this->selectNum = 0;
+	this->battleWindowStr = "";
 	this->itemSelectWindow->init();
 }

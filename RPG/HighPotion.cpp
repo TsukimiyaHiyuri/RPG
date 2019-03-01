@@ -19,6 +19,13 @@ void HighPotion::use(Player *player) {
 	}
 }
 
+void HighPotion::use(Player *player, std::string *str) {
+	this->use(player);
+	*str += player->getName() + "は" + this->getName() + "を使った！\n";
+	*str += player->getName() + "のHPが" + std::to_string(HIGHPOTION) + "回復した！";
+}
+
+
 // 主人公の持ち物に追加
 void HighPotion::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {

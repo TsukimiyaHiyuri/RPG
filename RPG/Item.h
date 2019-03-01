@@ -28,6 +28,7 @@ public:
 
 	Item();
 	virtual void use(Player *p);
+	virtual void use(Player *p, std::string *str);
 	virtual void equip(Player *p) {}
 	virtual void addBelongings(Player *p) {}
 	virtual void remove(Player *p) {}

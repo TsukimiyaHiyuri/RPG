@@ -20,6 +20,7 @@ class ItemWindow {
 	ItemSelectWindow *itemSelectWindow;
 	Player *player;
 	int selectNum;
+	std::string battleWindowStr;
 
 public:
 	ItemWindow();
@@ -28,6 +29,7 @@ public:
 	void moveSelector();
 	void select();
 	bool drawAll();
+	std::string getBattleWindowStr() { return this->battleWindowStr; }
 
 	bool getIsHide() { return isHide; }
 	void init();

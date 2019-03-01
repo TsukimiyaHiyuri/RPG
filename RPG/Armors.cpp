@@ -13,6 +13,11 @@ Armors::Armors() {
 	this->sellGold = 7;
 }
 
+void Armors::use(Player *p, std::string *str) {
+	*str += p->getName() + "は" + this->getName() + "を使った！\n";
+	*str += "しかし何も起こらなかった！";
+}
+
 void Armors::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Armors());

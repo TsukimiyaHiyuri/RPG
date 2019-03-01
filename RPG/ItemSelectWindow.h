@@ -23,6 +23,7 @@ class ItemSelectWindow {
 	int itemNum;	//　選択されたアイテムの番号
 	Player *player;
 	std::vector<std::string> list;
+	std::string battleWindowStr;
 
 public:
 	ItemSelectWindow() { this->isHide = true; }
@@ -32,6 +33,7 @@ public:
 	void moveSelector();
 	bool select();
 	bool drawAll();
+	std::string getBattleWindowStr() { return this->battleWindowStr; }
 
 	bool getIsHide() { return isHide; }
 	void init();

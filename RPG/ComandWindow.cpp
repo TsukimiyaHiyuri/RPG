@@ -120,6 +120,9 @@ bool ComandWindow::drawAll() {
 	if (this->battleWindowStr.empty()) {
 		this->battleWindowStr = this->magicWindow->getBattleWindowStr();
 	}
+	if (this->battleWindowStr.empty()) {
+		this->battleWindowStr = this->itemWindow->getBattleWindowStr();
+	}
 	
 
 	return isFinish;

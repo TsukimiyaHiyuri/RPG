@@ -55,7 +55,7 @@ bool ItemSelectWindow::select() {
 
 			switch (this->selectNum) {
 			case ComandUse:
-				this->player->useItem(this->itemNum, this->player);
+				this->player->useItem(this->itemNum, this->player, &this->battleWindowStr);
 				this->isHide = true;
 				return true;
 
@@ -83,4 +83,5 @@ bool ItemSelectWindow::drawAll() {
 void ItemSelectWindow::init() {
 	this->isHide = true;
 	this->selectNum = 0;
+	this->battleWindowStr = "";
 }

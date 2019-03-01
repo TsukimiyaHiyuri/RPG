@@ -13,6 +13,12 @@ Sord::Sord() {
 	this->sellGold = 7;
 }
 
+void Sord::use(Player *p, std::string *str) {
+	*str += p->getName() + "は" + this->getName() + "を使った！\n";
+	*str += "しかし何も起こらなかった！";
+}
+
+
 void Sord::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Sord());

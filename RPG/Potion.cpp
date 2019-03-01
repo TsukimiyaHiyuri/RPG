@@ -21,6 +21,12 @@ void Potion::use(Player *player) {
 	}
 }
 
+void Potion::use(Player *player, std::string *str) {
+	this->use(player);
+	*str += player->getName() + "‚Í" + this->getName() + "‚ðŽg‚Á‚½I\n";
+	*str += player->getName() + "‚ÌHP‚ª" + std::to_string(POTION) + "‰ñ•œ‚µ‚½I";
+}
+
 void Potion::addBelongings(Player *player) {
 	if (player->getBelongingsNum() < MAXBELONGINGS) {
 		player->addBelongings(new Potion());

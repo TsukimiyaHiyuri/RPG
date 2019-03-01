@@ -170,6 +170,14 @@ void Player::useItem(int n, Player *p) {
 	}
 }
 
+void Player::useItem(int n, Player *p, std::string *str) {
+
+	this->belongings[n]->use(p, str);
+
+	this->throwItem(n);
+	
+}
+
 // ƒAƒCƒeƒ€‚ðŽÌ‚Ä‚é
 void Player::throwItem(int n) {
 	if (!this->belongings[n]->getIsEquip()) {

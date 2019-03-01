@@ -56,6 +56,7 @@ public:
 	void drawHero(int *moveCounter);
 	void scroll(int *MoveCounter, int *ScrollX, int *ScrollY, int *EncountNum);
 	void useItem(int n, Player *p);
+	void useItem(int n, Player *p, std::string *str);
 
 	void setPlayer(int, int);
 	int getx() { return position.x; }
