@@ -180,6 +180,7 @@
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SnowMap.cpp" />
     <ClCompile Include="Sord.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StatusWindow.cpp" />
     <ClCompile Include="TownMap.cpp" />
     <ClCompile Include="WorldMap.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SnowMap.h" />
     <ClInclude Include="Sord.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="StatusWindow.h" />
     <ClInclude Include="TownMap.h" />

@@ -12,6 +12,7 @@
 #include "Sord.h"
 #include "Battle.h"
 #include "BackGround.h"
+#include "Sound.h"
 #include <vector>
 #include <string>
 
@@ -34,6 +35,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Battle *tmp = new Battle();
 
 	BackGround *bg = new BackGround();
+
+	Sound *sound = new Sound();
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
 
@@ -58,6 +61,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 				if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
 					window.changeIsHide();
+				}
+
+				// BGM‚ð‚È‚ç‚·
+				if (!sound->checkBGM(FieldBGM)) {
+					sound->playBGM(FieldBGM);
 				}
 			}
 
