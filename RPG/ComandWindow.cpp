@@ -3,7 +3,7 @@
 #include "DxLib.h"
 
 // コンストラクタ
-ComandWindow::ComandWindow(Player *player, Enemy *enemy[], int enemyNum) {
+ComandWindow::ComandWindow(Player *player, Enemy *enemy[], int enemyNum, Sound *sound) {
 	this->player = player;
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = enemy[i];
@@ -13,6 +13,7 @@ ComandWindow::ComandWindow(Player *player, Enemy *enemy[], int enemyNum) {
 	this->isHide = false;
 	this->selectNum = 0;
 	this->setList();
+	this->sound = sound;
 	this->enemyListWindow = new EnemyListWindow();
 	this->itemWindow = new ItemWindow();
 	this->magicWindow = new MagicWindow();
@@ -45,6 +46,9 @@ void ComandWindow::drawComandWindow() {
 void ComandWindow::moveSelector() {
 	if (!this->isHide && this->enemyListWindow->getIsHide() && this->itemWindow->getIsHide() && this->magicWindow->getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SEをならす
+			
+			// カーソルを動かす
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = COMANDTYPENUM - 1;

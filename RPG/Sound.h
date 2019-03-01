@@ -2,7 +2,7 @@
 #ifndef _Sound_
 #define _Sound_
 
-#define SENUM 6
+#define SENUM 7
 #define BGMNUM 3
 
 enum SEType {
@@ -11,7 +11,8 @@ enum SEType {
 	AttackSE = 2,
 	DamageSE = 3,
 	EscapedSE = 4,
-	LevelUpSE = 5
+	LevelUpSE = 5,
+	MenuSE = 6
 };
 
 enum BGMType {
@@ -26,7 +27,7 @@ class Sound {
 public:
 	Sound();
 	void loadSound();
-	void playSE(SEType type);
+	void playSE(SEType type, bool isBack);
 	void playBGM(BGMType type);
 	bool checkSE(SEType);
 	bool checkBGM(BGMType);

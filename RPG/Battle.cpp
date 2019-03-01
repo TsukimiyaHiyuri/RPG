@@ -4,7 +4,7 @@
 #include "Bat.h"
 #include "DxLib.h"
 
-Battle::Battle() {
+Battle::Battle(Sound *sound) {
 	this->gold = 0;
 	this->exp = 0;
 	this->enemyNum = 0;
@@ -12,7 +12,8 @@ Battle::Battle() {
 	this->isFinish = true;
 	this->finishWindowFlag = false;
 	this->isBoss = false;
-	
+	this->sound = sound;
+
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = new Enemy();
 	}
@@ -33,7 +34,7 @@ int Battle::encount(Player *player, Map *nowMap) {
 			}
 		}
 
-		this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum);	// コマンドウィンドウのインスタンスを生成
+		this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum, this->sound);	// コマンドウィンドウのインスタンスを生成
 		this->battleWindow = new BattleWindow();
 		this->finishWindow = new BattleWindow();
 		this->isFinish = false;
@@ -50,7 +51,7 @@ int Battle::bossEncount(Player *player) {
 	this->enemyNum = 1;
 	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2));
 
-	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum);	// コマンドウィンドウのインスタンスを生成
+	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum, this->sound);	// コマンドウィンドウのインスタンスを生成
 	this->battleWindow = new BattleWindow();
 	this->finishWindow = new BattleWindow();
 	this->isFinish = false;
@@ -69,9 +70,13 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 			this->enemy[i]->drawGraphic();
 		}
 
-		if (!this->battleWindow->strIsEmpty()) {
+		if (!this->battleWindow->strIsEmpty() && !this->battleWindow->getIsHide()) {
 			this->battleWindow->drawBattleWindow();
 		}
+		else if (this->battleWindow->strIsEmpty() && !this->battleWindow->getIsHide()) {
+			this->battleWindow->changeIsHide();
+		}
+
 		if (!this->finishWindow->strIsEmpty() && this->battleWindow->strIsEmpty()) {
 			this->finishWindow->drawBattleWindow();
 		}
@@ -88,6 +93,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				this->enemyNum = this->countLiveEnemy();
 
 				this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
+				this->battleWindow->changeIsHide();
 
 				// コマンドウィンドウの初期化
 				this->comandWindow->init();
@@ -126,7 +132,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				}
 				this->init();
 			}
-			else {
+			else if (battleWindow->getIsHide()) {
 				// 倒した敵の経験値とお金をプレイヤーに加算
 				player->addExp(this->exp);
 				player->addGold(this->gold);

@@ -13,6 +13,7 @@ void Sound::loadSound() {
 	se[DamageSE] = LoadSoundMem("Sound/se_damage.mp3");
 	se[EscapedSE] = LoadSoundMem("Sound/se_escape.mp3");
 	se[LevelUpSE] = LoadSoundMem("Sound/se_levelup.mp3");
+	se[MenuSE] = LoadSoundMem("Sound/se_menu.mp3");
 
 	// BGMÇÃì«Ç›çûÇ›
 	bgm[BattleBGM] = LoadSoundMem("Sound/bgm_battle.mp3");
@@ -20,8 +21,13 @@ void Sound::loadSound() {
 	bgm[FieldBGM] = LoadSoundMem("Sound/bgm_field.mp3");
 }
 
-void Sound::playSE(SEType type) {
-	PlaySoundMem(se[type], DX_PLAYTYPE_NORMAL);
+void Sound::playSE(SEType type, bool isBack) {
+	if (isBack) {
+		PlaySoundMem(se[type], DX_PLAYTYPE_BACK);
+	}
+	else {
+		PlaySoundMem(se[type], DX_PLAYTYPE_NORMAL);
+	}
 }
 
 void Sound::playBGM(BGMType type) {

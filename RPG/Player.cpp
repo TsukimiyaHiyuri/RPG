@@ -7,7 +7,7 @@
 int moveX, moveY;
 Player *player[PLAYERNUM];
 
-Player::Player() {
+Player::Player(Sound *sound) {
 	// statusの初期値
 	this->status.name = "勇者";
 	this->status.lv = 1;
@@ -41,6 +41,8 @@ Player::Player() {
 
 	this->isSpeak = false;
 	this->setLevelTable();
+
+	this->sound = sound;
 }
 
 // 各キー入力にしたがって移動方向を取得
@@ -140,6 +142,7 @@ void Player::addBelongings(Item *item) {
 	}
 }
 
+// 所持しているアイテムを売却する
 bool Player::sellItem(int n) {
 	if (this->getBelongingsNum() > 0 && !this->belongings[n]->getIsEquip()) {
 		this->status.gold += this->belongings[n]->getSellGold();
@@ -149,6 +152,7 @@ bool Player::sellItem(int n) {
 	return false;
 }
 
+// アイテムを購入する
 void Player::buyItem(Item *item) {
 	if (this->status.gold >= item->getBuyGold() && this->getBelongingsNum() < MAXBELONGINGS) {
 		this->status.gold -= item->getBuyGold();
@@ -166,6 +170,7 @@ void Player::useItem(int n, Player *p) {
 	}
 }
 
+// アイテムを捨てる
 void Player::throwItem(int n) {
 	if (!this->belongings[n]->getIsEquip()) {
 		for (int i = n; i < MAXBELONGINGS - 1; i++) {
@@ -176,14 +181,7 @@ void Player::throwItem(int n) {
 	}
 }
 
-void Player::passItem(int n, Player *to) {
-	if (to->getBelongingsNum() < MAXBELONGINGS && !this->belongings[n]->getIsEquip()) {
-		to->addBelongings(this->belongings[n]);
-		this->throwItem(n);
-		to->belongingsNum++;
-	}
-}
-
+// アイテムを装備する
 void Player::equipItem(int n, Player *from) {
 	if (!this->belongings[n]->getCanUse()) {
 		if (this->belongings[n]->getIsEquip()) {
@@ -231,10 +229,12 @@ void Player::equipItem(int n, Player *from) {
 	}
 }
 
+// 装備を含めたSTRステータスの値を返す
 int Player::getAllStr() {
 	return this->status.str + this->weaponStr + this->armorStr;
 }
 
+// 引数の敵に攻撃する
 void Player::attack(Enemy *e, std::string *n) {
 	int damage = this->getAllStr() - e->getDef() > 1 ? this->getAllStr() - e->getDef() : 1;
 	e->damage(damage);
@@ -243,11 +243,13 @@ void Player::attack(Enemy *e, std::string *n) {
 	*n += e->getName() + "に" + std::to_string(damage) + "のダメージ！";
 }
 
+// 引数の魔法を習得する
 void Player::learnMagic(Magic *magic) {
 	this->magic[this->learnMagicNum] = magic;
 	this->learnMagicNum++;
 }
 
+// レベルテーブルを設定する
 void Player::setLevelTable() {
 	for (int i = 0; i < MAXLEVEL - 1; i++) {
 		this->levelTable[i] = (i + 1) * 6;
@@ -257,6 +259,9 @@ void Player::setLevelTable() {
 // レベルアップ時の関数
 void Player::levelUp(std::string *s) {
 	if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
+		// レベルアップのSEをならす
+		this->sound->playSE(LevelUpSE, false);
+
 		// レベルをひとつあげる
 		this->status.lv++;
 

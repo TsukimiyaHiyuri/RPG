@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "ComandWindow.h"
 #include "BattleWindow.h"
+#include "Sound.h"
 #define BATTLEINTEBAL 30
 #define WIDTH 640
 #define STATUSX1 5
@@ -18,6 +19,7 @@ class Map;
 class Enemy;
 class ComandWindow;
 class BattleWindow;
+class Sound;
 
 class Battle {
 	int gold;	// êÌì¨Ç≈älìæÇ∑ÇÈÇ®ã‡
@@ -32,9 +34,10 @@ class Battle {
 	ComandWindow *comandWindow;
 	BattleWindow *battleWindow;
 	BattleWindow *finishWindow;
+	Sound *sound;
 
 public:
-	Battle();
+	Battle(Sound *sound);
 	int encount(Player *player, Map *nowMap);
 	int bossEncount(Player *player);
 	void battle(Player *p, bool *clearFlag, Map *nowMap);

@@ -25,15 +25,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int moveCounter = 0;
 	bool clearFlag = false;
 
+	Sound *sound = new Sound();
+
 	int moveEncountNum = 0;
-	player[0] = new Player();
-	player[1] = new Player();
-	player[2] = new Player();
+	player[0] = new Player(sound);
+	player[1] = new Player(sound);
+	player[2] = new Player(sound);
 
 	MenuWindow window = MenuWindow(player[0]);
-	Battle *battle = new Battle();
+	Battle *battle = new Battle(sound);
 	BackGround *bg = new BackGround();
-	Sound *sound = new Sound();
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
 
@@ -59,6 +60,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 				// Xキーが押されたらメニューウィンドウの表示を切り替える
 				if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
+					sound->playSE(MenuSE, true);
 					window.changeIsHide();
 				}
 

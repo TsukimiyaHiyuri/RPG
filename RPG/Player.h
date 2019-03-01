@@ -7,6 +7,7 @@
 #include "Magic.h"
 #include "Enemy.h"
 #include "Status.h"
+#include "Sound.h"
 #include <vector>
 #include <string>
 #define MAXBELONGINGS 8
@@ -20,6 +21,7 @@ extern int moveX, moveY;
 class Item;
 class Magic;
 class Enemy;
+class Sound;
 
 enum Character {
 	Main = 0,
@@ -44,10 +46,10 @@ class Player {
 	int learnMagicNum;
 
 	bool isSpeak;
-
 	int levelTable[MAXLEVEL - 1];
+	Sound *sound;
 public:
-	Player();
+	Player(Sound *sound);
 	void move();
 	void loadGraphic();
 	void stop();

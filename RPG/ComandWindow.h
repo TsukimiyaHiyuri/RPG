@@ -8,6 +8,7 @@
 #include "EnemyListWindow.h"
 #include "MagicWindow.h"
 #include "ComandType.h"
+#include "Sound.h"
 #include <vector>
 #include <string>
 #define COMANDTYPENUM 4
@@ -22,6 +23,7 @@ class Enemy;
 class ItemWindow;
 class EnemyListWindow;
 class MagicWindow;
+class Sound;
 
 class ComandWindow {
 	std::vector<std::string> list;	// ƒRƒ}ƒ“ƒh‚Ì€–Ú
@@ -34,11 +36,12 @@ class ComandWindow {
 	ItemWindow *itemWindow;
 	MagicWindow *magicWindow;
 	EnemyListWindow *enemyListWindow;
+	Sound *sound;
 
 	std::string battleWindowStr;
 
 public:
-	ComandWindow(Player *player, Enemy *enemy[], int enemyNum);
+	ComandWindow(Player *player, Enemy *enemy[], int enemyNum, Sound *sound);
 	void setList();
 	void drawComandWindow();
 	void moveSelector();
@@ -46,6 +49,8 @@ public:
 	bool drawAll();
 	void init();
 	std::string getBattleWindowStr() { return this->battleWindowStr; }
+
+	bool getIsHide() { return this->isHide; }
 };
 
 #endif
