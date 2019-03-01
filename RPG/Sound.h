@@ -30,6 +30,7 @@ public:
 	void playBGM(BGMType type);
 	bool checkSE(SEType);
 	bool checkBGM(BGMType);
+	void stopBGM(BGMType type);
 };
 
 #endif

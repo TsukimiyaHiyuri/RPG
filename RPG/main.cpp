@@ -31,21 +31,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player[2] = new Player();
 
 	MenuWindow window = MenuWindow(player[0]);
-
-	Battle *tmp = new Battle();
-
+	Battle *battle = new Battle();
 	BackGround *bg = new BackGround();
-
 	Sound *sound = new Sound();
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
 
+		// ゲームクリアのときの処理
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
 		}
 		else {
-			// 主人公の移動
-			if (tmp->getIsFinish()) {
+			// 非戦闘時の処理
+			if (battle->getIsFinish()) {
 				if (window.getIsHide() && !player[0]->getIsSpeak()) {
 					player[0]->move();
 
@@ -59,6 +57,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 					player[0]->scroll(&moveCounter, &ScrollX, &ScrollY, &moveEncountNum);
 				}
 
+				// Xキーが押されたらメニューウィンドウの表示を切り替える
 				if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
 					window.changeIsHide();
 				}
@@ -67,37 +66,57 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				if (!sound->checkBGM(FieldBGM)) {
 					sound->playBGM(FieldBGM);
 				}
+
+				// マップの切り替え
+				nowMap->changeMap(player[0]);
+
+				// マップと主人公の描画
+				nowMap->drawMap(ScrollX, ScrollY, player[0]);
+				player[0]->drawHero(&moveCounter);
+
+				// メニューウィンドウの描画
+				window.drawMenuWindow();
+
+				// マップにいるNPCの処理
+				if (window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && window.getIsHide()) {
+					nowMap->npcAction(player[0]);
+				}
+
+				// 敵とのエンカウントの処理
+				if (nowMap->bossIsEncount(player[0]->gety(), player[0]->getx()) && battle->getIsFinish()) {
+					battle->bossEncount(player[0]);
+				}
+				if (moveEncountNum > BATTLEINTEBAL) {
+					battle->encount(player[0], nowMap);
+				}
 			}
 
-			// マップの切り替え
-			nowMap->changeMap(player[0]);
-
-			// マップと主人公の描画
-			nowMap->drawMap(ScrollX, ScrollY, player[0]);
-			player[0]->drawHero(&moveCounter);
-
-			window.drawMenuWindow();
-
-			if (window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && window.getIsHide()) {
-				nowMap->npcAction(player[0]);
-			}
-
-			if (nowMap->bossIsEncount(player[0]->gety(), player[0]->getx()) && tmp->getIsFinish()) {
-				tmp->bossEncount(player[0]);
-			}
-			if (moveEncountNum > BATTLEINTEBAL) {
-				tmp->encount(player[0], nowMap);
-			}
-
-			if (!tmp->getIsFinish()) {
+			// 戦闘時の処理
+			if (!battle->getIsFinish()) {
+				// 背景の描画
 				bg->drawGraph(0);
 
-				tmp->battle(player[0], &clearFlag, nowMap);
-				if (tmp->getIsFinish()) {
+				// 戦闘曲の再生
+				if (sound->checkBGM(FieldBGM)) {
+					sound->stopBGM(FieldBGM);
+					if (battle->getIsBoss()) {
+						sound->playBGM(BossBattleBGM);
+					}
+					else {
+						sound->playBGM(BattleBGM);
+					}
+				}
+
+				// 戦闘の処理
+				battle->battle(player[0], &clearFlag, nowMap);
+				if (battle->getIsFinish()) {
+					sound->stopBGM(BattleBGM);
+					sound->stopBGM(BossBattleBGM);
 					moveEncountNum = 0;
 				}
 			}
 
+			// プレイヤーの座標を表示
 			DrawFormatString(0, 0, GetColor(255, 255, 255), "X: %d, Y: %d", player[0]->getx(), player[0]->gety());
 		}
 	}

@@ -44,5 +44,6 @@ public:
 	bool getIsFinish() { return isFinish; }
 	void battleFinish();
 	void drawStatus(Player *player);
+	bool getIsBoss() { return this->isBoss; }
 };
 

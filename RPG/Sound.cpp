@@ -41,3 +41,7 @@ bool Sound::checkBGM(BGMType type) {
 	}
 	return false;
 }
+
+void Sound::stopBGM(BGMType type) {
+	StopSoundMem(bgm[type]);
+}
