@@ -27,7 +27,7 @@ std::string Slime::attack(Player *player) {
 	// SE‚ğ‚È‚ç‚·
 	this->sound->playSE(DamageSE, true);
 
-	int d = 2;
+	int d = this->status.str < player->getAllDef() ? 1 : this->status.str - player->getAllDef();
 	player->damege(d);
 
 	std::string ans;

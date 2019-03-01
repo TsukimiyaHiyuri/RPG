@@ -72,6 +72,7 @@ public:
 	int getBelongingsNum() { return belongingsNum; }
 	Item* getBelonging(int i) { return belongings[i]; }
 	int getAllStr();
+	int getAllDef();
 	direct getDirect() { return this->direction; }
 	bool getIsSpeak() { return this->isSpeak; }
 
@@ -92,7 +93,6 @@ public:
 	void setBelongingsNum(int n) { belongingsNum = n; }
 	void addBelongings(Item *item);
 	void throwItem(int n);
-	void passItem(int n,Player *p);
 
 	Magic *getMagic(int i) { return this->magic[i]; }
 	void attack(Enemy *e, std::string *n = 0);

@@ -234,6 +234,11 @@ int Player::getAllStr() {
 	return this->status.str + this->weaponStr + this->armorStr;
 }
 
+// 装備を含めたDEFステータスの値を返す
+int Player::getAllDef() {
+	return this->status.def + this->weaponDef + this->armorDef;
+}
+
 // 引数の敵に攻撃する
 void Player::attack(Enemy *e, std::string *n) {
 	// SEをならす
