@@ -8,13 +8,15 @@ StatusWindow::StatusWindow() {
 	this->isHide = true;
 }
 
-StatusWindow::StatusWindow(Player *who) {
+StatusWindow::StatusWindow(Player *who, Sound *sound) {
 	this->selectNum = 0;
 	this->isHide = true;
 	this->who = who;
 	this->setList();
+	this->sound = sound;
 }
 
+// 描画する項目の設定
 void StatusWindow::setList() {
 	this->list = std::vector<std::string>(MENUNUM);
 	this->list[hp] = "HP: " + std::to_string(who->getHp());
@@ -28,42 +30,33 @@ void StatusWindow::setList() {
 	this->list[gold] = "GOLD: " + std::to_string(who->getGold());
 }
 
+// 項目の描画
 void StatusWindow::drawStatusWindow() {
 	if (!this->isHide) {
 		DrawBox(DRAWXSTATUS1 - 15, DRAWYSTATUS1 - 15, DRAWXSTATUS2, DRAWYSTATUS2, GetColor(0, 0, 0), true);
 		for (int i = 0; i < this->list.size(); i++) {
 			DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 		}
+	}
 
-		if (Key[KEY_INPUT_X] == 1) {
+	this->select();
+}
+
+// 決定ボタンとキャンセルボタンの処理
+void StatusWindow::select() {
+	if (!this->isHide) {
+		if (Key[KEY_INPUT_X] == 1 || Key[KEY_INPUT_Z] == 1) {
+			Key[KEY_INPUT_X] += 2;
+			Key[KEY_INPUT_Z] += 2;
+
+			// SEをならす
+			this->sound->playSE(CancelSE, true);
+
 			this->changeIsHide();
-			Key[KEY_INPUT_X]++;
 		}
 	}
 }
 
 void StatusWindow::changeIsHide() {
-	if (this->isHide) {
-		this->isHide = false;
-	}
-	else {
-		this->isHide = true;
-	}
-}
-
-void StatusWindow::moveSelector() {
-	if (!this->isHide) {
-		if (Key[KEY_INPUT_UP] == 1) {
-			this->selectNum--;
-			if (this->selectNum < 0) {
-				this->selectNum = MENUNUM - 1;
-			}
-		}
-		if (Key[KEY_INPUT_DOWN] == 1) {
-			this->selectNum++;
-			if (this->selectNum >= MENUNUM) {
-				this->selectNum = 0;
-			}
-		}
-	}
+	this->isHide = !this->isHide;
 }

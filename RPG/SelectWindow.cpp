@@ -3,13 +3,15 @@
 #include "Player.h"
 #include "Key.h"
 
-SelectWindow::SelectWindow(Player *who) {
+SelectWindow::SelectWindow(Player *who, Sound *sound) {
 	this->selectNum = 0;
+	this->sound = sound;
 	this->isHide = true;
 	this->who = who;
 	this->setList();
 }
 
+// 項目の設定
 void SelectWindow::setList() {
 	this->list = std::vector<std::string>(SELECTNUM);
 	this->list[Use] = "つかう";
@@ -17,6 +19,7 @@ void SelectWindow::setList() {
 	this->list[Throw] = "すてる";
 }
 
+// 項目の描画
 void SelectWindow::drawSelectWindow() {
 	if (!this->isHide) {
 		DrawBox(DRAWSELECTX1 - 15, DRAWSELECTY1 - 15, DRAWSELECTX2, DRAWSELECTY2, GetColor(0, 0, 0), true);
@@ -29,32 +32,30 @@ void SelectWindow::drawSelectWindow() {
 			}
 		}
 		
-		if (Key[KEY_INPUT_X] == 1) {
-			this->changeIsHide();
-			Key[KEY_INPUT_X]++;
-		}
 		this->moveSelector();
 	}
 }
 
 void SelectWindow::changeIsHide() {
-	if (this->isHide) {
-		this->isHide = false;
-	}
-	else {
-		this->isHide = true;
-	}
+	this->isHide = !this->isHide;
 }
 
+// カーソル移動の処理
 void SelectWindow::moveSelector() {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = SELECTNUM - 1;
 			}
 		}
 		if (Key[KEY_INPUT_DOWN] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= SELECTNUM) {
 				this->selectNum = 0;
@@ -63,17 +64,25 @@ void SelectWindow::moveSelector() {
 	}
 }
 
+// 決定ボタン、キャンセルボタンの処理
 Select SelectWindow::select() {
 
 	if (Key[KEY_INPUT_Z] == 1) {
 		Key[KEY_INPUT_Z]++;
+
 		switch (this->selectNum) {
 		case Use:
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
+
 			this->selection = Use;
 			who->useItem(this->itemNum, this->who);
 			this->changeIsHide();
 			return Use;
 		case Throw:
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
+
 			who->throwItem(this->itemNum);
 			this->changeIsHide();
 			return Throw;
@@ -85,5 +94,14 @@ Select SelectWindow::select() {
 			return Equip;
 		}
 	}
+	else if (Key[KEY_INPUT_X] == 1) {
+		Key[KEY_INPUT_X]++;
+
+		// SEをならす
+		this->sound->playSE(CancelSE, true);
+
+		this->changeIsHide();
+	}
+
 	return Defalt;
 }

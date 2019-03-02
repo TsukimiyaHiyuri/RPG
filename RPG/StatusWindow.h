@@ -3,6 +3,7 @@
 #define _StatusWindow_
 
 #include "Player.h"
+#include "Sound.h"
 #include <vector>
 #include <string>
 #define DRAWXSTATUS1 230
@@ -13,6 +14,7 @@
 #define INTERBAL 20
 
 class Player;
+class Sound;
 
 enum StatusMenu {
 	lv = 0,
@@ -31,14 +33,15 @@ class StatusWindow {
 	bool isHide;
 	Player * who;
 	std::vector<std::string> list;	// メニューウィンドウの項目の文字列
+	Sound *sound;
 
 public:
 	StatusWindow();
-	StatusWindow(Player *p);
+	StatusWindow(Player *p, Sound *sound);
 	void setList();
 	void drawStatusWindow();
 	void changeIsHide();
-	void moveSelector();
+	void select();
 	bool getIsHide() { return isHide; }
 	int getselectNum() { return selectNum; }
 };

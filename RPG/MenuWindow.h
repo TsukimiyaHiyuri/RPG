@@ -3,6 +3,7 @@
 #include "StatusWindow.h"
 #include "EquipmentWindow.h"
 #include "Player.h"
+#include "Sound.h"
 #include <string>
 #include <vector>
 #define MENUNUM 3
@@ -14,6 +15,7 @@
 
 class StatusWindow;
 class EquipmentWindow;
+class Sound;
 
 enum Menu {
 	Equipment = 0,
@@ -28,8 +30,10 @@ class MenuWindow {
 	Player * fromPlayer;
 	StatusWindow statusWindow;
 	EquipmentWindow equipmentWindow;
+	Sound *sound;
+
 public:
-	MenuWindow(Player *p);
+	MenuWindow(Player *p, Sound *sound);
 	void setList();
 	void drawMenuWindow();
 	void changeIsHide();

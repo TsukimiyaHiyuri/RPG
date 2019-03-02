@@ -8,19 +8,22 @@ ItemWindow::ItemWindow() {
 	this->itemSelectWindow = new ItemSelectWindow();
 }
 
-ItemWindow::ItemWindow(Player *player) {
+ItemWindow::ItemWindow(Player *player, Sound *sound) {
 	this->isHide = false;
+	this->sound = sound;
 	this->player = player;
 	this->selectNum = 0;
 	this->itemSelectWindow = new ItemSelectWindow();
 }
 
+// アイテムのリストの描画の処理
 void ItemWindow::drawItemWindow() {
 	if (!this->isHide) {
 		DrawBox(ITEMWINDOWX1, ITEMWINDOWY1, ITEMWINDOWX2, ITEMWINDOWY2, GetColor(0, 0, 0), true);
 
 		for (int i = 0; i < this->player->getBelongingsNum(); i++) {
 
+			// 装備しているアイテムには先頭に「E」をつける
 			std::string equipt;
 			if (this->player->getBelonging(i)->getIsEquip()) {
 				equipt = "E ";
@@ -42,15 +45,22 @@ void ItemWindow::drawItemWindow() {
 	}
 }
 
+// カーソル移動の処理
 void ItemWindow::moveSelector() {
 	if (!this->isHide && this->itemSelectWindow->getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = player->getBelongingsNum() - 1;
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= player->getBelongingsNum()) {
 				this->selectNum = 0;
@@ -59,36 +69,45 @@ void ItemWindow::moveSelector() {
 	}
 }
 
+// 決定ボタン、キャンセルボタンの処理
 void ItemWindow::select() {
 	if (!this->isHide && this->itemSelectWindow->getIsHide()) {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
 
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
+
 			if (this->player->getBelongingsNum() > 0) {
-				this->itemSelectWindow = new ItemSelectWindow(this->player, this->selectNum);
+				this->itemSelectWindow = new ItemSelectWindow(this->player, this->selectNum, this->sound);
 			}
 		}
 		else if (Key[KEY_INPUT_X] == 1) {
 			Key[KEY_INPUT_X]++;
+
+			// SEをならす
+			this->sound->playSE(CancelSE, true);
 
 			this->init();
 		}
 	}
 }
 
+// 描画、カーソル移動、選択の処理をまとめたもの
 bool ItemWindow::drawAll() {
 	this->drawItemWindow();
 	this->moveSelector();
 	this->select();
 
+	// アイテムが使われたら、バトルウィンドウの文字列を更新する
 	if (this->itemSelectWindow->drawAll()) {
 		this->battleWindowStr = this->itemSelectWindow->getBattleWindowStr();
 		return true;
 	}
 	return false;
-
 }
 
+// 初期化関数
 void ItemWindow::init() {
 	this->isHide = true;
 	this->selectNum = 0;

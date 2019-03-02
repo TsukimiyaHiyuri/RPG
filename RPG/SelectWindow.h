@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Sound.h"
 #include <string>
 #include <vector>
 #define SELECTNUM 3
@@ -11,6 +12,7 @@
 
 class Player;
 class SelectWhoWindow;
+class Sound;
 
 enum Select {
 	Use = 0,
@@ -27,10 +29,11 @@ class SelectWindow {
 	Player *who;
 	Player *to;
 	std::vector<std::string> list;	// メニューウィンドウの項目の文字列
+	Sound *sound;
 
 public:
 	SelectWindow() {}
-	SelectWindow(Player *p);
+	SelectWindow(Player *p, Sound *sound);
 	void setList();
 	void drawSelectWindow();
 	void changeIsHide();

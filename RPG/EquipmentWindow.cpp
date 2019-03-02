@@ -10,14 +10,16 @@ EquipmentWindow::EquipmentWindow() {
 	this->selectWindow = SelectWindow();
 }
 
-EquipmentWindow::EquipmentWindow(Player *who) {
+EquipmentWindow::EquipmentWindow(Player *who, Sound *sound) {
 	this->selectNum = 0;
+	this->sound = sound;
 	this->isHide = true;
-	this->selectWindow = SelectWindow(who);
+	this->selectWindow = SelectWindow(who, sound);
 	this->who = who;
 	this->setList();
 }
 
+// 描画する項目の設定
 void EquipmentWindow::setList() {
 	int num = this->who->getBelongingsNum();
 	for (int i = 0; i < num; i++) {
@@ -25,6 +27,7 @@ void EquipmentWindow::setList() {
 	}
 }
 
+// 項目の描画
 void EquipmentWindow::drawEquipmentWindow() {
 
 	if (!this->isHide) {
@@ -59,32 +62,29 @@ void EquipmentWindow::drawEquipmentWindow() {
 		
 		this->moveSelector();
 		this->select();
-
-		if (Key[KEY_INPUT_X] == 1 && this->selectWindow.getIsHide()) {
-			this->changeIsHide();
-			Key[KEY_INPUT_X]++;
-		}
 	}
 }
 
 void EquipmentWindow::changeIsHide() {
-	if (this->isHide) {
-		this->isHide = false;
-	}
-	else {
-		this->isHide = true;
-	}
+	this->isHide = !this->isHide;
 }
 
+// カーソルの移動の処理
 void EquipmentWindow::moveSelector() {
 	if (!this->isHide && this->selectWindow.getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = this->who->getBelongingsNum() - 1;
 			}
 		}
 		if (Key[KEY_INPUT_DOWN] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= this->who->getBelongingsNum()) {
 				this->selectNum = 0;
@@ -96,13 +96,26 @@ void EquipmentWindow::moveSelector() {
 	}
 }
 
+// 決定ボタン、キャンセルボタンの処理
 void EquipmentWindow::select() {
 	if (Key[KEY_INPUT_Z] == 1) {
+		Key[KEY_INPUT_Z]++;
+
+		// SEをならす
+		this->sound->playSE(DecideSE, true);
+
 		if (this->who->getBelongingsNum() > 0 && this->selectWindow.getIsHide()) {
 			this->selectWindow.changeIsHide();
 			this->selectWindow.setItemNum(this->selectNum);
 		}
-		Key[KEY_INPUT_Z]++;
+	}
+	if (Key[KEY_INPUT_X] == 1 && this->selectWindow.getIsHide()) {
+		Key[KEY_INPUT_X]++;
+
+		// SEをならす
+		this->sound->playSE(CancelSE, true);
+
+		this->changeIsHide();
 	}
 }
 

@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "EnemyListWindow.h"
+#include "Sound.h"
 #include <string>
 #define MAGICWINDOWX1 210
 #define MAGICWINDOWY1 300
@@ -15,6 +16,7 @@
 class Enemy;
 class Player;
 class EnemyListWindow;
+class Sound;
 
 class MagicWindow {
 	bool isHide;
@@ -23,12 +25,13 @@ class MagicWindow {
 	Player *player;
 	EnemyListWindow *enemyListWindow;
 	Enemy *enemy[MAXENEMYNUM];
+	Sound *sound;
 
 	std::string battleWindowStr;
 
 public:
 	MagicWindow();
-	MagicWindow(Player *p, Enemy *e[], int enemyNum);
+	MagicWindow(Player *p, Enemy *e[], int enemyNum, Sound *sound);
 	void drawMagicWindow();
 	void moveSelector();
 	bool selsect();

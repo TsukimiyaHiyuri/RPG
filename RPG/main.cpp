@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player[1] = new Player(sound);
 	player[2] = new Player(sound);
 
-	MenuWindow window = MenuWindow(player[0]);
+	MenuWindow window = MenuWindow(player[0], sound);
 	Battle *battle = new Battle(sound);
 	BackGround *bg = new BackGround();
 

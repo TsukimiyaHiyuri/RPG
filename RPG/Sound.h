@@ -2,7 +2,7 @@
 #ifndef _Sound_
 #define _Sound_
 
-#define SENUM 7
+#define SENUM 9
 #define BGMNUM 3
 
 enum SEType {
@@ -12,7 +12,9 @@ enum SEType {
 	DamageSE = 3,
 	EscapedSE = 4,
 	LevelUpSE = 5,
-	MenuSE = 6
+	MenuSE = 6,
+	CursorSE = 7,
+	EquipSE = 8
 };
 
 enum BGMType {

@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "ItemSelectWindow.h"
+#include "Sound.h"
 #define ITEMWINDOWX1 210
 #define ITEMWINDOWY1 300
 #define ITEMWINDOWX2 350
@@ -14,6 +15,7 @@
 class Player;
 class Item;
 class ItemSelectWindow;
+class Sound;
 
 class ItemWindow {
 	bool isHide;
@@ -21,10 +23,11 @@ class ItemWindow {
 	Player *player;
 	int selectNum;
 	std::string battleWindowStr;
+	Sound *sound;
 
 public:
 	ItemWindow();
-	ItemWindow(Player *player);
+	ItemWindow(Player *player, Sound *sound);
 	void drawItemWindow();
 	void moveSelector();
 	void select();

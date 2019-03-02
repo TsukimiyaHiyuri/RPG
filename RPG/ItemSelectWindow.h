@@ -3,6 +3,7 @@
 #define _ITEMSELECTWINDOW_
 
 #include "Player.h"
+#include "Sound.h"
 #include <string>
 #include <vector>
 #define ITEMCOMANDNUM 2
@@ -11,6 +12,8 @@
 #define ITEMSELECTWINDOWX2 480
 #define ITEMSELECTWINDOWY2 400
 #define ITEMSELECTWINDOWINTERBAL 20
+
+class Sound;
 
 enum ItemComand {
 	ComandUse = 0,
@@ -24,10 +27,11 @@ class ItemSelectWindow {
 	Player *player;
 	std::vector<std::string> list;
 	std::string battleWindowStr;
+	Sound *sound;
 
 public:
 	ItemSelectWindow() { this->isHide = true; }
-	ItemSelectWindow(Player *player, int itemNum);
+	ItemSelectWindow(Player *player, int itemNum, Sound *sound);
 	void drawItemSelectWindow();
 	void setList();
 	void moveSelector();

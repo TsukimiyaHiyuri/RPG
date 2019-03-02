@@ -7,8 +7,9 @@ MagicWindow::MagicWindow() {
 	this->enemyListWindow = new EnemyListWindow();
 }
 
-MagicWindow::MagicWindow(Player *player, Enemy *enemy[], int enemyNum) {
+MagicWindow::MagicWindow(Player *player, Enemy *enemy[], int enemyNum, Sound *sound) {
 	this->player = player;
+	this->sound = sound;
 
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = enemy[i];
@@ -20,6 +21,7 @@ MagicWindow::MagicWindow(Player *player, Enemy *enemy[], int enemyNum) {
 	this->enemyListWindow = new EnemyListWindow();
 }
 
+// 魔法の一覧を描画する
 void MagicWindow::drawMagicWindow() {
 	if (!this->isHide) {
 		DrawBox(MAGICWINDOWX1, MAGICWINDOWY1, MAGICWINDOWX2, MAGICWINDOWY2, GetColor(0, 0, 0), true);
@@ -38,15 +40,22 @@ void MagicWindow::drawMagicWindow() {
 	}
 }
 
+// カーソル移動の処理
 void MagicWindow::moveSelector() {
 	if (!this->isHide && this->enemyListWindow->getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = this->player->getLearnMagicNum() - 1;
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= this->player->getLearnMagicNum()) {
 				this->selectNum = 0;
@@ -55,10 +64,14 @@ void MagicWindow::moveSelector() {
 	}
 }
 
+// 決定ボタンとキャンセルボタンの処理
 bool MagicWindow::selsect() {
 	if (!this->isHide && this->enemyListWindow->getIsHide()) {
 		if (Key[KEY_INPUT_Z] == 1 && this->player->getLearnMagicNum() > 0) {
 			Key[KEY_INPUT_Z]++;
+
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
 
 			MagicType tmp = this->player->getMagic(this->selectNum)->getType();
 			
@@ -69,7 +82,8 @@ bool MagicWindow::selsect() {
 					this->enemy,
 					this->enemyNum,
 					this->selectNum,
-					TypeMagic
+					TypeMagic,
+					this->sound
 				);
 				return false;
 
@@ -79,7 +93,6 @@ bool MagicWindow::selsect() {
 			case CureSolo:
 				return this->player->getMagic(this->selectNum)->use(this->player, &this->battleWindowStr);
 				
-
 			case CureAll:
 				return this->player->getMagic(this->selectNum)->use(this->player);
 				
@@ -88,12 +101,16 @@ bool MagicWindow::selsect() {
 		else if (Key[KEY_INPUT_X] == 1) {
 			Key[KEY_INPUT_X]++;
 
+			// SEをならす
+			this->sound->playSE(CancelSE, true);
+
 			this->init();
 		}
 	}
 	return false;
 }
 
+// 描画、カーソル移動、選択の処理をまとめたもの
 bool MagicWindow::drawAll() {
 	this->drawMagicWindow();
 	this->moveSelector();
@@ -104,6 +121,7 @@ bool MagicWindow::drawAll() {
 	return this->selsect();
 }
 
+// 初期化関数
 void MagicWindow::init() {
 	this->isHide = true;
 	this->battleWindowStr = "";

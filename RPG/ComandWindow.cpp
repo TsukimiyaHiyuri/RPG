@@ -47,6 +47,7 @@ void ComandWindow::moveSelector() {
 	if (!this->isHide && this->enemyListWindow->getIsHide() && this->itemWindow->getIsHide() && this->magicWindow->getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
 			// SEをならす
+			this->sound->playSE(CursorSE, true);
 			
 			// カーソルを動かす
 			this->selectNum--;
@@ -55,6 +56,10 @@ void ComandWindow::moveSelector() {
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SEをならす
+			this->sound->playSE(CursorSE, true);
+
+			// カーソルを動かす
 			this->selectNum++;
 			if (this->selectNum >= COMANDTYPENUM) {
 				this->selectNum = 0;
@@ -69,6 +74,9 @@ bool ComandWindow::select() {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
 
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
+
 			switch (this->selectNum) {
 			case TypeFight:
 				this->enemyListWindow = new EnemyListWindow(
@@ -76,16 +84,17 @@ bool ComandWindow::select() {
 					this->enemy,
 					this->enemyNum,
 					-1,
-					TypeFight
+					TypeFight,
+					this->sound
 				);
 				return false;
 
 			case TypeMagic:
-				this->magicWindow = new MagicWindow(this->player, this->enemy, this->enemyNum);
+				this->magicWindow = new MagicWindow(this->player, this->enemy, this->enemyNum, this->sound);
 				return false;
 
 			case TypeItem:
-				this->itemWindow = new ItemWindow(this->player);
+				this->itemWindow = new ItemWindow(this->player, this->sound);
 				return false;
 
 			case TypeEscape:
@@ -98,12 +107,14 @@ bool ComandWindow::select() {
 }
 
 // 描画やキーの監視をまとめたもの
+// コマンド入力が終わったかを返す
 bool ComandWindow::drawAll() {
 	this->drawComandWindow();
 	this->moveSelector();
 
 	bool isFinish = this->select();
 
+	// 各ウィンドウの描画
 	if (!isFinish) {
 		isFinish = this->enemyListWindow->drawAll();
 	}
@@ -114,6 +125,7 @@ bool ComandWindow::drawAll() {
 		isFinish = this->itemWindow->drawAll();
 	}
 
+	// バトルウィンドウの内容を設定
 	if (this->battleWindowStr.empty()) {
 		this->battleWindowStr = this->enemyListWindow->getBattleWindowStr();
 	}
@@ -123,7 +135,6 @@ bool ComandWindow::drawAll() {
 	if (this->battleWindowStr.empty()) {
 		this->battleWindowStr = this->itemWindow->getBattleWindowStr();
 	}
-	
 
 	return isFinish;
 }

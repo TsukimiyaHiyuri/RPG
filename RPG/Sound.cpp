@@ -14,6 +14,8 @@ void Sound::loadSound() {
 	se[EscapedSE] = LoadSoundMem("Sound/se_escape.mp3");
 	se[LevelUpSE] = LoadSoundMem("Sound/se_levelup.mp3");
 	se[MenuSE] = LoadSoundMem("Sound/se_menu.mp3");
+	se[CursorSE] = LoadSoundMem("Sound/se_cursor.mp3");
+	se[EquipSE] = LoadSoundMem("Sound/se_equip.mp3");
 
 	// BGMÇÃì«Ç›çûÇ›
 	bgm[BattleBGM] = LoadSoundMem("Sound/bgm_battle.mp3");

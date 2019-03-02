@@ -5,6 +5,7 @@
 #include "Item.h"
 #include "Player.h"
 #include "SelectWindow.h"
+#include "Sound.h"
 #include <string>
 #include <vector>
 #define DRAWDESCRIPTIONX1 420
@@ -15,6 +16,7 @@
 class Item;
 class SelectWindow;
 class Player;
+class Sound;
 
 class EquipmentWindow {
 	int selectNum;
@@ -22,9 +24,11 @@ class EquipmentWindow {
 	Item * list[MAXBELONGINGS];	// メニューウィンドウの項目の文字列
 	Player * who;
 	SelectWindow selectWindow;
+	Sound *sound;
+
 public:
 	EquipmentWindow();
-	EquipmentWindow(Player *who);
+	EquipmentWindow(Player *who, Sound *sound);
 	void setList();
 	void drawEquipmentWindow();
 	void changeIsHide();

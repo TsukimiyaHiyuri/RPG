@@ -192,6 +192,9 @@ void Player::throwItem(int n) {
 // アイテムを装備する
 void Player::equipItem(int n, Player *from) {
 	if (!this->belongings[n]->getCanUse()) {
+		// SEをならす
+		this->sound->playSE(EquipSE, true);
+
 		if (this->belongings[n]->getIsEquip()) {
 			this->belongings[n]->changeIsEquript();
 			this->belongings[n]->remove(this);
@@ -273,33 +276,35 @@ void Player::setLevelTable() {
 
 // レベルアップ時の関数
 void Player::levelUp(std::string *s) {
-	if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
-		// レベルアップのSEをならす
-		this->sound->playSE(LevelUpSE, false);
+	if (this->status.lv >= MAXLEVEL) {
+		if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
+			// レベルアップのSEをならす
+			this->sound->playSE(LevelUpSE, false);
 
-		// レベルをひとつあげる
-		this->status.lv++;
+			// レベルをひとつあげる
+			this->status.lv++;
 
-		// 各ステータスを上げる
-		this->addMaxHp(15);
-		this->addMaxMp(5);
-		this->addStr(3);
-		this->addDef(2);
-		this->setHp(this->getMaxHp());
-		this->setMp(this->getMaxMp());
+			// 各ステータスを上げる
+			this->addMaxHp(15);
+			this->addMaxMp(5);
+			this->addStr(3);
+			this->addDef(2);
+			this->setHp(this->getMaxHp());
+			this->setMp(this->getMaxMp());
 
-		*s += this->getName() + "は Lv" + std::to_string(this->getLv()) + " になった！\n";
+			*s += this->getName() + "は Lv" + std::to_string(this->getLv()) + " になった！\n";
 
-		// レベルによって魔法を習得
-		switch (this->getLv()) {
-		case 2:
-			this->learnMagic(new Fire());
-			*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
-			break;
-		case 5:
-			this->learnMagic(new Thunder());
-			*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
-			break;
+			// レベルによって魔法を習得
+			switch (this->getLv()) {
+			case 2:
+				this->learnMagic(new Fire());
+				*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+				break;
+			case 5:
+				this->learnMagic(new Thunder());
+				*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+				break;
+			}
 		}
 	}
 }
