@@ -28,6 +28,7 @@ class Battle {
 	int lookEnemyNum;	// 現在参照している敵の添え字
 	bool isMyTurn;	// 現在自分のターンか？
 	bool isFinish;	// 戦闘は終了したか？
+	bool isEscape;
 	bool isBoss;	// エンカウントしているのはボスか？
 	bool finishWindowFlag;	// 戦闘終了のウィンドウのフラグ
 	Enemy *enemy[MAXENEMYNUM];	// 敵の配列

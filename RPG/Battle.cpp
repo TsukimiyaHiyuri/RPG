@@ -13,6 +13,7 @@ Battle::Battle(Sound *sound) {
 	this->finishWindowFlag = false;
 	this->isBoss = false;
 	this->sound = sound;
+	this->isEscape = false;
 
 	for (int i = 0; i < MAXENEMYNUM; i++) {
 		this->enemy[i] = new Enemy();
@@ -64,12 +65,15 @@ int Battle::bossEncount(Player *player) {
 
 void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 	if (!this->isFinish) {
+		// プレイヤーのステータスを描画
 		this->drawStatus(player);
 
+		// 敵を描画
 		for (int i = 0; i < this->enemyNum; i++) {
 			this->enemy[i]->drawGraphic();
 		}
 
+		// バトルウィンドウの描画
 		if (!this->battleWindow->strIsEmpty() && !this->battleWindow->getIsHide()) {
 			this->battleWindow->drawBattleWindow();
 		}
@@ -77,6 +81,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 			this->battleWindow->changeIsHide();
 		}
 
+		// 最後のウィンドウの描画
 		if (!this->finishWindow->strIsEmpty() && this->battleWindow->strIsEmpty()) {
 			this->finishWindow->drawBattleWindow();
 		}
@@ -93,7 +98,22 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				this->enemyNum = this->countLiveEnemy();
 
 				this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
-				this->battleWindow->changeIsHide();
+
+				if (this->comandWindow->getIsEscape()) {
+					if (this->isBoss) {
+						this->battleWindow->setStr(player->getName() + "は逃げ出した！\nしかし逃げられなかった！");
+						this->battleWindow->changeIsHide();
+					}
+					else {
+						this->finishWindow->setStr(player->getName() + "は逃げ出した！");
+						this->finishWindowFlag = true;
+						this->isEscape = true;
+						this->finishWindow->changeIsHide();
+					}
+				}
+				else {
+					this->battleWindow->changeIsHide();
+				}
 
 				// コマンドウィンドウの初期化
 				this->comandWindow->init();
@@ -101,7 +121,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 		}
 		else {
 			if (this->lookEnemyNum < this->enemyNum) {
-				if (this->battleWindow->strIsEmpty()) {
+				if (this->battleWindow->strIsEmpty() && !this->isEscape) {
 					this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
 					this->lookEnemyNum++;
 					if (this->lookEnemyNum >= enemyNum) {
@@ -125,7 +145,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 
 			this->init();
 		}
-		else if (this->enemyNum <= 0 && this->finishWindow->strIsEmpty()) {
+		else if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
 				if (this->isBoss) {
 					*clearFlag = true;
@@ -191,6 +211,7 @@ void Battle::init() {
 	this->enemyNum = 0;
 	this->isFinish = true;
 	this->finishWindowFlag = false;
+	this->isEscape = false;
 }
 
 void Battle::drawStatus(Player *player) {

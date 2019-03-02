@@ -171,11 +171,11 @@ void Player::useItem(int n, Player *p) {
 }
 
 void Player::useItem(int n, Player *p, std::string *str) {
-
 	this->belongings[n]->use(p, str);
 
-	this->throwItem(n);
-	
+	if (!this->belongings[n]->getCanEquip()) {
+		this->throwItem(n);
+	}
 }
 
 // アイテムを捨てる
@@ -276,7 +276,7 @@ void Player::setLevelTable() {
 
 // レベルアップ時の関数
 void Player::levelUp(std::string *s) {
-	if (this->status.lv >= MAXLEVEL) {
+	if (this->status.lv < MAXLEVEL) {
 		if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
 			// レベルアップのSEをならす
 			this->sound->playSE(LevelUpSE, false);

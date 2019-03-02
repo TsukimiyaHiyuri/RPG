@@ -32,6 +32,7 @@ class ComandWindow {
 	Enemy *enemy[MAXENEMYNUM];
 	bool isFinish;	// 自分のターンが終わったか？
 	bool isHide;
+	bool isEscape;
 	int enemyNum;
 	ItemWindow *itemWindow;
 	MagicWindow *magicWindow;
@@ -49,7 +50,9 @@ public:
 	bool drawAll();
 	void init();
 	std::string getBattleWindowStr() { return this->battleWindowStr; }
+	void escape();
 
+	bool getIsEscape() { return this->isEscape; }
 	bool getIsHide() { return this->isHide; }
 };
 

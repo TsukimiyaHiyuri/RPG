@@ -11,6 +11,7 @@ ComandWindow::ComandWindow(Player *player, Enemy *enemy[], int enemyNum, Sound *
 	this->enemyNum = enemyNum;
 	this->isFinish = false;
 	this->isHide = false;
+	this->isEscape = false;
 	this->selectNum = 0;
 	this->setList();
 	this->sound = sound;
@@ -98,6 +99,7 @@ bool ComandWindow::select() {
 				return false;
 
 			case TypeEscape:
+				this->escape();
 				return true;
 
 			}
@@ -146,4 +148,9 @@ void ComandWindow::init() {
 	this->itemWindow->init();
 	this->magicWindow->init();
 	this->battleWindowStr = "";
+	this->isEscape = false;
+}
+
+void ComandWindow::escape() {
+	this->isEscape = true;
 }
