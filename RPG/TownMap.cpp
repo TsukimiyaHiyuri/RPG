@@ -181,7 +181,7 @@ void TownMap::changeMap(Player *player, Map *nowMap) {
 }
 
 void TownMap::setNPC() {
-	this->npcNum = 1;
+	this->npcNum = 2;
 	std::vector<std::string> tmp;
 	tmp.push_back("ここは何でも屋です");
 	tmp.push_back("何か買っていきませんか？");
@@ -189,6 +189,10 @@ void TownMap::setNPC() {
 	Item *item[3] = { new Potion(), new Armors(), new Sord()};
 
 	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3, this->sound);
+
+	std::vector<std::string> ttmp;
+	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");
+	this->npc[1] = new NonPlayerCharacter(19, 18, "歩行ドットキャラ.bmp", ttmp, DOWN);
 }
 
 void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
