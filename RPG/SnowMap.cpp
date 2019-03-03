@@ -7,13 +7,13 @@ SnowMap::SnowMap(Sound *sound) {
 	this->loadMapTip();
 	this->sound = sound;
 	this->setMap();
+	this->setWidth(), this->setHeight();
 	this->isEncount = false;
 	this->setNPC();
 }
 
-void SnowMap::setMap() {
-
-	this->mapGrass = {
+void SnowMap::setMapGround() {
+	this->mapGround = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -45,7 +45,9 @@ void SnowMap::setMap() {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 	};
+}
 
+void SnowMap::setMapBridge() {
 	this->mapBridge = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -78,7 +80,9 @@ void SnowMap::setMap() {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, 34, 35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, 34, 35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 	};
+}
 
+void SnowMap::setMapSea() {
 	this->mapSea = {
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
@@ -111,14 +115,11 @@ void SnowMap::setMap() {
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, 4, 4, 4, 4, 4, },
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, 4, 4, 4, 4, 4, },
 	};
-
-	this->height = this->mapGrass.size();
-	this->width = this->mapGrass[0].size();
 }
 
 void SnowMap::loadMapTip() {
-	LoadDivGraph("FieldMapTip.png", 16 * 12, 16, 12, 32, 32, this->mapTip);//画像を分割してimage配列に保存
-	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->grass);//画像を分割してimage配列に保存
+	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);//画像を分割してimage配列に保存
+	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);//画像を分割してimage配列に保存
 	LoadDivGraph("map/t_snow01.png", 5, 1, 5, 32, 32, this->sea);//画像を分割してimage配列に保存
 	this->boss = LoadGraph("pipo-charachip019.png", true);
 }
@@ -127,11 +128,11 @@ void SnowMap::loadMapTip() {
 bool SnowMap::judgeWall(int x, int y) {
 
 	if (x >= 0 && y >= 0 && x < this->height && y < this->width) {
-		if (this->mapSea[x][y] == 4 && (this->mapGrass[x][y] != 3 && this->mapGrass[x][y] != 4 && this->mapGrass[x][y] != 5 && this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34)) {
+		if (this->mapSea[x][y] == 4 && (this->mapGround[x][y] != 3 && this->mapGround[x][y] != 4 && this->mapGround[x][y] != 5 && this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34)) {
 			return true;
 		}
 
-		switch (this->mapGrass[x][y]) {
+		switch (this->mapGround[x][y]) {
 		case 15: return true;
 		case 16:
 			if (this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34) {
@@ -156,17 +157,13 @@ bool SnowMap::judgeWall(int x, int y) {
 
 //	次のマップに移動するかを監視する
 //	移動する前に次のマップのどの座標に主人公を描画するかを描いておく
-void SnowMap::changeMap(Player *player) {
+void SnowMap::changeMap(Player *player, Map *nowMap) {
 	int x = player->getx();
 	int y = player->gety();
 	if (x == 14 && y == 22) {
 		player->setPlayer(25, 10);
 		delete nowMap;
 		nowMap = new TownMap(this->sound);
-	}
-
-	if (x == 25 && y == 8) {
-
 	}
 }
 
@@ -179,12 +176,12 @@ void SnowMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 		DrawGraph(drawx, drawy, this->sea[this->mapSea[pointx][pointy]], true);
 	}
 
-	if (this->mapGrass[pointx][pointy] >= 0) {
-		DrawGraph(drawx, drawy, this->grass[this->mapGrass[pointx][pointy]], true);
+	if (this->mapGround[pointx][pointy] >= 0) {
+		DrawGraph(drawx, drawy, this->ground[this->mapGround[pointx][pointy]], true);
 	}
 
 	if (this->mapBridge[pointx][pointy] >= 0) {
-		DrawGraph(drawx, drawy, this->grass[this->mapBridge[pointx][pointy]], true);
+		DrawGraph(drawx, drawy, this->bridge[this->mapBridge[pointx][pointy]], true);
 	}
 
 	if (pointx == 15 && pointy == 14) {

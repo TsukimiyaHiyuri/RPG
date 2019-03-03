@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
 	Sound *sound = new Sound();
-	nowMap = new WorldMap(sound);
+	Map *nowMap = new WorldMap(sound);
 	int ScrollX = 0, ScrollY = 0;
 	int moveCounter = 0;
 	bool clearFlag = false;
@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// マップの切り替え
-				nowMap->changeMap(hero);
+				nowMap->changeMap(hero, nowMap);
 
 				// マップと主人公の描画
 				nowMap->drawMap(ScrollX, ScrollY, hero);

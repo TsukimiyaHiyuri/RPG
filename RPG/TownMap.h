@@ -4,6 +4,7 @@
 #include "Player.h"
 
 class Player;
+class Map;
 
 class TownMap : public Map {
 public:
@@ -14,8 +15,8 @@ public:
 	virtual void setMapSea();
 
 	virtual void loadMapTip();
-	bool judgeWall(int x, int y);
-	virtual void changeMap(Player *p);
+	virtual bool judgeWall(int x, int y);
+	virtual void changeMap(Player *p, Map *nowMap);
 	virtual void setNPC();
 	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy);
 };

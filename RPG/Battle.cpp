@@ -119,7 +119,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 		}
 
 		// ゲームオーバーの処理
-		this->gameOver(player);
+		this->gameOver(player, nowMap);
 
 		if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
@@ -213,7 +213,7 @@ void Battle::escape(Player *player) {
 }
 
 // ゲームオーバーの処理
-void Battle::gameOver(Player *player) {
+void Battle::gameOver(Player *player, Map *nowMap) {
 	if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
 		// ゲームオーバーの処理
 

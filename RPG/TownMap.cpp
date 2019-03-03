@@ -160,7 +160,7 @@ bool TownMap::judgeWall(int x, int y) {
 
 //	次のマップに移動するかを監視する
 //	移動する前に次のマップのどの座標に主人公を描画するかを描いておく
-void TownMap::changeMap(Player *player) {
+void TownMap::changeMap(Player *player, Map *nowMap) {
 	int x = player->getx();
 	int y = player->gety();
 	if (x == 14 && y == 21) {

@@ -48,14 +48,14 @@ public:
 	virtual void setMapSea() {}
 	virtual void loadMapTip() {}
 	virtual bool judgeWall(int x, int y);
-	virtual void changeMap(Player *p) {}
+	virtual void changeMap(Player *p, Map *nowMap) {}
 	virtual void setNPC() {};
 	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy) {}
 	virtual void setEnemy() {}
 	virtual bool bossIsEncount(int x, int y) { return false; }
 
-	void setWidth() {}
-	void setHeight() {}
+	void setWidth();
+	void setHeight();
 	void drawMap(int ScrollX, int ScrollY, Player *p);
 	void npcAction(Player *player);
 	bool getIsEncount() { return isEncount; }
@@ -63,7 +63,5 @@ public:
 	Enemy *getEnemy(int n, int x) { return this->enemy[n]->getEnemy(x); }
 	int getEnemyNum() { return this->enemyNum; }
 };
-
-extern Map *nowMap;
 
 #endif

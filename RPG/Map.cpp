@@ -1,9 +1,6 @@
 #include "Map.h"
 #include "DxLib.h"
 
-Map *nowMap;
-extern Player *player[PLAYERNUM];
-
 // コンストラクタ
 Map::Map(int hei, int wid)  {
 	this->width = wid;
@@ -68,14 +65,6 @@ void Map::npcAction(Player *player) {
 	}
 }
 
-void Map::setWidth() {
-	this->width = this->mapGround[0].size();
-}
-
-void Map::setHeight() {
-	this->height = this->mapGround.size();
-}
-
 bool Map::judgeWall(int x, int y) {
 	return true;
 }
@@ -87,4 +76,12 @@ bool Map::judgeWallNPC(int x, int y) {
 		}
 	}
 	return false;
+}
+
+void Map::setHeight() {
+	this->height = this->mapGround.size();
+}
+
+void Map::setWidth() {
+	this->width = this->mapGround[0].size();
 }

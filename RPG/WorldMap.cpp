@@ -53,7 +53,7 @@ void WorldMap::setMapGround() {
 }
 
 void WorldMap::setMapBridge() {
-	this->mapGround = {
+	this->mapBridge = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, 28, 29, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, 31, 32, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, 34, 35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -126,7 +126,7 @@ void WorldMap::loadMapTip() {
 // 壁の判定
 bool WorldMap::judgeWall(int x, int y) {
 	if (x >= 0 && y >= 0 && x < this->height && y < this->width) {
-		if (this->mapSea[x][y] == 4 && (this->mapGround[x][y] != 3 && this->mapGround[x][y] != 4 && this->mapGround[x][y] != 5 && this->mapGround[x][y] != 28 && this->mapGround[x][y] != 31 && this->mapGround[x][y] != 34)) {
+		if (this->mapSea[x][y] == 4 && (this->mapGround[x][y] != 3 && this->mapGround[x][y] != 4 && this->mapGround[x][y] != 5 && this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34)) {
 			return true;
 		}
 
@@ -148,7 +148,7 @@ bool WorldMap::judgeWall(int x, int y) {
 
 //	次のマップに移動するかを監視する
 //	移動する前に次のマップのどの座標に主人公を描画するかを描いておく
-void WorldMap::changeMap(Player *player) {
+void WorldMap::changeMap(Player *player, Map *nowMap) {
 	int x = player->getx();
 	int y = player->gety();
 	if (x == 25 && y == 8) {
@@ -189,7 +189,7 @@ void WorldMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 	}
 
 	if (this->mapBridge[pointx][pointy] >= 0) {
-		DrawGraph(drawx, drawy, this->ground[this->mapGround[pointx][pointy]], true);
+		DrawGraph(drawx, drawy, this->ground[this->mapBridge[pointx][pointy]], true);
 	}
 
 	if (this->mapGround[pointx][pointy] >= 0) {

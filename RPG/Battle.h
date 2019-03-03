@@ -50,7 +50,7 @@ public:
 	void escape(Player *player);
 	void drawStatus(Player *player);
 	bool getIsBoss() { return this->isBoss; }
-	void gameOver(Player *player);
+	void gameOver(Player *player, Map *nowMap);
 	void finishAction(Player *player);
 };
 

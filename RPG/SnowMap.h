@@ -2,21 +2,19 @@
 #include "Map.h"
 #include "WorldMap.h"
 
-class SnowMap : public Map {
-	int grass[GRASSNUM];
-	int sea[SEANUM];
-	std::vector<std::vector<int>> mapSea;
-	std::vector<std::vector<int>> mapGrass;
-	std::vector<std::vector<int>> mapBridge;
+class Map;
 
+class SnowMap : public Map {
 	int boss;
 public:
 	SnowMap(Sound *sound);
+	virtual void setMapGround();
+	virtual void setMapBridge();
+	virtual void setMapSea();
 
-	virtual void setMap();
 	virtual void loadMapTip();
-	bool judgeWall(int x, int y);
-	virtual void changeMap(Player *p);
+	virtual bool judgeWall(int x, int y);
+	virtual void changeMap(Player *p, Map *nowMap);
 	virtual void setNPC();
 	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy);
 	virtual bool bossIsEncount(int x, int y);
