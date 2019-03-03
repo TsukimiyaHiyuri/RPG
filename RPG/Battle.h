@@ -46,8 +46,10 @@ public:
 	void sortEnemy();
 	int countLiveEnemy();
 	bool getIsFinish() { return isFinish; }
-	void battleFinish();
+	void escape(Player *player);
 	void drawStatus(Player *player);
 	bool getIsBoss() { return this->isBoss; }
+	void gameOver(Player *player);
+	void finishAction(Player *player);
 };
 

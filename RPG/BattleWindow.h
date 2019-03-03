@@ -3,7 +3,7 @@
 #define _BattleWindow_
 
 #include <string>
-#define INTERBAL 100
+#define BTTLEWINDOWINTERBAL 100
 #define BATTLEWINDOWX1 200
 #define BATTLEWINDOWY1 300
 #define BATTLEWINDOWX2 550
@@ -12,7 +12,7 @@
 class BattleWindow {
 	std::string str;	// ウィンドウの内容
 	bool isHide;		// ウィンドウを隠すか？
-	int cnt;			// インターバルのカウント用
+	int interbalCount;			// インターバルのカウント用
 
 public:
 	BattleWindow();
@@ -20,6 +20,7 @@ public:
 	void drawBattleWindow();
 	void drawAll();
 	void changeIsHide();
+	void incrementInterbalCount();
 	bool strIsEmpty();
 	bool getIsHide() { return this->isHide; }
 };

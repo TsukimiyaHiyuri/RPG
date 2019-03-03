@@ -7,7 +7,7 @@ SelectWindow::SelectWindow(Player *who, Sound *sound) {
 	this->selectNum = 0;
 	this->sound = sound;
 	this->isHide = true;
-	this->who = who;
+	this->player = who;
 	this->setList();
 }
 
@@ -31,8 +31,6 @@ void SelectWindow::drawSelectWindow() {
 				DrawFormatString(DRAWSELECTX1, DRAWSELECTY1 + INTERBALSELECT * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 			}
 		}
-		
-		this->moveSelector();
 	}
 }
 
@@ -65,43 +63,53 @@ void SelectWindow::moveSelector() {
 }
 
 // 決定ボタン、キャンセルボタンの処理
-Select SelectWindow::select() {
+void SelectWindow::select() {
+	if (!this->isHide) {
+		if (Key[KEY_INPUT_Z] == 1) {
+			Key[KEY_INPUT_Z]++;
 
-	if (Key[KEY_INPUT_Z] == 1) {
-		Key[KEY_INPUT_Z]++;
+			switch (this->selectNum) {
+			case Use:
+				// SEをならす
+				this->sound->playSE(DecideSE, true);
 
-		switch (this->selectNum) {
-		case Use:
+				player->useItem(this->itemNum, this->player);
+				this->init();
+				break;
+
+			case Throw:
+				// SEをならす
+				this->sound->playSE(DecideSE, true);
+
+				player->throwItem(this->itemNum);
+				this->init();
+				break;
+
+			case Equip:
+				player->equipItem(this->itemNum, player);
+				this->init();
+				break;
+			}
+		}
+		else if (Key[KEY_INPUT_X] == 1) {
+			Key[KEY_INPUT_X]++;
+
 			// SEをならす
-			this->sound->playSE(DecideSE, true);
+			this->sound->playSE(CancelSE, true);
 
-			this->selection = Use;
-			who->useItem(this->itemNum, this->who);
-			this->changeIsHide();
-			return Use;
-		case Throw:
-			// SEをならす
-			this->sound->playSE(DecideSE, true);
-
-			who->throwItem(this->itemNum);
-			this->changeIsHide();
-			return Throw;
-
-		case Equip:
-			who->equipItem(this->itemNum, who);
-			this->selection = Equip;
-			this->changeIsHide();
-			return Equip;
+			this->init();
 		}
 	}
-	else if (Key[KEY_INPUT_X] == 1) {
-		Key[KEY_INPUT_X]++;
+}
 
-		// SEをならす
-		this->sound->playSE(CancelSE, true);
+// 描画、カーソル移動、選択の処理をまとめたもの
+void SelectWindow::drawAll() {
+	this->drawSelectWindow();
+	this->moveSelector();
+	this->select();
+}
 
-		this->changeIsHide();
-	}
-
-	return Defalt;
+void SelectWindow::init() {
+	this->selectNum = 0;
+	this->isHide = true;
 }

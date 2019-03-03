@@ -27,9 +27,9 @@ class MenuWindow {
 	int selectNum;
 	bool isHide;
 	std::vector<std::string> list;	// メニューウィンドウの項目の文字列
-	Player * fromPlayer;
-	StatusWindow statusWindow;
-	EquipmentWindow equipmentWindow;
+	Player *player;
+	StatusWindow *statusWindow;
+	EquipmentWindow *equipmentWindow;
 	Sound *sound;
 
 public:
@@ -39,9 +39,9 @@ public:
 	void changeIsHide();
 	void moveSelector();
 	void select();
+	void drawAll();
+	void init();
+	bool canSelect();
 	bool getIsHide() { return isHide; }
-	bool getStatusWindowIsHide() { return statusWindow.getIsHide(); }
-	bool getEquipmentWindowIsHide() { return equipmentWindow.getIsHide(); }
-	int getselectNum() { return selectNum; }
 };
 

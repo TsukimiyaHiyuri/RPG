@@ -2,14 +2,14 @@
 #include "DxLib.h"
 #include "Key.h"
 
-MenuWindow::MenuWindow(Player *p, Sound *sound) {
+MenuWindow::MenuWindow(Player *player, Sound *sound) {
 	this->selectNum = 0;
 	this->sound = sound;
 	this->isHide = true;
 	this->setList();
-	this->statusWindow = StatusWindow();
-	this->equipmentWindow = EquipmentWindow();
-	this->fromPlayer = p;
+	this->statusWindow = new StatusWindow(player, sound);
+	this->equipmentWindow = new EquipmentWindow(player, sound);
+	this->player = player;
 }
 
 // メニュー項目の設定
@@ -32,15 +32,6 @@ void MenuWindow::drawMenuWindow() {
 				DrawFormatString(DRAWX1, DRAWY1 + INTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 			}
 		}
-
-		// ステータス、道具ウィンドウの表示
-		this->statusWindow.drawStatusWindow();
-		this->equipmentWindow.drawEquipmentWindow();
-
-		if (!this->isHide && statusWindow.getIsHide() && equipmentWindow.getIsHide()) {
-			this->moveSelector();
-			this->select();
-		}
 	}
 }
 
@@ -50,7 +41,7 @@ void MenuWindow::changeIsHide() {
 
 // カーソル移動の処理
 void MenuWindow::moveSelector() {
-	if (this->equipmentWindow.getIsHide() && this->statusWindow.getIsHide()) {
+	if (this->canSelect()) {
 		if (Key[KEY_INPUT_UP] == 1) {
 			// SEをならす
 			this->sound->playSE(CursorSE, true);
@@ -74,7 +65,7 @@ void MenuWindow::moveSelector() {
 
 // 決定ボタン、キャンセルボタンの処理
 void MenuWindow::select() {
-	if (this->equipmentWindow.getIsHide() && this->statusWindow.getIsHide()) {
+	if (this->canSelect()) {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
 
@@ -84,13 +75,13 @@ void MenuWindow::select() {
 			// 各ウィンドウを表示する
 			switch (this->selectNum) {
 			case Equipment:
-				this->equipmentWindow = EquipmentWindow(this->fromPlayer, this->sound);
-				this->equipmentWindow.changeIsHide();
+				this->equipmentWindow->changeIsHide();
 				break;
+
 			case Paramater:
-				this->statusWindow = StatusWindow(this->fromPlayer, this->sound);
-				this->statusWindow.changeIsHide();
+				this->statusWindow->changeIsHide();
 				break;
+
 			case Save: break;
 			}
 		}
@@ -100,7 +91,25 @@ void MenuWindow::select() {
 			// SEをならす
 			this->sound->playSE(CancelSE, true);
 
-			this->isHide = false;
+			this->changeIsHide();
 		}
 	}
+}
+
+void MenuWindow::drawAll() {
+	this->drawMenuWindow();
+	this->moveSelector();
+	this->select();
+
+	this->statusWindow->drawAll();
+	this->equipmentWindow->drawAll();
+}
+
+bool MenuWindow::canSelect() {
+	return !this->isHide && this->equipmentWindow->getIsHide() && this->statusWindow->getIsHide();
+}
+
+void MenuWindow::init() {
+	this->selectNum = 0;
+	this->isHide = true;
 }

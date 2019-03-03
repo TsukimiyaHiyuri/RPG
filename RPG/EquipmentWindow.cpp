@@ -4,27 +4,12 @@
 #include "Key.h"
 #include "DxLib.h"
 
-EquipmentWindow::EquipmentWindow() {
-	this->selectNum = 0;
-	this->isHide = true;
-	this->selectWindow = SelectWindow();
-}
-
-EquipmentWindow::EquipmentWindow(Player *who, Sound *sound) {
+EquipmentWindow::EquipmentWindow(Player *player, Sound *sound) {
 	this->selectNum = 0;
 	this->sound = sound;
 	this->isHide = true;
-	this->selectWindow = SelectWindow(who, sound);
-	this->who = who;
-	this->setList();
-}
-
-// 描画する項目の設定
-void EquipmentWindow::setList() {
-	int num = this->who->getBelongingsNum();
-	for (int i = 0; i < num; i++) {
-		this->list[i] = this->who->getBelonging(i);
-	}
+	this->selectWindow = new SelectWindow(player, sound);
+	this->player = player;
 }
 
 // 項目の描画
@@ -32,9 +17,9 @@ void EquipmentWindow::drawEquipmentWindow() {
 
 	if (!this->isHide) {
 		DrawBox(DRAWXSTATUS1 - 15, DRAWYSTATUS1 - 15, DRAWXSTATUS2, DRAWYSTATUS2, GetColor(0, 0, 0), true);
-		for (int i = 0; i < this->who->getBelongingsNum(); i++) {
+		for (int i = 0; i < this->player->getBelongingsNum(); i++) {
 			std::string equipt;
-			if (list[i]->getIsEquip()) {
+			if (this->player->getBelonging(i)->getIsEquip()) {
 				equipt = "E ";
 			}
 			else {
@@ -42,26 +27,18 @@ void EquipmentWindow::drawEquipmentWindow() {
 			}
 
 			if (i == this->selectNum) {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + list[i]->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
 			}
 			else {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + list[i]->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
 			}
 		}
 
-		if (this->who->getBelongingsNum() > 0) {
+		// アイテムの説明欄を描画
+		if (this->player->getBelongingsNum() > 0) {
 			DrawBox(DRAWDESCRIPTIONX1 - 15, DRAWDESCRIPTIONY1 - 15, DRAWDESCRIPTIONX2, DRAWDESCRIPTIONY2, GetColor(0, 0, 0), true);
-			DrawFormatString(DRAWDESCRIPTIONX1, DRAWDESCRIPTIONY1, GetColor(255, 255, 255), "%s", list[this->selectNum]->getDescription().c_str());
+			DrawFormatString(DRAWDESCRIPTIONX1, DRAWDESCRIPTIONY1, GetColor(255, 255, 255), "%s", this->player->getBelonging(this->selectNum)->getDescription().c_str());
 		}
-
-		if (!this->selectWindow.getIsHide()) {
-			this->selectWindow.drawSelectWindow();
-			this->changeList();
-			this->setList();
-		}
-		
-		this->moveSelector();
-		this->select();
 	}
 }
 
@@ -71,14 +48,14 @@ void EquipmentWindow::changeIsHide() {
 
 // カーソルの移動の処理
 void EquipmentWindow::moveSelector() {
-	if (!this->isHide && this->selectWindow.getIsHide()) {
+	if (this->canSelect()) {
 		if (Key[KEY_INPUT_UP] == 1) {
 			// SEをならす
 			this->sound->playSE(CursorSE, true);
 
 			this->selectNum--;
 			if (this->selectNum < 0) {
-				this->selectNum = this->who->getBelongingsNum() - 1;
+				this->selectNum = this->player->getBelongingsNum() - 1;
 			}
 		}
 		if (Key[KEY_INPUT_DOWN] == 1) {
@@ -86,49 +63,56 @@ void EquipmentWindow::moveSelector() {
 			this->sound->playSE(CursorSE, true);
 
 			this->selectNum++;
-			if (this->selectNum >= this->who->getBelongingsNum()) {
+			if (this->selectNum >= this->player->getBelongingsNum()) {
 				this->selectNum = 0;
 			}
 		}
-		if (this->selectNum >= this->who->getBelongingsNum()) {
-			this->selectNum = this->who->getBelongingsNum() - 1;
+
+		// アイテムが使われたときにselectNumが所持品の数を超えたときの処理
+		if (this->selectNum >= this->player->getBelongingsNum()) {
+			this->selectNum = this->player->getBelongingsNum() - 1;
 		}
 	}
 }
 
 // 決定ボタン、キャンセルボタンの処理
 void EquipmentWindow::select() {
-	if (Key[KEY_INPUT_Z] == 1) {
-		Key[KEY_INPUT_Z]++;
+	if (this->canSelect()) {
+		if (Key[KEY_INPUT_Z] == 1) {
+			Key[KEY_INPUT_Z]++;
 
-		// SEをならす
-		this->sound->playSE(DecideSE, true);
+			// SEをならす
+			this->sound->playSE(DecideSE, true);
 
-		if (this->who->getBelongingsNum() > 0 && this->selectWindow.getIsHide()) {
-			this->selectWindow.changeIsHide();
-			this->selectWindow.setItemNum(this->selectNum);
+			// 所持品があれば
+			if (this->player->getBelongingsNum() > 0) {
+				this->selectWindow->setItemNum(this->selectNum);
+				this->selectWindow->changeIsHide();
+			}
+		}
+		if (Key[KEY_INPUT_X] == 1) {
+			Key[KEY_INPUT_X]++;
+
+			// SEをならす
+			this->sound->playSE(CancelSE, true);
+			this->init();
 		}
 	}
-	if (Key[KEY_INPUT_X] == 1 && this->selectWindow.getIsHide()) {
-		Key[KEY_INPUT_X]++;
-
-		// SEをならす
-		this->sound->playSE(CancelSE, true);
-
-		this->changeIsHide();
-	}
 }
 
-void EquipmentWindow::changeList() {
-	switch (this->selectWindow.select()) {
-	case Use: this->throwItem(this->selectNum); break;
-	case Throw: this->throwItem(this->selectNum); break;
-	}
+void EquipmentWindow::drawAll() {
+	this->drawEquipmentWindow();
+	this->moveSelector();
+	this->select();
+
+	this->selectWindow->drawAll();
 }
 
-void EquipmentWindow::throwItem(int n) {
-	for (int i = n; i < this->who->getBelongingsNum(); i++) {
-		this->list[i] = this->list[i + 1];
-	}
-	this->setList();
+bool EquipmentWindow::canSelect() {
+	return !this->isHide && this->selectWindow->getIsHide();
+}
+
+void EquipmentWindow::init() {
+	this->selectNum = 0;
+	this->isHide = true;
 }

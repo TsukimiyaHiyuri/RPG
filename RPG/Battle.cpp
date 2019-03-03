@@ -74,15 +74,10 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 		}
 
 		// バトルウィンドウの描画
-		if (!this->battleWindow->strIsEmpty() && !this->battleWindow->getIsHide()) {
-			this->battleWindow->drawBattleWindow();
-		}
-		else if (this->battleWindow->strIsEmpty() && !this->battleWindow->getIsHide()) {
-			this->battleWindow->changeIsHide();
-		}
+		this->battleWindow->drawBattleWindow();
 
 		// 最後のウィンドウの描画
-		if (!this->finishWindow->strIsEmpty() && this->battleWindow->strIsEmpty()) {
+		if (this->battleWindow->strIsEmpty()) {
 			this->finishWindow->drawBattleWindow();
 		}
 
@@ -97,23 +92,9 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				// 生きている敵の数を更新
 				this->enemyNum = this->countLiveEnemy();
 
+				// バトルウィンドウの文字列を設定
 				this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
-
-				if (this->comandWindow->getIsEscape()) {
-					if (this->isBoss) {
-						this->battleWindow->setStr(player->getName() + "は逃げ出した！\nしかし逃げられなかった！");
-						this->battleWindow->changeIsHide();
-					}
-					else {
-						this->finishWindow->setStr(player->getName() + "は逃げ出した！");
-						this->finishWindowFlag = true;
-						this->isEscape = true;
-						this->finishWindow->changeIsHide();
-					}
-				}
-				else {
-					this->battleWindow->changeIsHide();
-				}
+				this->escape(player);
 
 				// コマンドウィンドウの初期化
 				this->comandWindow->init();
@@ -124,28 +105,20 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				if (this->battleWindow->strIsEmpty() && !this->isEscape) {
 					this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
 					this->lookEnemyNum++;
-					if (this->lookEnemyNum >= enemyNum) {
-
-						this->lookEnemyNum = 0;
-
-						// 自分のターンに切り替える
-						this->isMyTurn = true;
-					}
 				}
+			}
+			else {
+				this->lookEnemyNum = 0;
+
+				// 自分のターンに切り替える
+				this->isMyTurn = true;
 			}
 		}
 
-		if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
-			// ゲームオーバーの処理
+		// ゲームオーバーの処理
+		this->gameOver(player);
 
-			player->setHp(player->getMaxHp());
-			player->setMp(player->getMaxMp());
-			player->setGold(player->getGold() / 2);
-			nowMap = new WorldMap(this->sound);
-
-			this->init();
-		}
-		else if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
+		if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
 				if (this->isBoss) {
 					*clearFlag = true;
@@ -153,18 +126,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				this->init();
 			}
 			else if (battleWindow->getIsHide()) {
-				// 倒した敵の経験値とお金をプレイヤーに加算
-				player->addExp(this->exp);
-				player->addGold(this->gold);
-
-				std::string tmp;
-				tmp = "経験値" + std::to_string(this->exp) + "と" + std::to_string(this->gold) + "ゴールドを獲得！\n";
-
-				/* レベルアップの処理 */
-				player->levelUp(&tmp);
-
-				this->finishWindow->setStr(tmp);
-				this->finishWindowFlag = true;
+				this->finishAction(player);
 			}
 		}
 	}
@@ -185,6 +147,7 @@ void Battle::sortEnemy() {
 	}
 }
 
+// 生きてる敵を数える
 int Battle::countLiveEnemy() {
 	int liveNum = 0;
 
@@ -201,10 +164,7 @@ int Battle::countLiveEnemy() {
 	return liveNum;
 }
 
-void Battle::battleFinish() {
-	
-}
-
+// 初期化関数
 void Battle::init() {
 	this->gold = 0;
 	this->exp = 0;
@@ -212,8 +172,13 @@ void Battle::init() {
 	this->isFinish = true;
 	this->finishWindowFlag = false;
 	this->isEscape = false;
+	delete this->battleWindow;
+	delete this->comandWindow;
+	delete this->finishWindow;
+	delete this->enemy;
 }
 
+// ステータスの描画
 void Battle::drawStatus(Player *player) {
 	DrawBox(STATUSX1, STATUSY1, STATUSX2, STATUSY2, GetColor(0, 0, 0), true);
 
@@ -221,4 +186,50 @@ void Battle::drawStatus(Player *player) {
 	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL, GetColor(255, 255, 255), "Lv: %d", player->getLv());
 	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL*2, GetColor(255, 255, 255), "HP: %d", player->getHp());
 	DrawFormatString(STATUSX1 + 10, STATUSY1 + 10 + STATUSINTERBAL*3, GetColor(255, 255, 255), "MP: %d", player->getMp());
+}
+
+// 逃げるを選択したときのバトルウィンドウの文字列設定
+void Battle::escape(Player *player) {
+	if (this->comandWindow->getIsEscape()) {
+		if (this->isBoss) {
+			this->battleWindow->setStr(player->getName() + "は逃げ出した！\nしかし逃げられなかった！");
+			this->battleWindow->changeIsHide();
+		}
+		else {
+			this->finishWindow->setStr(player->getName() + "は逃げ出した！");
+			this->finishWindowFlag = true;
+			this->isEscape = true;
+			this->finishWindow->changeIsHide();
+		}
+	}
+}
+
+// ゲームオーバーの処理
+void Battle::gameOver(Player *player) {
+	if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
+		// ゲームオーバーの処理
+
+		player->setHp(player->getMaxHp());
+		player->setMp(player->getMaxMp());
+		player->setGold(player->getGold() / 2);
+		nowMap = new WorldMap(this->sound);
+
+		this->init();
+	}
+}
+
+// 戦闘終了時の処理
+void Battle::finishAction(Player *player) {
+	// 倒した敵の経験値とお金をプレイヤーに加算
+	player->addExp(this->exp);
+	player->addGold(this->gold);
+
+	std::string finishWindowStr;
+	finishWindowStr = "経験値" + std::to_string(this->exp) + "と" + std::to_string(this->gold) + "ゴールドを獲得！\n";
+
+	// レベルアップの処理 
+	player->levelUp(&finishWindowStr);
+
+	this->finishWindow->setStr(finishWindowStr);
+	this->finishWindowFlag = true;
 }

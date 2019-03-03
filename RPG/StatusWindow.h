@@ -31,19 +31,19 @@ enum StatusMenu {
 class StatusWindow {
 	int selectNum;
 	bool isHide;
-	Player * who;
+	Player *player;
 	std::vector<std::string> list;	// メニューウィンドウの項目の文字列
 	Sound *sound;
 
 public:
-	StatusWindow();
+	StatusWindow() {}
 	StatusWindow(Player *p, Sound *sound);
 	void setList();
 	void drawStatusWindow();
+	void drawAll();
 	void changeIsHide();
 	void select();
 	bool getIsHide() { return isHide; }
-	int getselectNum() { return selectNum; }
 };
 
 #endif

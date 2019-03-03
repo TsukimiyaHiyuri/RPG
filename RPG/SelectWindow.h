@@ -26,7 +26,7 @@ class SelectWindow {
 	int itemNum;
 	bool isHide;
 	Select selection;
-	Player *who;
+	Player *player;
 	Player *to;
 	std::vector<std::string> list;	// メニューウィンドウの項目の文字列
 	Sound *sound;
@@ -36,11 +36,12 @@ public:
 	SelectWindow(Player *p, Sound *sound);
 	void setList();
 	void drawSelectWindow();
+	void drawAll();
 	void changeIsHide();
 	void moveSelector();
-	Select select();
-	void setItemNum(int n) { itemNum = n; }
+	void select();
+	void init();
 	bool getIsHide() { return isHide; }
-	int getselectNum() { return selectNum; }
+	void setItemNum(int n) { this->itemNum = n; }
 };
 

@@ -21,23 +21,21 @@ class Sound;
 class EquipmentWindow {
 	int selectNum;
 	bool isHide;
-	Item * list[MAXBELONGINGS];	// メニューウィンドウの項目の文字列
-	Player * who;
-	SelectWindow selectWindow;
+	Player *player;
+	SelectWindow *selectWindow;
 	Sound *sound;
 
 public:
-	EquipmentWindow();
+	EquipmentWindow() {}
 	EquipmentWindow(Player *who, Sound *sound);
-	void setList();
 	void drawEquipmentWindow();
+	void drawAll();
 	void changeIsHide();
 	void moveSelector();
 	void select();
-	void changeList();
-	void throwItem(int n);
+	void init();
+	bool canSelect();
 	bool getIsHide() { return isHide; }
-	int getselectNum() { return selectNum; }
 };
 
 #endif

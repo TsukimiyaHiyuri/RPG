@@ -3,15 +3,10 @@
 #include "Player.h"
 #include "Key.h"
 
-StatusWindow::StatusWindow() {
-	this->selectNum = 0;
-	this->isHide = true;
-}
-
 StatusWindow::StatusWindow(Player *who, Sound *sound) {
 	this->selectNum = 0;
 	this->isHide = true;
-	this->who = who;
+	this->player = who;
 	this->setList();
 	this->sound = sound;
 }
@@ -19,15 +14,15 @@ StatusWindow::StatusWindow(Player *who, Sound *sound) {
 // •`‰æ‚·‚é€–Ú‚ÌÝ’è
 void StatusWindow::setList() {
 	this->list = std::vector<std::string>(MENUNUM);
-	this->list[hp] = "HP: " + std::to_string(who->getHp());
-	this->list[lv] = "LV: " + std::to_string(who->getLv());
-	this->list[maxHp] = "MAX HP: " + std::to_string(who->getMaxHp());
-	this->list[maxMp] = "MAX MP: " + std::to_string(who->getMaxMp());
-	this->list[mp] = "MP: " + std::to_string(who->getMp());
-	this->list[str] = "STR: " + std::to_string(who->getStr() + who->getWeaponStr() + who->getArmorStr());
-	this->list[def] = "DEF: " + std::to_string(who->getDef() + who->getWeaponDef() + who->getArmorDef());
-	this->list[experience] = "EXP: " + std::to_string(who->getExp());
-	this->list[gold] = "GOLD: " + std::to_string(who->getGold());
+	this->list[hp] = "HP: " + std::to_string(player->getHp());
+	this->list[lv] = "LV: " + std::to_string(player->getLv());
+	this->list[maxHp] = "MAX HP: " + std::to_string(player->getMaxHp());
+	this->list[maxMp] = "MAX MP: " + std::to_string(player->getMaxMp());
+	this->list[mp] = "MP: " + std::to_string(player->getMp());
+	this->list[str] = "STR: " + std::to_string(player->getAllStr());
+	this->list[def] = "DEF: " + std::to_string(player->getAllDef());
+	this->list[experience] = "EXP: " + std::to_string(player->getExp());
+	this->list[gold] = "GOLD: " + std::to_string(player->getGold());
 }
 
 // €–Ú‚Ì•`‰æ
@@ -59,4 +54,9 @@ void StatusWindow::select() {
 
 void StatusWindow::changeIsHide() {
 	this->isHide = !this->isHide;
+}
+
+void StatusWindow::drawAll() {
+	this->drawStatusWindow();
+	this->select();
 }

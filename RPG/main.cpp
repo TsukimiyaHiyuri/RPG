@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player[1] = new Player(sound);
 	player[2] = new Player(sound);
 
-	MenuWindow window = MenuWindow(player[0], sound);
+	MenuWindow *window = new MenuWindow(player[0], sound);
 	Battle *battle = new Battle(sound);
 	BackGround *bg = new BackGround();
 
@@ -43,7 +43,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		else {
 			// 非戦闘時の処理
 			if (battle->getIsFinish()) {
-				if (window.getIsHide() && !player[0]->getIsSpeak()) {
+				if (window->getIsHide() && !player[0]->getIsSpeak()) {
 					player[0]->move();
 
 					// 壁(障害物)とのあたり判定
@@ -57,9 +57,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// Xキーが押されたらメニューウィンドウの表示を切り替える
-				if (Key[KEY_INPUT_X] == 1 && window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && !player[0]->getIsSpeak()) {
+				if (Key[KEY_INPUT_X] == 1 && window->getIsHide() && !player[0]->getIsSpeak()) {
+					Key[KEY_INPUT_X]++;
+
 					sound->playSE(MenuSE, true);
-					window.changeIsHide();
+					window->changeIsHide();
 				}
 
 				// BGMをならす
@@ -75,10 +77,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				player[0]->drawHero(&moveCounter);
 
 				// メニューウィンドウの描画
-				window.drawMenuWindow();
+				window->drawAll();
 
 				// マップにいるNPCの処理
-				if (window.getEquipmentWindowIsHide() && window.getStatusWindowIsHide() && window.getIsHide()) {
+				if (window->getIsHide()) {
 					nowMap->npcAction(player[0]);
 				}
 
