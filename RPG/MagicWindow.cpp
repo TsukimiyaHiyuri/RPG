@@ -77,6 +77,7 @@ bool MagicWindow::selsect() {
 			
 			switch (tmp) {
 			case AttackSolo:
+				delete this->enemyListWindow;
 				this->enemyListWindow = new EnemyListWindow(
 					this->player,
 					this->enemy,

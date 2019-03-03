@@ -80,6 +80,7 @@ bool ComandWindow::select() {
 
 			switch (this->selectNum) {
 			case TypeFight:
+				delete this->enemyListWindow;
 				this->enemyListWindow = new EnemyListWindow(
 					this->player,
 					this->enemy,
@@ -91,10 +92,12 @@ bool ComandWindow::select() {
 				return false;
 
 			case TypeMagic:
+				delete this->magicWindow;
 				this->magicWindow = new MagicWindow(this->player, this->enemy, this->enemyNum, this->sound);
 				return false;
 
 			case TypeItem:
+				delete this->itemWindow;
 				this->itemWindow = new ItemWindow(this->player, this->sound);
 				return false;
 

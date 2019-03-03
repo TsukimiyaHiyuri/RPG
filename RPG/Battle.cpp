@@ -8,6 +8,7 @@ Battle::Battle(Sound *sound) {
 	this->gold = 0;
 	this->exp = 0;
 	this->enemyNum = 0;
+	this->originEnemyNum = 0;
 	this->isMyTurn = true;
 	this->isFinish = true;
 	this->finishWindowFlag = false;
@@ -40,6 +41,7 @@ int Battle::encount(Player *player, Map *nowMap) {
 		this->finishWindow = new BattleWindow();
 		this->isFinish = false;
 		this->isMyTurn = true;
+		this->originEnemyNum = this->enemyNum;
 		return this->enemyNum;
 	}
 	return 0;
@@ -105,13 +107,14 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				if (this->battleWindow->strIsEmpty() && !this->isEscape) {
 					this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
 					this->lookEnemyNum++;
-				}
-			}
-			else {
-				this->lookEnemyNum = 0;
 
-				// 自分のターンに切り替える
-				this->isMyTurn = true;
+					if (this->lookEnemyNum >= this->enemyNum) {
+						this->lookEnemyNum = 0;
+
+						// 自分のターンに切り替える
+						this->isMyTurn = true;
+					}
+				}
 			}
 		}
 
@@ -125,7 +128,7 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 				}
 				this->init();
 			}
-			else if (battleWindow->getIsHide()) {
+			else if (battleWindow->strIsEmpty()) {
 				this->finishAction(player);
 			}
 		}
@@ -166,16 +169,21 @@ int Battle::countLiveEnemy() {
 
 // 初期化関数
 void Battle::init() {
-	this->gold = 0;
-	this->exp = 0;
-	this->enemyNum = 0;
-	this->isFinish = true;
-	this->finishWindowFlag = false;
-	this->isEscape = false;
+	// メモリの解放
+	for (int i = 0; i < this->originEnemyNum; i++) {
+		delete this->enemy[i];
+	}
 	delete this->battleWindow;
 	delete this->comandWindow;
 	delete this->finishWindow;
-	delete this->enemy;
+
+	this->gold = 0;
+	this->exp = 0;
+	this->enemyNum = 0;
+	this->originEnemyNum = 0;
+	this->isFinish = true;
+	this->finishWindowFlag = false;
+	this->isEscape = false;
 }
 
 // ステータスの描画
@@ -212,6 +220,7 @@ void Battle::gameOver(Player *player) {
 		player->setHp(player->getMaxHp());
 		player->setMp(player->getMaxMp());
 		player->setGold(player->getGold() / 2);
+		delete nowMap;
 		nowMap = new WorldMap(this->sound);
 
 		this->init();

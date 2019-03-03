@@ -25,6 +25,7 @@ class Battle {
 	int gold;	// 戦闘で獲得するお金
 	int exp;	// 戦闘で獲得する経験値
 	int enemyNum;	// 生きている敵の数
+	int originEnemyNum;
 	int lookEnemyNum;	// 現在参照している敵の添え字
 	bool isMyTurn;	// 現在自分のターンか？
 	bool isFinish;	// 戦闘は終了したか？
