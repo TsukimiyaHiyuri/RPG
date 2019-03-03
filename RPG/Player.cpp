@@ -4,8 +4,6 @@
 #include "Map.h"
 #include "Key.h"
 
-int moveX, moveY;
-Player *player[PLAYERNUM];
 
 Player::Player(Sound *sound) {
 	// statusの初期値
@@ -33,7 +31,7 @@ Player::Player(Sound *sound) {
 	this->direction = UP;
 	this->isMove = false;
 	setPlayer(10, 10);
-	moveX = 0, moveY = 0;
+	this->moveX = 0, this->moveY = 0;
 	loadGraphic();
 
 	// 魔法系の初期値
@@ -48,29 +46,29 @@ Player::Player(Sound *sound) {
 // 各キー入力にしたがって移動方向を取得
 void Player::move() {
 	if (Key[KEY_INPUT_RIGHT] >= 1 && !this->isMove) {
-		moveX += 1;
+		this->moveX += 1;
 		this->direction = RIGHT;
 		this->isMove = true;
 	}
 	if (Key[KEY_INPUT_LEFT] >= 1 && !this->isMove) {
-		moveX -= 1;
+		this->moveX -= 1;
 		this->direction = LEFT;
 		this->isMove = true;
 	}
 	if (Key[KEY_INPUT_DOWN] >= 1 && !this->isMove) {
-		moveY += 1;
+		this->moveY += 1;
 		this->direction = DOWN;
 		this->isMove = true;
 	}
 	if (Key[KEY_INPUT_UP] >= 1 && !this->isMove) {
-		moveY -= 1;
+		this->moveY -= 1;
 		this->direction = UP;
 		this->isMove = true;
 	}
 }
 
 void Player::stop() {
-	moveX = 0, moveY = 0;
+	this->moveX = 0, this->moveY = 0;
 	this->isMove = false;
 }
 
@@ -111,7 +109,7 @@ void Player::scroll(int *MoveCounter, int *ScrollX, int *ScrollY, int *EncountNu
 			this->position.x += moveX;
 			this->position.y += moveY;
 
-			moveX = 0, moveY = 0;
+			this->moveX = 0, this->moveY = 0;
 			*MoveCounter = 0;
 
 			*EncountNum += 1;

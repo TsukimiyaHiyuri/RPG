@@ -17,7 +17,6 @@
 #define MAXMAGICNUM 8
 #define MAXLEVEL 99
 
-extern int moveX, moveY;
 class Item;
 class Magic;
 class Enemy;
@@ -30,10 +29,12 @@ enum Character {
 };
 
 class Player {
+protected:
 	int graphic[TIPSIZEP];
 	Status status;
 	direct direction;
 	Dim2 position;
+	int moveX, moveY;
 	bool isMove;
 	Item * belongings[MAXBELONGINGS];
 	int belongingsNum;
@@ -48,7 +49,9 @@ class Player {
 	bool isSpeak;
 	int levelTable[MAXLEVEL - 1];
 	Sound *sound;
+
 public:
+	Player() {}
 	Player(Sound *sound);
 	void move();
 	void loadGraphic();
@@ -59,6 +62,8 @@ public:
 	void useItem(int n, Player *p, std::string *str);
 
 	void setPlayer(int, int);
+	int getMoveX() { return moveX; }
+	int getMoveY() { return moveY; }
 	int getx() { return position.x; }
 	int gety() { return position.y; }
 	int getLv() { return status.lv; }
@@ -120,7 +125,5 @@ public:
 	void addDef(int n) { this->status.def += n; }
 	void setGold(int n) { this->status.gold = n; }
 };
-
-extern Player *player[PLAYERNUM];
 
 #endif

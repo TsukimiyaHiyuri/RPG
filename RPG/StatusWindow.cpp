@@ -13,7 +13,7 @@ StatusWindow::StatusWindow(Player *who, Sound *sound) {
 
 // •`‰æ‚·‚é€–Ú‚ÌÝ’è
 void StatusWindow::setList() {
-	this->list = std::vector<std::string>(MENUNUM);
+	this->list = std::vector<std::string>(STATUSMENUNUM);
 	this->list[hp] = "HP: " + std::to_string(player->getHp());
 	this->list[lv] = "LV: " + std::to_string(player->getLv());
 	this->list[maxHp] = "MAX HP: " + std::to_string(player->getMaxHp());
@@ -30,7 +30,7 @@ void StatusWindow::drawStatusWindow() {
 	if (!this->isHide) {
 		DrawBox(DRAWXSTATUS1 - 15, DRAWYSTATUS1 - 15, DRAWXSTATUS2, DRAWYSTATUS2, GetColor(0, 0, 0), true);
 		for (int i = 0; i < this->list.size(); i++) {
-			DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
+			DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 		}
 	}
 

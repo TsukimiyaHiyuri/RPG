@@ -22,10 +22,10 @@ void ShopItemWindow::drawShopItemWindow(Player *player) {
 			}
 
 			if (i == this->selectNum) {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
 			}
 			else {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
 			}
 		}
 
@@ -41,10 +41,10 @@ void ShopItemWindow::drawShopItemWindow(ShopNPC *shopNPC) {
 		DrawBox(DRAWXSTATUS1 - 15, DRAWYSTATUS1 - 15, DRAWXSTATUS2, DRAWYSTATUS2, GetColor(0, 0, 0), true);
 		for (int i = 0; i < shopNPC->getItemNum(); i++) {
 			if (i == this->selectNum) {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(0, 255, 255), "%s", (shopNPC->getItem(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(0, 255, 255), "%s", (shopNPC->getItem(i)->getName()).c_str());
 			}
 			else {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", (shopNPC->getItem(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(255, 255, 255), "%s", (shopNPC->getItem(i)->getName()).c_str());
 			}
 		}
 

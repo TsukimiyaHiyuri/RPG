@@ -10,8 +10,8 @@
 #define DRAWYSTATUS1 30
 #define DRAWXSTATUS2 400
 #define DRAWYSTATUS2 250
-#define MENUNUM 9
-#define INTERBAL 20
+#define STATUSMENUNUM 9
+#define STATUSINTERBAL 20
 
 class Player;
 class Sound;

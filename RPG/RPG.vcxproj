@@ -159,6 +159,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
     <ClCompile Include="EquipmentWindow.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HighPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemSelectWindow.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
     <ClInclude Include="EquipmentWindow.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="HighPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemSelectWindow.h" />

@@ -2,7 +2,7 @@
 #include "Map.h"
 #include "WorldMap.h"
 #include "TownMap.h"
-#include "Player.h"
+#include "Hero.h"
 #include "Key.h"
 #include "Potion.h"
 #include "Armors.h"
@@ -26,11 +26,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	bool clearFlag = false;
 
 	int moveEncountNum = 0;
-	player[0] = new Player(sound);
-	player[1] = new Player(sound);
-	player[2] = new Player(sound);
+	Player *hero = new Hero(sound);
 
-	MenuWindow *window = new MenuWindow(player[0], sound);
+	MenuWindow *window = new MenuWindow(hero, sound);
 	Battle *battle = new Battle(sound);
 	BackGround *bg = new BackGround();
 
@@ -43,21 +41,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		else {
 			// 非戦闘時の処理
 			if (battle->getIsFinish()) {
-				if (window->getIsHide() && !player[0]->getIsSpeak()) {
-					player[0]->move();
+				if (window->getIsHide() && !hero->getIsSpeak()) {
+					hero->move();
 
 					// 壁(障害物)とのあたり判定
 					// 当たったら止まる
-					if (nowMap->judgeWall(player[0]->gety() + moveY, player[0]->getx() + moveX)) {
-						player[0]->stop();
+					if (nowMap->judgeWall(hero->gety() + hero->getMoveY(), hero->getx() + hero->getMoveX())) {
+						hero->stop();
 					}
 
 					// 移動時のスクロールの計算
-					player[0]->scroll(&moveCounter, &ScrollX, &ScrollY, &moveEncountNum);
+					hero->scroll(&moveCounter, &ScrollX, &ScrollY, &moveEncountNum);
 				}
 
 				// Xキーが押されたらメニューウィンドウの表示を切り替える
-				if (Key[KEY_INPUT_X] == 1 && window->getIsHide() && !player[0]->getIsSpeak()) {
+				if (Key[KEY_INPUT_X] == 1 && window->getIsHide() && !hero->getIsSpeak()) {
 					Key[KEY_INPUT_X]++;
 
 					sound->playSE(MenuSE, true);
@@ -70,26 +68,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// マップの切り替え
-				nowMap->changeMap(player[0]);
+				nowMap->changeMap(hero);
 
 				// マップと主人公の描画
-				nowMap->drawMap(ScrollX, ScrollY, player[0]);
-				player[0]->drawHero(&moveCounter);
+				nowMap->drawMap(ScrollX, ScrollY, hero);
+				hero->drawHero(&moveCounter);
 
 				// メニューウィンドウの描画
 				window->drawAll();
 
 				// マップにいるNPCの処理
 				if (window->getIsHide()) {
-					nowMap->npcAction(player[0]);
+					nowMap->npcAction(hero);
 				}
 
 				// 敵とのエンカウントの処理
-				if (nowMap->bossIsEncount(player[0]->gety(), player[0]->getx()) && battle->getIsFinish()) {
-					battle->bossEncount(player[0]);
+				if (nowMap->bossIsEncount(hero->gety(), hero->getx()) && battle->getIsFinish()) {
+					battle->bossEncount(hero);
 				}
 				if (moveEncountNum > BATTLEINTEBAL) {
-					battle->encount(player[0], nowMap);
+					battle->encount(hero, nowMap);
 				}
 			}
 
@@ -110,7 +108,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// 戦闘の処理
-				battle->battle(player[0], &clearFlag, nowMap);
+				battle->battle(hero, &clearFlag, nowMap);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);
@@ -119,7 +117,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			// プレイヤーの座標を表示
-			DrawFormatString(0, 0, GetColor(255, 255, 255), "X: %d, Y: %d", player[0]->getx(), player[0]->gety());
+			DrawFormatString(0, 0, GetColor(255, 255, 255), "X: %d, Y: %d", hero->getx(), hero->gety());
 		}
 	}
 

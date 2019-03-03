@@ -27,10 +27,10 @@ void EquipmentWindow::drawEquipmentWindow() {
 			}
 
 			if (i == this->selectNum) {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
 			}
 			else {
-				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + INTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(DRAWXSTATUS1, DRAWYSTATUS1 + STATUSINTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + this->player->getBelonging(i)->getName()).c_str());
 			}
 		}
 
