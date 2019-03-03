@@ -10,6 +10,12 @@ Map::Map(int hei, int wid)  {
 	this->height = hei;
 }
 
+void Map::setMap() {
+	this->setMapGround();
+	this->setMapBridge();
+	this->setMapSea();
+}
+
 // マップの描画
 void Map::drawMap(int ScrollX, int ScrollY, Player *player) {
 	// 描画するマップチップの数をセット
@@ -60,6 +66,14 @@ void Map::npcAction(Player *player) {
 	if (nowNPC != NULL) {
 		this->nowNPC->speaking(player);
 	}
+}
+
+void Map::setWidth() {
+	this->width = this->mapGround[0].size();
+}
+
+void Map::setHeight() {
+	this->height = this->mapGround.size();
 }
 
 bool Map::judgeWall(int x, int y) {

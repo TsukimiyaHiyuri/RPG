@@ -13,13 +13,13 @@ TownMap::TownMap(Sound *sound) {
 	this->loadMapTip();
 	this->sound = sound;
 	this->setMap();
+	this->setHeight(), this->setWidth();
 	this->isEncount = false;
 	this->setNPC();
 }
 
-void TownMap::setMap() {
-
-	this->mapGrass = {
+void TownMap::setMapGround() {
+	this->mapGround = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -50,7 +50,9 @@ void TownMap::setMap() {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, -1, -1, -1, -1, -1, -1, -1, -1, -1, },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, -1, -1, -1, -1, -1, -1, -1, -1, -1, },
 	};
+}
 
+void TownMap::setMapBridge() {
 	this->mapBridge = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, 28, 29, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, 31, 32, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -82,7 +84,9 @@ void TownMap::setMap() {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, 34, 35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, },
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, 34, 35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, },
 	};
+}
 
+void TownMap::setMapSea() {
 	this->mapSea = {
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
@@ -115,26 +119,23 @@ void TownMap::setMap() {
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, 4, 4, 4, 4, 4, },
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, 4, 4, 4, 4, 4, },
 	};
-
-	this->height = this->mapGrass.size();
-	this->width = this->mapGrass[0].size();
 }
 
 void TownMap::loadMapTip() {
-	LoadDivGraph("FieldMapTip.png", 16 * 12, 16, 12, 32, 32, this->mapTip);//‰æ‘œ‚ð•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
-	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->grass);//‰æ‘œ‚ð•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
-	LoadDivGraph("map/at_dang01.png", 5, 1, 5, 32, 32, this->sea);//‰æ‘œ‚ð•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
+	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);
+	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);
+	LoadDivGraph("map/at_dang01.png", 5, 1, 5, 32, 32, this->sea);
 }
 
 // •Ç‚Ì”»’è
 bool TownMap::judgeWall(int x, int y) {
 
 	if (x >= 0 && y >= 0 && x < this->height && y < this->width) {
-		if (this->mapSea[x][y] == 4 && (this->mapGrass[x][y] != 3 && this->mapGrass[x][y] != 4 && this->mapGrass[x][y] != 5 && this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34)) {
+		if (this->mapSea[x][y] == 4 && (this->mapGround[x][y] != 3 && this->mapGround[x][y] != 4 && this->mapGround[x][y] != 5 && this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34)) {
 			return true;
 		}
 
-		switch (this->mapGrass[x][y]) {
+		switch (this->mapGround[x][y]) {
 		case 15: return true;
 		case 16:
 			if (this->mapBridge[x][y] != 28 && this->mapBridge[x][y] != 31 && this->mapBridge[x][y] != 34) {
@@ -191,11 +192,11 @@ void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 		DrawGraph(drawx, drawy, this->sea[this->mapSea[pointx][pointy]], true);
 	}
 
-	if (this->mapGrass[pointx][pointy] >= 0) {
-		DrawGraph(drawx, drawy, this->grass[this->mapGrass[pointx][pointy]], true);
+	if (this->mapGround[pointx][pointy] >= 0) {
+		DrawGraph(drawx, drawy, this->ground[this->mapGround[pointx][pointy]], true);
 	}
 
 	if (this->mapBridge[pointx][pointy] >= 0) {
-		DrawGraph(drawx, drawy, this->grass[this->mapBridge[pointx][pointy]], true);
+		DrawGraph(drawx, drawy, this->bridge[this->mapBridge[pointx][pointy]], true);
 	}
 }

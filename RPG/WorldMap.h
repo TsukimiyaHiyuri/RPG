@@ -7,13 +7,12 @@
 class Player;
 
 class WorldMap : public Map {
-	int grass[GRASSNUM];
-	int sea[SEANUM];
-	std::vector<std::vector<int>> mapGrass;
-	std::vector<std::vector<int>> mapSea;
 public:
 	WorldMap(Sound *sound);
-	virtual void setMap();
+	virtual void setMapGround();
+	virtual void setMapBridge();
+	virtual void setMapSea();
+
 	virtual void loadMapTip();
 	bool judgeWall(int x, int y);
 	virtual void changeMap(Player *p);
