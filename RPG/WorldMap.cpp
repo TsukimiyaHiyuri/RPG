@@ -20,6 +20,7 @@ WorldMap::WorldMap(Sound *sound) {
 	this->setEnemy();
 }
 
+// マップの地面の設定
 void WorldMap::setMapGround() {
 	this->mapGround = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -52,6 +53,7 @@ void WorldMap::setMapGround() {
 	};
 }
 
+// マップの橋の設定
 void WorldMap::setMapBridge() {
 	this->mapBridge = {
 		{ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, 28, 29, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -84,6 +86,7 @@ void WorldMap::setMapBridge() {
 	};
 }
 
+// マップの海の設定
 void WorldMap::setMapSea() {
 	this->mapSea = {
 		{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
@@ -117,6 +120,7 @@ void WorldMap::setMapSea() {
 	};
 }
 
+// マップチップのロード
 void WorldMap::loadMapTip() {
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);//画像を分割してimage配列に保存
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);//画像を分割してimage配列に保存
@@ -158,6 +162,7 @@ void WorldMap::changeMap(Player *player, Map *nowMap) {
 	}
 }
 
+// NPCの設定
 void WorldMap::setNPC() {
 	this->npcNum = 3;
 	std::vector<std::string> tmp;
@@ -174,15 +179,17 @@ void WorldMap::setNPC() {
 	npc2.push_back("いらっしゃい！\n何か買っていくか？");
 
 	Item *item[3] = { new Potion(), new Sord(), new Armors() };
-	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 3);
+	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 3, this->sound);
 }
 
+// このマップに現れる敵の設定
 void WorldMap::setEnemy() {
 	this->enemy[0] = new Slime(0, this->sound);
 	this->enemy[1] = new Bat(0, this->sound);
 	this->enemyNum = 2;
 }
 
+// マップチップを描画する
 void WorldMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 	if (this->mapSea[pointx][pointy] >= 0) {
 		DrawGraph(drawx, drawy, this->sea[this->mapSea[pointx][pointy]], true);

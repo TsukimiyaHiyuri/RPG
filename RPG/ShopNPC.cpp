@@ -2,14 +2,15 @@
 #include "DxLib.h"
 #include "Key.h"
 
-ShopNPC::ShopNPC(int x, int y, std::string fileName, std::vector<std::string> speak, direct direction, Item *item[], int n) {
+ShopNPC::ShopNPC(int x, int y, std::string fileName, std::vector<std::string> speak, direct direction, Item *item[], int n, Sound *sound) {
 	this->set(x, y);
 	this->loadGraphic(fileName);
 	this->setSpeak(speak);
 	this->init();
 	this->direction = direction;
 	this->setItem(item, n);
-	this->shopWindow = new ShopWindow();
+	this->sound = sound;
+	this->shopWindow = new ShopWindow(sound);
 }
 
 void ShopNPC::speaking(Player *player) {

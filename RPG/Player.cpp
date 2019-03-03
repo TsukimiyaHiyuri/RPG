@@ -6,41 +6,7 @@
 
 
 Player::Player(Sound *sound) {
-	// status‚Ì‰Šú’l
-	this->status.name = "—EŽÒ";
-	this->status.lv = 1;
-	this->status.maxHp = 20;
-	this->status.maxMp = 5;
-	this->status.hp = 20;
-	this->status.mp = 5;
-	this->status.str = 10;
-	this->status.def = 10;
-	this->status.exp = 0;
-	this->status.gold = 100;
 
-	// ŠŽ•iŒn‚Ì‰Šú’l
-	this->belongingsNum = 0;
-	this->armor = false;
-	this->weapon = false;
-	this->weaponStr = 0;
-	this->weaponDef = 0;
-	this->armorStr = 0;
-	this->armorDef = 0;
-	
-	// •`‰æŒn‚Ì‰Šú’l
-	this->direction = UP;
-	this->isMove = false;
-	setPlayer(10, 10);
-	this->moveX = 0, this->moveY = 0;
-	loadGraphic();
-
-	// –‚–@Œn‚Ì‰Šú’l
-	this->learnMagicNum = 0;
-
-	this->isSpeak = false;
-	this->setLevelTable();
-
-	this->sound = sound;
 }
 
 // ŠeƒL[“ü—Í‚É‚µ‚½‚ª‚Á‚ÄˆÚ“®•ûŒü‚ðŽæ“¾
@@ -143,18 +109,31 @@ void Player::addBelongings(Item *item) {
 // ŠŽ‚µ‚Ä‚¢‚éƒAƒCƒeƒ€‚ð”„‹p‚·‚é
 bool Player::sellItem(int n) {
 	if (this->getBelongingsNum() > 0 && !this->belongings[n]->getIsEquip()) {
+		// SE‚ð‚È‚ç‚·
+		this->sound->playSE(DecideSE, true);
+
 		this->status.gold += this->belongings[n]->getSellGold();
 		this->throwItem(n);
 		return true;
 	}
+	// SE‚ð‚È‚ç‚·
+	this->sound->playSE(CancelSE, true);
+
 	return false;
 }
 
 // ƒAƒCƒeƒ€‚ðw“ü‚·‚é
 void Player::buyItem(Item *item) {
 	if (this->status.gold >= item->getBuyGold() && this->getBelongingsNum() < MAXBELONGINGS) {
+		// SE‚ð‚È‚ç‚·
+		this->sound->playSE(DecideSE, true);
+
 		this->status.gold -= item->getBuyGold();
 		item->addBelongings(this);
+	}
+	else {
+		// SE‚ð‚È‚ç‚·
+		this->sound->playSE(CancelSE, true);
 	}
 }
 

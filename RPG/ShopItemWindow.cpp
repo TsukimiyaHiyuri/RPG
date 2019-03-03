@@ -4,9 +4,10 @@
 #include "Key.h"
 #include "DxLib.h"
 
-ShopItemWindow::ShopItemWindow() {
+ShopItemWindow::ShopItemWindow(Sound *sound) {
 	this->selectNum = 0;
 	this->isHide = true;
+	this->sound = sound;
 }
 
 void ShopItemWindow::drawShopItemWindow(Player *player) {
@@ -58,12 +59,18 @@ void ShopItemWindow::drawShopItemWindow(ShopNPC *shopNPC) {
 void ShopItemWindow::moveSelector(Player *player) {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = player->getBelongingsNum() - 1;
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= player->getBelongingsNum()) {
 				this->selectNum = 0;
@@ -75,12 +82,18 @@ void ShopItemWindow::moveSelector(Player *player) {
 void ShopItemWindow::moveSelector(ShopNPC *shopNPC) {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = shopNPC->getItemNum() - 1;
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= shopNPC->getItemNum()) {
 				this->selectNum = 0;
@@ -99,6 +112,10 @@ void ShopItemWindow::select(Player *player) {
 		}
 		else if (Key[KEY_INPUT_X] == 1) {
 			Key[KEY_INPUT_X]++;
+
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CancelSE, true);
+
 			this->init();
 		}
 	}
@@ -112,6 +129,10 @@ void ShopItemWindow::select(Player *player, ShopNPC *shopNPC) {
 		}
 		else if (Key[KEY_INPUT_X] == 1) {
 			Key[KEY_INPUT_X]++;
+
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CancelSE, true);
+
 			this->init();
 		}
 	}

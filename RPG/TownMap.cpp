@@ -184,7 +184,7 @@ void TownMap::setNPC() {
 
 	Item *item[3] = { new Potion(), new Armors(), new Sord()};
 
-	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3);
+	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3, this->sound);
 }
 
 void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {

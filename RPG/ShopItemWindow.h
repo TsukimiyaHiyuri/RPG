@@ -3,17 +3,20 @@
 #define _ShopItemWindow_
 
 #include "Player.h"
+#include "Sound.h"
 #include "ShopNPC.h"
 
 class Player;
 class ShopNPC;
+class Sound;
 
 class ShopItemWindow {
 	bool isHide;
 	int selectNum;
+	Sound *sound;
 
 public:
-	ShopItemWindow();
+	ShopItemWindow(Sound *sound);
 	void drawShopItemWindow(Player *p);
 	void drawShopItemWindow(ShopNPC *shopNPC);
 	void moveSelector(Player *p);

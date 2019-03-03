@@ -2,11 +2,12 @@
 #include "Key.h"
 #include "DxLib.h"
 
-ShopWindow::ShopWindow() {
+ShopWindow::ShopWindow(Sound *sound) {
 	this->isHide = true;
 	this->selectNum = 0;
+	this->sound = sound;
 	this->setList();
-	this->shopItemWindow = new ShopItemWindow();
+	this->shopItemWindow = new ShopItemWindow(sound);
 }
 
 void ShopWindow::setList() {
@@ -33,12 +34,18 @@ void ShopWindow::drawShopWindow() {
 void ShopWindow::moveSelector() {
 	if (!this->isHide && this->shopItemWindow->getIsHide()) {
 		if (Key[KEY_INPUT_UP] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum--;
 			if (this->selectNum < 0) {
 				this->selectNum = this->list.size() - 1;
 			}
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1) {
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CursorSE, true);
+
 			this->selectNum++;
 			if (this->selectNum >= this->list.size()) {
 				this->selectNum = 0;
@@ -52,15 +59,28 @@ bool ShopWindow::select() {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
 
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(DecideSE, true);
+
 			this->shopItemWindow->changeIsHide();
 		}
 		else if (Key[KEY_INPUT_X] == 1) {
 			Key[KEY_INPUT_X]++;
+
+			// SE‚ð‚È‚ç‚·
+			this->sound->playSE(CancelSE, true);
+			
 			this->isHide = true;
 			return false;
 		}
 	}
 	return true;
+}
+
+void ShopWindow::drawMyGold(Player *player) {
+	DrawBox(GOLDWINDWX1, GOLDWINDWY1, GOLDWINDWX2, GOLDWINDWY2, GetColor(0, 0, 0), true);
+	std::string gold = "ŠŽ‹à:\n" + std::to_string(player->getGold()) + "G"; 
+	DrawFormatString(GOLDWINDWX1 + 10, GOLDWINDWY1 + 10, GetColor(255, 255, 255), "%s", gold.c_str());
 }
 
 bool ShopWindow::drawAll(Player *player, ShopNPC *shopNPC) {
@@ -71,10 +91,12 @@ bool ShopWindow::drawAll(Player *player, ShopNPC *shopNPC) {
 	switch (this->selectNum) {
 	case Buy:
 		this->shopItemWindow->drawAll(player, shopNPC);
+		this->drawMyGold(player);
 		break;
 
 	case Sell:
 		this->shopItemWindow->drawAll(player);
+		this->drawMyGold(player);
 		break;
 	}
 

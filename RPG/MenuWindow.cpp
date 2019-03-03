@@ -79,6 +79,7 @@ void MenuWindow::select() {
 				break;
 
 			case Paramater:
+				this->statusWindow->setList();
 				this->statusWindow->changeIsHide();
 				break;
 
