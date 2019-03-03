@@ -157,8 +157,10 @@ void WorldMap::changeMap(Player *player, Map *nowMap) {
 	int y = player->gety();
 	if (x == 25 && y == 8) {
 		player->setPlayer(14, 19);
+
+		Sound *tmp = this->sound;
 		delete nowMap;
-		nowMap = new TownMap(this->sound);
+		nowMap = new TownMap(tmp);
 	}
 }
 

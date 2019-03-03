@@ -2,6 +2,7 @@
 #include "Slime.h"
 #include "WorldMap.h"
 #include "Bat.h"
+#include "BossEnemy.h"
 #include "DxLib.h"
 
 Battle::Battle(Sound *sound) {
@@ -52,7 +53,7 @@ int Battle::bossEncount(Player *player) {
 	// 追加した敵の数をenemyNumに代入
 
 	this->enemyNum = 1;
-	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2), this->sound);
+	this->enemy[0] = new BossEnemy(WIDTH / (this->enemyNum * 2), this->sound);
 
 	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum, this->sound);	// コマンドウィンドウのインスタンスを生成
 	this->battleWindow = new BattleWindow();
