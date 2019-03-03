@@ -165,14 +165,18 @@ void TownMap::changeMap(Player *player, Map *nowMap) {
 	int y = player->gety();
 	if (x == 14 && y == 21) {
 		player->setPlayer(25, 10);
+
+		Sound *tmp = this->sound;
 		delete nowMap;
-		nowMap = new WorldMap(this->sound);
+		nowMap = new WorldMap(tmp);
 	}
 
 	if (x == 25 && y == 8) {
 		player->setPlayer(14, 20);
+
+		Sound *tmp = this->sound;
 		delete nowMap;
-		nowMap = new SnowMap(this->sound);
+		nowMap = new SnowMap(tmp);
 	}
 }
 
