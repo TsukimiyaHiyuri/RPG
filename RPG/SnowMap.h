@@ -14,7 +14,7 @@ public:
 
 	virtual void loadMapTip();
 	virtual bool judgeWall(int x, int y);
-	virtual void changeMap(Player *p, Map *nowMap);
+	virtual Map *changeMap(Player *p, Map *nowMap, Map *list[]);
 	virtual void setNPC();
 	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy);
 	virtual bool bossIsEncount(int x, int y);

@@ -4,12 +4,8 @@
 #include "TownMap.h"
 #include "Hero.h"
 #include "Key.h"
-#include "Potion.h"
-#include "Armors.h"
-#include "HighPotion.h"
 #include "MenuWindow.h"
 #include "EquipmentWindow.h"
-#include "Sord.h"
 #include "Battle.h"
 #include "BackGround.h"
 #include "Sound.h"
@@ -19,8 +15,14 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
+	// 音楽関係
 	Sound *sound = new Sound();
-	Map *nowMap = new WorldMap(sound);
+
+	// マップ関係
+	Map *mapList[MAPNUM];
+	createMap(mapList, sound);
+	Map *nowMap = mapList[World];
+
 	int ScrollX = 0, ScrollY = 0;
 	int moveCounter = 0;
 	bool clearFlag = false;
@@ -68,7 +70,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// マップの切り替え
-				nowMap->changeMap(hero, nowMap);
+				nowMap = nowMap->changeMap(hero, nowMap, mapList);
 
 				// マップと主人公の描画
 				nowMap->drawMap(ScrollX, ScrollY, hero);

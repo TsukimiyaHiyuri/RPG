@@ -8,6 +8,7 @@
 #include "Sound.h"
 #include <vector>
 #define MAP_SIZE 32          // マップチップ一つのドットサイズ
+#define MAPNUM 4
 #define TIPSIZE 256
 #define MAXNPCNUM 8
 
@@ -18,6 +19,8 @@ class Sound;
 enum MapName {
 	World = 0,
 	Town = 1,
+	Snow = 2,
+	Maze = 3
 };
 
 class Map {
@@ -48,7 +51,7 @@ public:
 	virtual void setMapSea() {}
 	virtual void loadMapTip() {}
 	virtual bool judgeWall(int x, int y);
-	virtual void changeMap(Player *p, Map *nowMap) {}
+	virtual Map *changeMap(Player *p, Map *nowMap, Map *list[]) { return nowMap; }
 	virtual void setNPC() {};
 	virtual void drawMapTip(int drawx, int drawy, int pointx, int pointy) {}
 	virtual void setEnemy() {}
@@ -63,5 +66,7 @@ public:
 	Enemy *getEnemy(int n, int x) { return this->enemy[n]->getEnemy(x); }
 	int getEnemyNum() { return this->enemyNum; }
 };
+
+void createMap(Map *map[], Sound *sound);
 
 #endif

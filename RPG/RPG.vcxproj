@@ -170,6 +170,7 @@
     <ClCompile Include="MagicWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="MenuWindow.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicWindow.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuWindow.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Player.h" />

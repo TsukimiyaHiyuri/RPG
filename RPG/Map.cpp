@@ -1,4 +1,8 @@
 #include "Map.h"
+#include "WorldMap.h"
+#include "TownMap.h"
+#include "MazeMap.h"
+#include "SnowMap.h"
 #include "DxLib.h"
 
 // コンストラクタ
@@ -84,4 +88,11 @@ void Map::setHeight() {
 
 void Map::setWidth() {
 	this->width = this->mapGround[0].size();
+}
+
+void createMap(Map *map[], Sound *sound) {
+	map[World] = new WorldMap(sound);
+	map[Town] = new TownMap(sound);
+	map[Snow] = new SnowMap(sound);
+	map[Maze] = new MazeMap(sound);
 }
