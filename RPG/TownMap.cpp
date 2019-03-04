@@ -181,7 +181,7 @@ void TownMap::changeMap(Player *player, Map *nowMap) {
 	}
 
 	if (x == 14 && y == 8) {
-		player->setPlayer(14, 20);
+		player->setPlayer(14, 31);
 
 		Sound *tmp = this->sound;
 		delete nowMap;
