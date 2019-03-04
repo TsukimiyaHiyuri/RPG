@@ -157,16 +157,16 @@ bool SnowMap::judgeWall(int x, int y) {
 
 //	次のマップに移動するかを監視する
 //	移動する前に次のマップのどの座標に主人公を描画するかを描いておく
-void SnowMap::changeMap(Player *player, Map *nowMap) {
+Map *SnowMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 	int x = player->getx();
 	int y = player->gety();
+
 	if (x == 14 && y == 22) {
 		player->setPlayer(25, 10);
-
-		Sound *tmp = this->sound;
-		delete nowMap;
-		nowMap = new TownMap(tmp);
+		return list[Town];
 	}
+
+	return nowMap;
 }
 
 void SnowMap::setNPC() {

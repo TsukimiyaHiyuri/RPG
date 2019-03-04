@@ -183,6 +183,7 @@ void Battle::init() {
 	this->enemyNum = 0;
 	this->originEnemyNum = 0;
 	this->isFinish = true;
+	this->isBoss = false;
 	this->finishWindowFlag = false;
 	this->isEscape = false;
 }
