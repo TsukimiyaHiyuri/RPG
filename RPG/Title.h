@@ -40,6 +40,7 @@ public:
 	void changeIsHide();
 	void drawTitleName();
 	void drawTitleMenu();
+	void drawTitleGraph();
 	bool select(bool *isFinish);
 	void moveSelector();
 	bool drawAll(bool *isFinish);

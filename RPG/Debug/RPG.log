@@ -1,6 +1,9 @@
 ﻿cl : コマンド ライン warning D9025: '/D_UNICODE' より '/U_UNICODE' が優先されます。
 cl : コマンド ライン warning D9025: '/DUNICODE' より '/UUNICODE' が優先されます。
-  main.cpp
   Title.cpp
+  BackGround.cpp
+  コードを生成中...
+  コンパイル中...
+  main.cpp
   コードを生成中...
   RPG.vcxproj -> C:\cygwin64\home\jupil\game\RPG\Debug\RPG.exe

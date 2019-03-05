@@ -12,6 +12,7 @@ Title::Title(BackGround *bg, Sound *sound) {
 	this->sound = sound;
 }
 
+// タイトルメニューの項目の設定
 void Title::setList() {
 	this->list = std::vector<std::string>(TITLEMENUNUM);
 	this->list[Start] = "Start";
@@ -19,23 +20,33 @@ void Title::setList() {
 	this->list[Exit] = "Exit";
 }
 
+// タイトルの名前を設定
 void Title::setTitleName(std:: string titleName) {
 	this->titleName = titleName;
 }
 
+// フォントの設定
 void Title::setFont() {
 	this->titleFont = CreateFontToHandle("メイリオ", 50, 10, DX_FONTTYPE_ANTIALIASING_EDGE);
 	this->menuFont = CreateFontToHandle("メイリオ", 30, 3, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
+// 表示切り替え
 void Title::changeIsHide() {
 	this->isHide = !this->isHide;
 }
 
+// タイトル名を描画
 void Title::drawTitleName() {
 	DrawStringToHandle(TITLENAMEX, TITLENAMEY, this->titleName.c_str(), GetColor(255, 255, 255), this->titleFont);
 }
 
+// タイトルの背景を描画
+void Title::drawTitleGraph() {
+	this->backGround->drawTitleGraph();
+}
+
+// タイトルメニューの描画
 void Title::drawTitleMenu() {
 	for (int i = 0; i < TITLEMENUNUM; i++) {
 		if (i == this->selectNum) {
@@ -47,6 +58,7 @@ void Title::drawTitleMenu() {
 	}
 }
 
+// 決定キーが押されたときの処理
 bool Title::select(bool *isFinish) {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_Z] == 1) {
@@ -67,6 +79,7 @@ bool Title::select(bool *isFinish) {
 	return true;
 }
 
+// カーソル移動の処理
 void Title::moveSelector() {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_UP] == 1) {
@@ -90,7 +103,9 @@ void Title::moveSelector() {
 	}
 }
 
+// 描画、カーソル移動、決定の処理をまとめたもの
 bool Title::drawAll(bool *isFinish) {
+	this->drawTitleGraph();
 	this->drawTitleName();
 	this->drawTitleMenu();
 	this->moveSelector();
