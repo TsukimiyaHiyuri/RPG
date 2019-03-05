@@ -26,6 +26,7 @@ class Title {
 	bool isHide;
 	int titleFont;
 	int menuFont;
+	int selectNum;
 	std::vector<std::string> list;
 	std::string titleName;
 	BackGround *backGround;
