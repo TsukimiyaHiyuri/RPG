@@ -40,9 +40,9 @@ public:
 	void changeIsHide();
 	void drawTitleName();
 	void drawTitleMenu();
-	bool select();
+	bool select(bool *isFinish);
 	void moveSelector();
-	bool drawAll();
+	bool drawAll(bool *isFinish);
 };
 
 #endif

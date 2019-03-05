@@ -47,7 +47,23 @@ void Title::drawTitleMenu() {
 	}
 }
 
-bool Title::select() {
+bool Title::select(bool *isFinish) {
+	if (!this->isHide) {
+		if (Key[KEY_INPUT_Z] == 1) {
+			Key[KEY_INPUT_Z]++;
+
+			switch (this->selectNum) {
+			case Start:
+				return false;
+
+			case Load:
+				return true;
+
+			case Exit:
+				*isFinish = true;
+			}
+		}
+	}
 	return true;
 }
 
@@ -74,9 +90,9 @@ void Title::moveSelector() {
 	}
 }
 
-bool Title::drawAll() {
+bool Title::drawAll(bool *isFinish) {
 	this->drawTitleName();
 	this->drawTitleMenu();
 	this->moveSelector();
-	return this->select();
+	return this->select(isFinish);
 }

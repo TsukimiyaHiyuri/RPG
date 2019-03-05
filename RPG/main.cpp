@@ -31,6 +31,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int moveCounter = 0;
 	bool clearFlag = false;
 	bool isTitle = true;	// 今はタイトル画面か？
+	bool isFinish = false;	// ゲーム終了か？
 
 	int moveEncountNum = 0;
 	Player *hero = new Hero(sound);
@@ -38,14 +39,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	MenuWindow *window = new MenuWindow(hero, sound);
 	Battle *battle = new Battle(sound);
 
-	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0 && !isFinish) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
 		}
 		else if (isTitle) {
-			title->drawAll();
+			isTitle = title->drawAll(&isFinish);
 		}
 		else {
 			// 非戦闘時の処理
