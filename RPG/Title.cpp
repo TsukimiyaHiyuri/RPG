@@ -58,6 +58,12 @@ void Title::drawTitleMenu() {
 	}
 }
 
+void Title::playTitleBGM() {
+	if (!this->sound->checkBGM(TitleBGM)) {
+		this->sound->playBGM(TitleBGM);
+	}
+}
+
 // 決定キーが押されたときの処理
 bool Title::select(bool *isFinish) {
 	if (!this->isHide) {
@@ -66,6 +72,7 @@ bool Title::select(bool *isFinish) {
 
 			switch (this->selectNum) {
 			case Start:
+				this->init();
 				return false;
 
 			case Load:
@@ -105,9 +112,15 @@ void Title::moveSelector() {
 
 // 描画、カーソル移動、決定の処理をまとめたもの
 bool Title::drawAll(bool *isFinish) {
+	this->playTitleBGM();
 	this->drawTitleGraph();
 	this->drawTitleName();
 	this->drawTitleMenu();
 	this->moveSelector();
 	return this->select(isFinish);
+}
+
+void Title::init() {
+	this->selectNum = 0;
+	this->sound->stopBGM(TitleBGM);
 }

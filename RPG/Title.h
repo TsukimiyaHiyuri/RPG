@@ -41,9 +41,11 @@ public:
 	void drawTitleName();
 	void drawTitleMenu();
 	void drawTitleGraph();
+	void playTitleBGM();
 	bool select(bool *isFinish);
 	void moveSelector();
 	bool drawAll(bool *isFinish);
+	void init();
 };
 
 #endif
