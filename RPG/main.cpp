@@ -9,6 +9,7 @@
 #include "Battle.h"
 #include "BackGround.h"
 #include "Sound.h"
+#include "Title.h"
 #include <vector>
 #include <string>
 
@@ -17,28 +18,35 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// 音楽関係
 	Sound *sound = new Sound();
+	BackGround *bg = new BackGround();
 
 	// マップ関係
 	Map *mapList[MAPNUM];
 	createMap(mapList, sound);
 	Map *nowMap = mapList[World];
 
+	Title * title = new Title(bg, sound);
+
 	int ScrollX = 0, ScrollY = 0;
 	int moveCounter = 0;
 	bool clearFlag = false;
+	bool isTitle = true;	// 今はタイトル画面か？
+	bool isFinish = false;	// ゲーム終了か？
 
 	int moveEncountNum = 0;
 	Player *hero = new Hero(sound);
 
 	MenuWindow *window = new MenuWindow(hero, sound);
 	Battle *battle = new Battle(sound);
-	BackGround *bg = new BackGround();
 
-	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0 && !isFinish) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
+		}
+		else if (isTitle) {
+			isTitle = title->drawAll(&isFinish);
 		}
 		else {
 			// 非戦闘時の処理
