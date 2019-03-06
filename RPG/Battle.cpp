@@ -2,6 +2,7 @@
 #include "Slime.h"
 #include "WorldMap.h"
 #include "Bat.h"
+#include "BossEnemy.h"
 #include "DxLib.h"
 
 Battle::Battle(Sound *sound) {
@@ -52,7 +53,7 @@ int Battle::bossEncount(Player *player) {
 	// 追加した敵の数をenemyNumに代入
 
 	this->enemyNum = 1;
-	this->enemy[0] = new Bat(WIDTH / (this->enemyNum * 2), this->sound);
+	this->enemy[0] = new BossEnemy(WIDTH / (this->enemyNum * 2), this->sound);
 
 	this->comandWindow = new ComandWindow(player, this->enemy, this->enemyNum, this->sound);	// コマンドウィンドウのインスタンスを生成
 	this->battleWindow = new BattleWindow();
@@ -65,7 +66,7 @@ int Battle::bossEncount(Player *player) {
 	return 0;
 }
 
-void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
+void Battle::battle(Player *player, bool *clearFlag, bool *gameOverFlag, Map *nowMap) {
 	if (!this->isFinish) {
 		// プレイヤーのステータスを描画
 		this->drawStatus(player);
@@ -84,42 +85,44 @@ void Battle::battle(Player *player, bool *clearFlag, Map *nowMap) {
 		}
 
 		// 自分のターンだったらコマンドウィンドウを表示
-		if (this->isMyTurn && this->battleWindow->strIsEmpty()) {
-			this->isMyTurn = !this->comandWindow->drawAll();
+		if (!finishWindowFlag) {
+			if (this->isMyTurn && this->battleWindow->strIsEmpty()) {
+				this->isMyTurn = !this->comandWindow->drawAll();
 
-			if (!this->isMyTurn) {
-				
-				this->sortEnemy();
+				if (!this->isMyTurn) {
 
-				// 生きている敵の数を更新
-				this->enemyNum = this->countLiveEnemy();
+					this->sortEnemy();
 
-				// バトルウィンドウの文字列を設定
-				this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
-				this->escape(player);
+					// 生きている敵の数を更新
+					this->enemyNum = this->countLiveEnemy();
 
-				// コマンドウィンドウの初期化
-				this->comandWindow->init();
+					// バトルウィンドウの文字列を設定
+					this->battleWindow->setStr(this->comandWindow->getBattleWindowStr());
+					this->escape(player);
+
+					// コマンドウィンドウの初期化
+					this->comandWindow->init();
+				}
 			}
-		}
-		else {
-			if (this->lookEnemyNum < this->enemyNum) {
-				if (this->battleWindow->strIsEmpty() && !this->isEscape) {
-					this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
-					this->lookEnemyNum++;
+			else {
+				if (this->lookEnemyNum < this->enemyNum) {
+					if (this->battleWindow->strIsEmpty() && !this->isEscape) {
+						this->battleWindow->setStr(enemy[this->lookEnemyNum]->attack(player));
+						this->lookEnemyNum++;
 
-					if (this->lookEnemyNum >= this->enemyNum) {
-						this->lookEnemyNum = 0;
+						if (this->lookEnemyNum >= this->enemyNum) {
+							this->lookEnemyNum = 0;
 
-						// 自分のターンに切り替える
-						this->isMyTurn = true;
+							// 自分のターンに切り替える
+							this->isMyTurn = true;
+						}
 					}
 				}
 			}
 		}
 
 		// ゲームオーバーの処理
-		this->gameOver(player, nowMap);
+		this->gameOver(player, nowMap, gameOverFlag);
 
 		if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
@@ -182,6 +185,7 @@ void Battle::init() {
 	this->enemyNum = 0;
 	this->originEnemyNum = 0;
 	this->isFinish = true;
+	this->isBoss = false;
 	this->finishWindowFlag = false;
 	this->isEscape = false;
 }
@@ -213,17 +217,26 @@ void Battle::escape(Player *player) {
 }
 
 // ゲームオーバーの処理
-void Battle::gameOver(Player *player, Map *nowMap) {
-	if (player->getHp() <= 0 && this->battleWindow->strIsEmpty()) {
-		// ゲームオーバーの処理
+void Battle::gameOver(Player *player, Map *nowMap, bool *gameOverFlag) {
+	if (player->getHp() <= 0 && this->finishWindow->strIsEmpty()) {
+		if (this->finishWindowFlag) {
+			player->setHp(player->getMaxHp());
+			player->setMp(player->getMaxMp());
+			player->setGold(player->getGold() / 2);
+			player->setPlayer(12, 14, UP);
+			nowMap = new WorldMap(this->sound);
 
-		player->setHp(player->getMaxHp());
-		player->setMp(player->getMaxMp());
-		player->setGold(player->getGold() / 2);
-		delete nowMap;
-		nowMap = new WorldMap(this->sound);
+			*gameOverFlag = true;
 
-		this->init();
+			this->init();
+		}
+		else {
+			std::string finishWindowStr;
+			finishWindowStr = player->getName() + "は力尽きた...";
+
+			this->finishWindow->setStr(finishWindowStr);
+			this->finishWindowFlag = true;
+		}
 	}
 }
 

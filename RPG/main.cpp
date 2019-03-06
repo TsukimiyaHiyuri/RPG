@@ -4,39 +4,68 @@
 #include "TownMap.h"
 #include "Hero.h"
 #include "Key.h"
-#include "Potion.h"
-#include "Armors.h"
-#include "HighPotion.h"
 #include "MenuWindow.h"
 #include "EquipmentWindow.h"
-#include "Sord.h"
 #include "Battle.h"
 #include "BackGround.h"
 #include "Sound.h"
+#include "Title.h"
 #include <vector>
 #include <string>
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
+	// 音楽関係
 	Sound *sound = new Sound();
-	Map *nowMap = new WorldMap(sound);
+	BackGround *bg = new BackGround();
+
+	// マップ関係
+	Map *mapList[MAPNUM];
+	createMap(mapList, sound);
+	Map *nowMap = mapList[World];
+
+	Title * title = new Title(bg, sound);
+
 	int ScrollX = 0, ScrollY = 0;
 	int moveCounter = 0;
 	bool clearFlag = false;
+	bool isTitle = true;	// 今はタイトル画面か？
+	bool isFinish = false;	// ゲーム終了か？
+	bool isGameOver = false;
 
 	int moveEncountNum = 0;
 	Player *hero = new Hero(sound);
 
 	MenuWindow *window = new MenuWindow(hero, sound);
 	Battle *battle = new Battle(sound);
-	BackGround *bg = new BackGround();
 
-	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0) {
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && updatekey() == 0 && !isFinish) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
+		}
+
+		// タイトルの表示
+		else if (isTitle) {
+			isTitle = title->drawAll(&isFinish);
+		}
+
+		// ゲームオーバー時の処理
+		else if (isGameOver) {
+			if (!sound->checkBGM(GameOverBGM)) {
+				sound->playBGM(GameOverBGM);
+			}
+
+			DrawFormatString(200, 200, GetColor(255, 255, 255), "GAME OVER");
+
+			if (Key[KEY_INPUT_Z] == 1) {
+				Key[KEY_INPUT_Z]++;
+
+				sound->stopBGM(GameOverBGM);
+				isGameOver = false;
+			}
 		}
 		else {
 			// 非戦闘時の処理
@@ -68,7 +97,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// マップの切り替え
-				nowMap->changeMap(hero, nowMap);
+				nowMap = nowMap->changeMap(hero, nowMap, mapList);
 
 				// マップと主人公の描画
 				nowMap->drawMap(ScrollX, ScrollY, hero);
@@ -92,7 +121,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			// 戦闘時の処理
-			if (!battle->getIsFinish()) {
+			else if (!battle->getIsFinish()) {
 				// 背景の描画
 				bg->drawGraph(0);
 
@@ -108,7 +137,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// 戦闘の処理
-				battle->battle(hero, &clearFlag, nowMap);
+				battle->battle(hero, &clearFlag, &isGameOver, nowMap);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);

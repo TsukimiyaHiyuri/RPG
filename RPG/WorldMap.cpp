@@ -152,14 +152,15 @@ bool WorldMap::judgeWall(int x, int y) {
 
 //	次のマップに移動するかを監視する
 //	移動する前に次のマップのどの座標に主人公を描画するかを描いておく
-void WorldMap::changeMap(Player *player, Map *nowMap) {
+Map *WorldMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 	int x = player->getx();
 	int y = player->gety();
+
 	if (x == 25 && y == 8) {
 		player->setPlayer(14, 19);
-		delete nowMap;
-		nowMap = new TownMap(this->sound);
+		return list[Town];
 	}
+	return nowMap;
 }
 
 // NPCの設定

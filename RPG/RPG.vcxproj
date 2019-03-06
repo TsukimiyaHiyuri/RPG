@@ -155,6 +155,7 @@
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleWindow.cpp" />
+    <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="MagicWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="MenuWindow.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -183,6 +185,7 @@
     <ClCompile Include="Sord.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StatusWindow.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="TownMap.cpp" />
     <ClCompile Include="WorldMap.cpp" />
   </ItemGroup>
@@ -192,6 +195,7 @@
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleWindow.h" />
+    <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="ComandType.h" />
     <ClInclude Include="ComandWindow.h" />
     <ClInclude Include="Dim.h" />
@@ -207,6 +211,7 @@
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicWindow.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuWindow.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Player.h" />
@@ -221,6 +226,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="StatusWindow.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="TownMap.h" />
     <ClInclude Include="WorldMap.h" />
   </ItemGroup>

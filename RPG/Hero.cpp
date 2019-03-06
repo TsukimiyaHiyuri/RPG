@@ -8,8 +8,8 @@ Hero::Hero(Sound *sound) {
 	this->status.maxMp = 5;
 	this->status.hp = 20;
 	this->status.mp = 5;
-	this->status.str = 10;
-	this->status.def = 10;
+	this->status.str = 7;
+	this->status.def = 2;
 	this->status.exp = 0;
 	this->status.gold = 100;
 
@@ -38,3 +38,10 @@ Hero::Hero(Sound *sound) {
 	this->sound = sound;
 }
 
+// レベルテーブルを設定する
+void Hero::setLevelTable() {
+	this->levelTable[0] = 12;
+	for (int i = 1; i < MAXLEVEL - 1; i++) {
+		this->levelTable[i] = int(this->levelTable[i - 1] * 1.5);
+	}
+}

@@ -3,7 +3,7 @@
 #define _Sound_
 
 #define SENUM 9
-#define BGMNUM 3
+#define BGMNUM 5
 
 enum SEType {
 	DecideSE = 0,
@@ -20,7 +20,9 @@ enum SEType {
 enum BGMType {
 	BattleBGM = 0,
 	BossBattleBGM = 1,
-	FieldBGM = 2
+	FieldBGM = 2,
+	TitleBGM = 3,
+	GameOverBGM = 4
 };
 
 class Sound {

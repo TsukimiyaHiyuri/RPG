@@ -29,6 +29,8 @@ public:
 	long getExp() { return this->status.exp; }
 	std::string getName() { return this->status.name; }
 
+	int culculateDamage(Player *p);
+	std::string getAttackString(int damage, Player *p);
 	void setCordinate(int x, int y);
 	void damage(int n) { this->status.hp -= n; }
 	void drawGraphic();
