@@ -58,6 +58,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				sound->playBGM(GameOverBGM);
 			}
 
+			DrawFormatString(200, 200, GetColor(255, 255, 255), "GAME OVER");
+
 			if (Key[KEY_INPUT_Z] == 1) {
 				Key[KEY_INPUT_Z]++;
 
