@@ -46,13 +46,22 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
 		}
+
+		// タイトルの表示
 		else if (isTitle) {
 			isTitle = title->drawAll(&isFinish);
 		}
+
+		// ゲームオーバー時の処理
 		else if (isGameOver) {
+			if (!sound->checkBGM(GameOverBGM)) {
+				sound->playBGM(GameOverBGM);
+			}
+
 			if (Key[KEY_INPUT_Z] == 1) {
 				Key[KEY_INPUT_Z]++;
 
+				sound->stopBGM(GameOverBGM);
 				isGameOver = false;
 			}
 		}
@@ -110,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			// 戦闘時の処理
-			if (!battle->getIsFinish()) {
+			else if (!battle->getIsFinish()) {
 				// 背景の描画
 				bg->drawGraph(0);
 
