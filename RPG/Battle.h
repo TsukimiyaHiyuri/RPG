@@ -42,7 +42,7 @@ public:
 	Battle(Sound *sound);
 	int encount(Player *player, Map *nowMap);
 	int bossEncount(Player *player);
-	void battle(Player *p, bool *clearFlag, Map *nowMap);
+	void battle(Player *p, bool *clearFlag, bool *gameOverFlag, Map *nowMap);
 	void init();
 	void sortEnemy();
 	int countLiveEnemy();
@@ -50,7 +50,7 @@ public:
 	void escape(Player *player);
 	void drawStatus(Player *player);
 	bool getIsBoss() { return this->isBoss; }
-	void gameOver(Player *player, Map *nowMap);
+	void gameOver(Player *player, Map *nowMap, bool *gameOverFlag);
 	void finishAction(Player *player);
 };
 

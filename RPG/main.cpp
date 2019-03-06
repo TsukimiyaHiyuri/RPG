@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	bool clearFlag = false;
 	bool isTitle = true;	// 今はタイトル画面か？
 	bool isFinish = false;	// ゲーム終了か？
+	bool isGameOver = false;
 
 	int moveEncountNum = 0;
 	Player *hero = new Hero(sound);
@@ -47,6 +48,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		}
 		else if (isTitle) {
 			isTitle = title->drawAll(&isFinish);
+		}
+		else if (isGameOver) {
+			if (Key[KEY_INPUT_Z] == 1) {
+				Key[KEY_INPUT_Z]++;
+
+				isGameOver = false;
+			}
 		}
 		else {
 			// 非戦闘時の処理
@@ -118,7 +126,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// 戦闘の処理
-				battle->battle(hero, &clearFlag, nowMap);
+				battle->battle(hero, &clearFlag, &isGameOver, nowMap);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);
