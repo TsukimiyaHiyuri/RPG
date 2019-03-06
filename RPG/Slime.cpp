@@ -5,8 +5,8 @@ Slime::Slime(int x, Sound *sound) {
 	this->setStatus(
 		"スライム",
 		1,
-		15,
-		15,
+		8,
+		8,
 		5,
 		5,
 		2,
@@ -27,13 +27,11 @@ std::string Slime::attack(Player *player) {
 	// SEをならす
 	this->sound->playSE(DamageSE, true);
 
-	int d = this->status.str < player->getAllDef() ? 1 : this->status.str - player->getAllDef();
-	player->damege(d);
+	// ダメージを計算してplayerにダメージを与える
+	int damage = this->culculateDamage(player);
+	player->damage(damage);
 
-	std::string ans;
-	ans += this->getName() + "の攻撃\n";
-	ans += player->getName() + "に" + std::to_string(d) + "のダメージ";
-	return ans;
+	return this->getAttackString(damage, player);
 }
 
 Enemy *Slime::getEnemy(int x) {

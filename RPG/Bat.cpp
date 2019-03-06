@@ -4,9 +4,9 @@
 Bat::Bat(int x, Sound *sound) {
 	this->setStatus(
 		"‚±‚¤‚à‚è",
-		1,
-		20,
-		20,
+		2,
+		14,
+		14,
 		5,
 		5,
 		4,
@@ -27,13 +27,10 @@ std::string Bat::attack(Player *player) {
 	// SE‚ð‚È‚ç‚·
 	this->sound->playSE(DamageSE, true);
 
-	int d = 4;
-	player->damege(d);
+	int damage = this->culculateDamage(player);
+	player->damage(damage);
 
-	std::string ans;
-	ans += this->getName() + "‚ÌUŒ‚\n";
-	ans += player->getName() + "‚É" + std::to_string(d) + "‚Ìƒ_ƒ[ƒW";
-	return ans;
+	return this->getAttackString(damage, player);;
 }
 
 Enemy *Bat::getEnemy(int x) {

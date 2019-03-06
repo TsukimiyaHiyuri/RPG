@@ -62,6 +62,7 @@ public:
 	void useItem(int n, Player *p, std::string *str);
 
 	void setPlayer(int, int);
+	void setPlayer(int x, int y, direct dir);
 	int getMoveX() { return moveX; }
 	int getMoveY() { return moveY; }
 	int getx() { return position.x; }
@@ -103,7 +104,7 @@ public:
 	Magic *getMagic(int i) { return this->magic[i]; }
 	void attack(Enemy *e, std::string *n = 0);
 	int getLearnMagicNum() { return this->learnMagicNum; }
-	void damege(int n) { this->status.hp -= n; }
+	void damage(int n);
 
 	void learnMagic(Magic *magic);
 
@@ -114,7 +115,7 @@ public:
 	void buyItem(Item *item);
 
 	void levelUp(std::string *s);
-	void setLevelTable();
+	virtual void setLevelTable();
 
 	void addExp(long n) { status.exp += n; }
 	void addGold(long n) { status.gold += n; }

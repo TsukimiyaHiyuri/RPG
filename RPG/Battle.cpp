@@ -223,6 +223,7 @@ void Battle::gameOver(Player *player, Map *nowMap, bool *gameOverFlag) {
 			player->setHp(player->getMaxHp());
 			player->setMp(player->getMaxMp());
 			player->setGold(player->getGold() / 2);
+			player->setPlayer(12, 14, UP);
 			nowMap = new WorldMap(this->sound);
 
 			*gameOverFlag = true;

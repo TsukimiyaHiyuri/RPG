@@ -98,6 +98,11 @@ void Player::setPlayer(int x, int y) {
 	this->position.y = y;
 }
 
+void Player::setPlayer(int x, int y, direct dir) {
+	this->setPlayer(x, y);
+	this->direction = dir;
+}
+
 // 所持品がいっぱいじゃなかったら引数のアイテムを所持させる
 void Player::addBelongings(Item *item) {
   	if (this->getBelongingsNum() < MAXBELONGINGS) {
@@ -246,9 +251,7 @@ void Player::learnMagic(Magic *magic) {
 
 // レベルテーブルを設定する
 void Player::setLevelTable() {
-	for (int i = 0; i < MAXLEVEL - 1; i++) {
-		this->levelTable[i] = (i + 1) * 6;
-	}
+	
 }
 
 // レベルアップ時の関数
@@ -283,5 +286,14 @@ void Player::levelUp(std::string *s) {
 				break;
 			}
 		}
+	}
+}
+
+void Player::damage(int n) {
+	if (this->status.hp > n) {
+		this->status.hp -= n;
+	}
+	else {
+		this->status.hp = 0;
 	}
 }
