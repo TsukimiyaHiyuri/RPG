@@ -27,3 +27,19 @@ void Enemy::setCordinate(int x, int y) {
 	this->x = x;
 	this->y = y;
 }
+
+int Enemy::culculateDamage(Player *player) {
+	int damage = this->status.str;
+	damage += rand() % this->status.lv;
+
+	damage = damage > player->getAllDef() ? damage - player->getAllDef() : 1;
+	return damage;
+}
+
+// バトルウィンドウ用の文字列を返す
+std::string Enemy::getAttackString(int damage, Player *player) {
+	std::string ans;
+	ans += this->getName() + "の攻撃\n";
+	ans += player->getName() + "に" + std::to_string(damage) + "のダメージ";
+	return ans;
+}

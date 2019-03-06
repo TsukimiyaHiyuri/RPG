@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	bool clearFlag = false;
 	bool isTitle = true;	// 今はタイトル画面か？
 	bool isFinish = false;	// ゲーム終了か？
+	bool isGameOver = false;
 
 	int moveEncountNum = 0;
 	Player *hero = new Hero(sound);
@@ -45,8 +46,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		if (clearFlag) {
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
 		}
+
+		// タイトルの表示
 		else if (isTitle) {
 			isTitle = title->drawAll(&isFinish);
+		}
+
+		// ゲームオーバー時の処理
+		else if (isGameOver) {
+			if (!sound->checkBGM(GameOverBGM)) {
+				sound->playBGM(GameOverBGM);
+			}
+
+			DrawFormatString(200, 200, GetColor(255, 255, 255), "GAME OVER");
+
+			if (Key[KEY_INPUT_Z] == 1) {
+				Key[KEY_INPUT_Z]++;
+
+				sound->stopBGM(GameOverBGM);
+				isGameOver = false;
+			}
 		}
 		else {
 			// 非戦闘時の処理
@@ -102,7 +121,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			// 戦闘時の処理
-			if (!battle->getIsFinish()) {
+			else if (!battle->getIsFinish()) {
 				// 背景の描画
 				bg->drawGraph(0);
 
@@ -118,7 +137,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// 戦闘の処理
-				battle->battle(hero, &clearFlag, nowMap);
+				battle->battle(hero, &clearFlag, &isGameOver, nowMap);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);
