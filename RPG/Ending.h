@@ -7,14 +7,17 @@
 #include <vector>
 #include <string>
 #define ENDINGLISTNUM 2
-#define ENDINGDRAWY 520
-#define ENDINGINTERBAL 100
+#define ENDINGDRAWX 400.0
+#define ENDINGSPEED 0.2
+#define ENDINGDRAWY 495
+#define ENDINGINTERBAL 170
 
 class Sound;
 class BackGround;
 
 class Ending {
 	long cnt;
+	int endingFont;
 	std::vector<std::string> list;
 	Sound *sound;
 	BackGround *backGround;
@@ -22,6 +25,7 @@ class Ending {
 public:
 	Ending(Sound *sound, BackGround *backGround);
 	void setList();
+	void setFont();
 	void drawEndind();
 	void playEndingBGM();
 	void drawAll();
