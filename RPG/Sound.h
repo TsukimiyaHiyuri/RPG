@@ -34,6 +34,7 @@ public:
 	void loadSound();
 	void playSE(SEType type, bool isBack);
 	void playBGM(BGMType type);
+	void playBGMNotLoop(BGMType type);
 	bool checkSE(SEType);
 	bool checkBGM(BGMType);
 	void stopBGM(BGMType type);

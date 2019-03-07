@@ -46,7 +46,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
-			ending->drawAll();
+			isFinish = ending->drawAll();
 		}
 
 		// タイトルの表示

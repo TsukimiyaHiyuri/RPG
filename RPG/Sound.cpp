@@ -39,6 +39,10 @@ void Sound::playBGM(BGMType type) {
 	PlaySoundMem(bgm[type], DX_PLAYTYPE_LOOP);
 }
 
+void Sound::playBGMNotLoop(BGMType type) {
+	PlaySoundMem(bgm[type], DX_PLAYTYPE_BACK);
+}
+
 bool Sound::checkSE(SEType type) {
 	if (CheckSoundMem(se[type]) == 1) {
 		return true;
