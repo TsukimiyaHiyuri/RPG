@@ -9,6 +9,7 @@
 #include "Battle.h"
 #include "BackGround.h"
 #include "Sound.h"
+#include "Ending.h"
 #include "Title.h"
 #include <vector>
 #include <string>
@@ -25,7 +26,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	createMap(mapList, sound);
 	Map *nowMap = mapList[World];
 
-	Title * title = new Title(bg, sound);
+	Title *title = new Title(bg, sound);
+	Ending *ending = new Ending(sound, bg);
 
 	int ScrollX = 0, ScrollY = 0;
 	int moveCounter = 0;
@@ -44,18 +46,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
-			if (!sound->checkBGM(EndingBGM)) {
-				sound->playBGM(EndingBGM);
-			}
-
-			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
-
-			if (Key[KEY_INPUT_Z] == 1) {
-				Key[KEY_INPUT_Z]++;
-
-				sound->stopBGM(EndingBGM);
-				isFinish = true;
-			}
+			ending->drawAll();
 		}
 
 		// タイトルの表示

@@ -157,6 +157,7 @@
     <ClCompile Include="BattleWindow.cpp" />
     <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
+    <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
     <ClCompile Include="EquipmentWindow.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="ComandType.h" />
     <ClInclude Include="ComandWindow.h" />
     <ClInclude Include="Dim.h" />
+    <ClInclude Include="Ending.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
     <ClInclude Include="EquipmentWindow.h" />
