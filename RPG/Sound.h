@@ -3,7 +3,7 @@
 #define _Sound_
 
 #define SENUM 9
-#define BGMNUM 5
+#define BGMNUM 6
 
 enum SEType {
 	DecideSE = 0,
@@ -22,7 +22,8 @@ enum BGMType {
 	BossBattleBGM = 1,
 	FieldBGM = 2,
 	TitleBGM = 3,
-	GameOverBGM = 4
+	GameOverBGM = 4,
+	EndingBGM = 5
 };
 
 class Sound {
@@ -33,6 +34,7 @@ public:
 	void loadSound();
 	void playSE(SEType type, bool isBack);
 	void playBGM(BGMType type);
+	void playBGMNotLoop(BGMType type);
 	bool checkSE(SEType);
 	bool checkBGM(BGMType);
 	void stopBGM(BGMType type);
