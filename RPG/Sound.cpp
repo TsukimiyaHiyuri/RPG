@@ -23,6 +23,7 @@ void Sound::loadSound() {
 	bgm[FieldBGM] = LoadSoundMem("Sound/bgm_field.mp3");
 	bgm[TitleBGM] = LoadSoundMem("Sound/bgm_title.mp3");
 	bgm[GameOverBGM] = LoadSoundMem("Sound/bgm_gameover.mp3");
+	bgm[EndingBGM] = LoadSoundMem("Sound/bgm_ending.mp3");
 }
 
 void Sound::playSE(SEType type, bool isBack) {

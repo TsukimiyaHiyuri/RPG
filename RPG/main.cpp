@@ -44,7 +44,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// ゲームクリアのときの処理
 		if (clearFlag) {
+			if (!sound->checkBGM(EndingBGM)) {
+				sound->playBGM(EndingBGM);
+			}
+
 			DrawFormatString(200, 220, GetColor(255, 255, 255), "クリアおめでとう！");
+
+			if (Key[KEY_INPUT_Z] == 1) {
+				Key[KEY_INPUT_Z]++;
+
+				sound->stopBGM(EndingBGM);
+				isFinish = true;
+			}
 		}
 
 		// タイトルの表示
