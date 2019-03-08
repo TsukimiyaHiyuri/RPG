@@ -4,6 +4,7 @@
 #include "Slime.h"
 #include "Bat.h"
 #include "Matango.h"
+#include "Alraune.h"
 #include "ShopNPC.h"
 #include "Potion.h"
 #include "Armors.h"
@@ -189,7 +190,8 @@ void WorldMap::setEnemy() {
 	this->enemy[0] = new Slime(0, this->sound);
 	this->enemy[1] = new Bat(0, this->sound);
 	this->enemy[2] = new Matango(0, this->sound);
-	this->enemyNum = 3;
+	this->enemy[3] = new Alraune(0, this->sound);
+	this->enemyNum = 4;
 }
 
 // マップチップを描画する
