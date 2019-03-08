@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alraune.cpp" />
     <ClCompile Include="Armors.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bat.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="MagicWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Matango.cpp" />
     <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="MenuWindow.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
@@ -191,6 +193,7 @@
     <ClCompile Include="WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alraune.h" />
     <ClInclude Include="Armors.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bat.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicWindow.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Matango.h" />
     <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuWindow.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
