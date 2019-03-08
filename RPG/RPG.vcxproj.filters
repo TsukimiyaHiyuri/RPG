@@ -186,6 +186,9 @@
     <ClCompile Include="Lizardman.cpp">
       <Filter>ソース ファイル\EnemyCode</Filter>
     </ClCompile>
+    <ClCompile Include="Mummy.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Key.h">
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="Lizardman.h">
       <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Mummy.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

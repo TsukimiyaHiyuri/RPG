@@ -177,6 +177,7 @@
     <ClCompile Include="Matango.cpp" />
     <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="MenuWindow.cpp" />
+    <ClCompile Include="Mummy.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Matango.h" />
     <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuWindow.h" />
+    <ClInclude Include="Mummy.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Potion.h" />
