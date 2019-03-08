@@ -11,6 +11,7 @@ public:
 	virtual void setMapGround();
 	virtual void setMapBridge();
 	virtual void setMapSea();
+	virtual void setEnemy();
 
 	virtual void loadMapTip();
 	virtual bool judgeWall(int x, int y);

@@ -8,6 +8,10 @@
 #include "Sord.h"
 #include "SnowMap.h"
 #include "MazeMap.h"
+#include "Goburin.h"
+#include "Lizardman.h"
+#include "Mummy.h"
+#include "Skull.h"
 #include <iostream>
 
 TownMap::TownMap(Sound *sound) {
@@ -15,7 +19,8 @@ TownMap::TownMap(Sound *sound) {
 	this->sound = sound;
 	this->setMap();
 	this->setHeight(), this->setWidth();
-	this->isEncount = false;
+	this->setEnemy();
+	this->isEncount = true;
 	this->setNPC();
 }
 
@@ -209,4 +214,13 @@ void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 	if (this->mapBridge[pointx][pointy] >= 0) {
 		DrawGraph(drawx, drawy, this->bridge[this->mapBridge[pointx][pointy]], true);
 	}
+}
+
+// ‚±‚Ìƒ}ƒbƒv‚ÉŒ»‚ê‚é“G‚ÌÝ’è
+void TownMap::setEnemy() {
+	this->enemy[0] = new Goburin(0, this->sound);
+	this->enemy[1] = new Lizardman(0, this->sound);
+	this->enemy[2] = new Mummy(0, this->sound);
+	this->enemy[3] = new Skull(0, this->sound);
+	this->enemyNum = 4;
 }

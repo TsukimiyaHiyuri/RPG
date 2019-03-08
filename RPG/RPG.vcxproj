@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alraune.cpp" />
     <ClCompile Include="Armors.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bat.cpp" />
@@ -161,18 +162,22 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
     <ClCompile Include="EquipmentWindow.cpp" />
+    <ClCompile Include="Goburin.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HighPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemSelectWindow.cpp" />
     <ClCompile Include="ItemWindow.cpp" />
     <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Lizardman.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="MagicWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Matango.cpp" />
     <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="MenuWindow.cpp" />
+    <ClCompile Include="Mummy.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -181,6 +186,8 @@
     <ClCompile Include="ShopItemWindow.cpp" />
     <ClCompile Include="ShopNPC.cpp" />
     <ClCompile Include="ShopWindow.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="Skull.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SnowMap.cpp" />
     <ClCompile Include="Sord.cpp" />
@@ -191,6 +198,7 @@
     <ClCompile Include="WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alraune.h" />
     <ClInclude Include="Armors.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bat.h" />
@@ -204,17 +212,21 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
     <ClInclude Include="EquipmentWindow.h" />
+    <ClInclude Include="Goburin.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HighPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemSelectWindow.h" />
     <ClInclude Include="ItemWindow.h" />
     <ClInclude Include="Key.h" />
+    <ClInclude Include="Lizardman.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicWindow.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Matango.h" />
     <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuWindow.h" />
+    <ClInclude Include="Mummy.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Potion.h" />
@@ -222,6 +234,8 @@
     <ClInclude Include="ShopItemWindow.h" />
     <ClInclude Include="ShopNPC.h" />
     <ClInclude Include="ShopWindow.h" />
+    <ClInclude Include="Skeleton.h" />
+    <ClInclude Include="Skull.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SnowMap.h" />
     <ClInclude Include="Sord.h" />
