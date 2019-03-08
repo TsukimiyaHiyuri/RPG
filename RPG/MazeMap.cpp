@@ -8,6 +8,7 @@
 #include "Armors.h"
 #include "Sord.h"
 #include "SnowMap.h"
+#include "Skeleton.h"
 #include <iostream>
 
 MazeMap::MazeMap(Sound *sound) {
@@ -15,7 +16,8 @@ MazeMap::MazeMap(Sound *sound) {
 	this->sound = sound;
 	this->setMap();
 	this->setHeight(), this->setWidth();
-	this->isEncount = false;
+	this->setEnemy();
+	this->isEncount = true;
 	this->setNPC();
 }
 
@@ -241,4 +243,10 @@ void MazeMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 	if (this->mapBridge[pointx][pointy] >= 0) {
 		DrawGraph(drawx, drawy, this->bridge[this->mapBridge[pointx][pointy]], true);
 	}
+}
+
+// ‚±‚Ìƒ}ƒbƒv‚ÉŒ»‚ê‚é“G‚ÌÝ’è
+void MazeMap::setEnemy() {
+	this->enemy[0] = new Skeleton(0, this->sound);
+	this->enemyNum = 1;
 }

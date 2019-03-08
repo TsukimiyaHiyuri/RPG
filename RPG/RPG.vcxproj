@@ -186,6 +186,8 @@
     <ClCompile Include="ShopItemWindow.cpp" />
     <ClCompile Include="ShopNPC.cpp" />
     <ClCompile Include="ShopWindow.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="Skull.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SnowMap.cpp" />
     <ClCompile Include="Sord.cpp" />
@@ -232,6 +234,8 @@
     <ClInclude Include="ShopItemWindow.h" />
     <ClInclude Include="ShopNPC.h" />
     <ClInclude Include="ShopWindow.h" />
+    <ClInclude Include="Skeleton.h" />
+    <ClInclude Include="Skull.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SnowMap.h" />
     <ClInclude Include="Sord.h" />
