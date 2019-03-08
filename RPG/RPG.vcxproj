@@ -169,6 +169,7 @@
     <ClCompile Include="ItemSelectWindow.cpp" />
     <ClCompile Include="ItemWindow.cpp" />
     <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Lizardman.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="MagicWindow.cpp" />
     <ClCompile Include="main.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="ItemSelectWindow.h" />
     <ClInclude Include="ItemWindow.h" />
     <ClInclude Include="Key.h" />
+    <ClInclude Include="Lizardman.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicWindow.h" />
     <ClInclude Include="Map.h" />

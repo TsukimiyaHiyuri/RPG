@@ -9,6 +9,7 @@
 #include "SnowMap.h"
 #include "MazeMap.h"
 #include "Goburin.h"
+#include "Lizardman.h"
 #include <iostream>
 
 TownMap::TownMap(Sound *sound) {
@@ -216,5 +217,6 @@ void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 // ‚±‚Ìƒ}ƒbƒv‚ÉŒ»‚ê‚é“G‚ÌÝ’è
 void TownMap::setEnemy() {
 	this->enemy[0] = new Goburin(0, this->sound);
-	this->enemyNum = 1;
+	this->enemy[1] = new Lizardman(0, this->sound);
+	this->enemyNum = 2;
 }

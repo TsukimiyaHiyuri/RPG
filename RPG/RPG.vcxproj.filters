@@ -180,6 +180,12 @@
     <ClCompile Include="Hero.cpp">
       <Filter>ソース ファイル\PlayerCode</Filter>
     </ClCompile>
+    <ClCompile Include="Goburin.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Lizardman.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Key.h">
@@ -307,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="Hero.h">
       <Filter>ヘッダー ファイル\PlayerCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Goburin.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Lizardman.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
