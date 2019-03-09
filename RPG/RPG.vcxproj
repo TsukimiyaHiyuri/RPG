@@ -162,6 +162,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
     <ClCompile Include="EquipmentWindow.cpp" />
+    <ClCompile Include="Ether.cpp" />
     <ClCompile Include="Goburin.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HighPotion.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
     <ClInclude Include="EquipmentWindow.h" />
+    <ClInclude Include="Ether.h" />
     <ClInclude Include="Goburin.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HighPotion.h" />

@@ -11,6 +11,7 @@ Sord::Sord() {
 	this->isEquipt = false;
 	this->buyGold = 15;
 	this->sellGold = 7;
+	this->setDescription();
 }
 
 void Sord::use(Player *p, std::string *str) {

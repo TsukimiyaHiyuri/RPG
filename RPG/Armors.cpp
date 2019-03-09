@@ -11,6 +11,7 @@ Armors::Armors() {
 	this->isEquipt = false;
 	this->buyGold = 15;
 	this->sellGold = 7;
+	this->setDescription();
 }
 
 void Armors::use(Player *p, std::string *str) {

@@ -186,14 +186,17 @@
     <ClCompile Include="Lizardman.cpp">
       <Filter>ソース ファイル\EnemyCode</Filter>
     </ClCompile>
-    <ClCompile Include="Mummy.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
     </ClCompile>
     <ClCompile Include="Skull.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\EnemyCode</Filter>
     </ClCompile>
-    <ClCompile Include="Skeleton.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Mummy.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Ether.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,14 +332,17 @@
     <ClInclude Include="Lizardman.h">
       <Filter>ヘッダー ファイル\EnemyCode</Filter>
     </ClInclude>
-    <ClInclude Include="Mummy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Skull.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
     </ClInclude>
     <ClInclude Include="Skeleton.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Mummy.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Ether.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

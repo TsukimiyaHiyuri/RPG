@@ -20,3 +20,8 @@ void Item::changeIsEquript() {
 		this->isEquipt = true;
 	}
 }
+
+void Item::setDescription() {
+	this->description += "\n\nw“ü: " + std::to_string(this->buyGold);
+	this->description += "\n”„‹p: " + std::to_string(this->sellGold);
+}
