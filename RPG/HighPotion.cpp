@@ -8,6 +8,7 @@ HighPotion::HighPotion() {
 	this->isEquipt = false;
 	this->buyGold = 15;
 	this->sellGold = 7;
+	this->setDescription();
 }
 
 void HighPotion::use(Player *player) {

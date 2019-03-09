@@ -157,11 +157,13 @@
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleWindow.cpp" />
     <ClCompile Include="BossEnemy.cpp" />
+    <ClCompile Include="Clothes.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
     <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
     <ClCompile Include="EquipmentWindow.cpp" />
+    <ClCompile Include="Ether.cpp" />
     <ClCompile Include="Goburin.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HighPotion.cpp" />
@@ -193,6 +195,7 @@
     <ClCompile Include="Sord.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StatusWindow.cpp" />
+    <ClCompile Include="Stick.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TownMap.cpp" />
     <ClCompile Include="WorldMap.cpp" />
@@ -205,6 +208,7 @@
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleWindow.h" />
     <ClInclude Include="BossEnemy.h" />
+    <ClInclude Include="Clothes.h" />
     <ClInclude Include="ComandType.h" />
     <ClInclude Include="ComandWindow.h" />
     <ClInclude Include="Dim.h" />
@@ -212,6 +216,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
     <ClInclude Include="EquipmentWindow.h" />
+    <ClInclude Include="Ether.h" />
     <ClInclude Include="Goburin.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HighPotion.h" />
@@ -242,6 +247,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="StatusWindow.h" />
+    <ClInclude Include="Stick.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TownMap.h" />
     <ClInclude Include="WorldMap.h" />
