@@ -10,6 +10,7 @@
 #include "Armors.h"
 #include "Sord.h"
 #include "Ether.h"
+#include "Stick.h"
 #include "DxLib.h"
 #include <iostream>
 
@@ -182,7 +183,7 @@ void WorldMap::setNPC() {
 	std::vector<std::string> npc2;
 	npc2.push_back("いらっしゃい！\n何か買っていくか？");
 
-	Item *item[4] = { new Potion(), new Sord(), new Armors(), new Ether() };
+	Item *item[4] = { new Potion(), new Ether(), new Stick(), new Armors() };
 	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 4, this->sound);
 }
 

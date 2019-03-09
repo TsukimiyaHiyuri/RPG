@@ -22,6 +22,10 @@ void Item::changeIsEquript() {
 }
 
 void Item::setDescription() {
+	if (this->canEquip) {
+		this->description += "\n\nUŒ‚—Í: +" + std::to_string(this->str);
+		this->description += "\n–hŒä—Í: +" + std::to_string(this->def);
+	}
 	this->description += "\n\nw“ü: " + std::to_string(this->buyGold);
 	this->description += "\n”„‹p: " + std::to_string(this->sellGold);
 }

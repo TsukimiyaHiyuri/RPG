@@ -198,6 +198,9 @@
     <ClCompile Include="Ether.cpp">
       <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
+    <ClCompile Include="Stick.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Key.h">
@@ -343,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="Ether.h">
       <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Stick.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
