@@ -114,7 +114,7 @@ public:
 	bool sellItem(int n);
 	void buyItem(Item *item);
 
-	void levelUp(std::string *s);
+	virtual void levelUp(std::string *s);
 	virtual void setLevelTable();
 
 	void addExp(long n) { status.exp += n; }
