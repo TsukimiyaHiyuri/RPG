@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include <string>
 #define MAXMAGICNUM 8
+#define CURE 30
 
 class Player;
 class Enemy;
@@ -20,6 +21,7 @@ enum MagicType {
 class Magic {
 protected:
 	std::string name;	// 魔法の名前
+	std::string discription;	// 魔法の説明
 	int learnLv;	// 習得レベル
 	MagicType type;	// 魔法の種類
 	int useMp;		// 消費MP
@@ -31,6 +33,7 @@ public:
 	virtual bool use(Player *p, Enemy *e[], std::string *n = 0) { return true; }
 	MagicType getType() { return this->type; }
 	std::string getName() { return this->name; }
+	void setDiscription();
 	void setStr(std::string *n, int damage, Enemy *e, Player *p);
 };
 
@@ -46,4 +49,9 @@ public:
 	virtual bool use(Player *p, Enemy *e[], std::string *n = 0);
 };
 
+class Cure : public Magic {
+public:
+	Cure();
+	virtual bool use(Player *p, std::string *n = 0);
+};
 #endif

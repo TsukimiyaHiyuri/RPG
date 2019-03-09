@@ -120,6 +120,7 @@ public:
 	void addExp(long n) { status.exp += n; }
 	void addGold(long n) { status.gold += n; }
 	void addMp(int n) { this->status.mp += n; }
+	void addHp(int n) { this->status.hp += n; }
 	void addMaxMp(int n) { this->status.maxMp += n; }
 	void addMaxHp(int n) { this->status.maxHp += n; }
 	void addStr(int n) { this->status.str += n; }

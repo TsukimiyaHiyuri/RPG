@@ -69,7 +69,7 @@ void Hero::levelUp(std::string *s) {
 			// レベルによって魔法を習得
 			switch (this->getLv()) {
 			case 2:
-				this->learnMagic(new Fire());
+				this->learnMagic(new Cure());
 				*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
 				break;
 			case 5:
