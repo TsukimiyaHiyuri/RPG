@@ -20,7 +20,7 @@ BossEnemy::BossEnemy(int x, Sound *sound) {
 }
 
 void BossEnemy::loadGraphic() {
-	this->graphic = LoadGraph("iron_man.png");
+	this->graphic = LoadGraph("Enemy/iron_man.png");
 }
 
 std::string BossEnemy::attack(Player *player) {

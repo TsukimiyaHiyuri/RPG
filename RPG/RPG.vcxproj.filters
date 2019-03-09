@@ -13,18 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\EnemyCode">
+      <UniqueIdentifier>{f276e3c8-2d02-44fc-9135-a19fdfc057fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\EnemyCode">
+      <UniqueIdentifier>{106be41c-1301-4191-9cee-7bb1c2786b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ItemCode">
+      <UniqueIdentifier>{9694bf0b-787c-4e45-b9fd-a7bc6a257e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ItemCode">
+      <UniqueIdentifier>{1fad7f20-e161-46d8-8d42-1b81ee7101f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MapCode">
+      <UniqueIdentifier>{73ca3db8-e227-4908-8eaa-a6c147bf7a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MapCode">
+      <UniqueIdentifier>{1260b267-4854-47c3-9689-d3a7c45b55fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MenuWindowCode">
+      <UniqueIdentifier>{72d2cc94-335b-432b-b12a-0ec8ab25f59a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MenuWindowCode">
+      <UniqueIdentifier>{bd1060c3-50dd-449d-9a11-824787720841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\NPCCode">
+      <UniqueIdentifier>{568ce05b-3d32-4503-8232-f1e44cd1a99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\NPCCode">
+      <UniqueIdentifier>{740eded7-3301-4393-ba72-5bbe207236dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BattleCode">
+      <UniqueIdentifier>{82e0cad6-6957-4208-b6a4-393452611145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\BattleCode">
+      <UniqueIdentifier>{307478b2-a3e9-4213-99a5-ef6e321f516a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\PlayerCode">
+      <UniqueIdentifier>{6e97d9ed-66dd-47df-8b37-27a909fba9ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\PlayerCode">
+      <UniqueIdentifier>{0e04b265-b341-47fb-abfc-603e2584997b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldMap.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
@@ -33,97 +66,13 @@
     <ClCompile Include="Key.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="TownMap.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Potion.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="HighPotion.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="StatusWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EquipmentWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Sord.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Armors.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Magic.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ComandWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MagicWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyListWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemSelectWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="BattleWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="NonPlayerCharacter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ShopItemWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ShopNPC.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ShopWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Bat.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowMap.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Sound.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Hero.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="BossEnemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MazeMap.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Title.cpp">
@@ -132,120 +81,144 @@
     <ClCompile Include="Ending.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Alraune.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEnemy.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Matango.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Armors.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="HighPotion.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Potion.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Sord.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="MazeMap.cpp">
+      <Filter>ソース ファイル\MapCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>ソース ファイル\MapCode</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>ソース ファイル\MapCode</Filter>
+    </ClCompile>
+    <ClCompile Include="TownMap.cpp">
+      <Filter>ソース ファイル\MapCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowMap.cpp">
+      <Filter>ソース ファイル\MapCode</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusWindow.cpp">
+      <Filter>ソース ファイル\MenuWindowCode</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuWindow.cpp">
+      <Filter>ソース ファイル\MenuWindowCode</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipmentWindow.cpp">
+      <Filter>ソース ファイル\MenuWindowCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectWindow.cpp">
+      <Filter>ソース ファイル\MenuWindowCode</Filter>
+    </ClCompile>
+    <ClCompile Include="NonPlayerCharacter.cpp">
+      <Filter>ソース ファイル\NPCCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopNPC.cpp">
+      <Filter>ソース ファイル\NPCCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopItemWindow.cpp">
+      <Filter>ソース ファイル\NPCCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopWindow.cpp">
+      <Filter>ソース ファイル\NPCCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ComandWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyListWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemSelectWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicWindow.cpp">
+      <Filter>ソース ファイル\BattleCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\PlayerCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>ソース ファイル\PlayerCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Goburin.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Lizardman.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Skull.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Mummy.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Ether.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Stick.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Clothes.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldMap.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Dim.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Key.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="TownMap.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Potion.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="HighPotion.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EquipmentWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Sord.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Armors.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Magic.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Battle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ComandWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyListWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemSelectWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Status.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ComandType.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BattleWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="NonPlayerCharacter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ShopItemWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ShopNPC.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ShopWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Bat.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowMap.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Sound.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Hero.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="BossEnemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MazeMap.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
@@ -253,6 +226,135 @@
     </ClInclude>
     <ClInclude Include="Ending.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Alraune.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEnemy.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Matango.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Armors.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="HighPotion.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Sord.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Potion.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>ヘッダー ファイル\MapCode</Filter>
+    </ClInclude>
+    <ClInclude Include="TownMap.h">
+      <Filter>ヘッダー ファイル\MapCode</Filter>
+    </ClInclude>
+    <ClInclude Include="MazeMap.h">
+      <Filter>ヘッダー ファイル\MapCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>ヘッダー ファイル\MapCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowMap.h">
+      <Filter>ヘッダー ファイル\MapCode</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipmentWindow.h">
+      <Filter>ヘッダー ファイル\MenuWindowCode</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuWindow.h">
+      <Filter>ヘッダー ファイル\MenuWindowCode</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusWindow.h">
+      <Filter>ヘッダー ファイル\MenuWindowCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectWindow.h">
+      <Filter>ヘッダー ファイル\MenuWindowCode</Filter>
+    </ClInclude>
+    <ClInclude Include="NonPlayerCharacter.h">
+      <Filter>ヘッダー ファイル\NPCCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopNPC.h">
+      <Filter>ヘッダー ファイル\NPCCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopItemWindow.h">
+      <Filter>ヘッダー ファイル\NPCCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopWindow.h">
+      <Filter>ヘッダー ファイル\NPCCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyListWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemSelectWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ComandWindow.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="ComandType.h">
+      <Filter>ヘッダー ファイル\BattleCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Dim.h">
+      <Filter>ヘッダー ファイル\PlayerCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\PlayerCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>ヘッダー ファイル\PlayerCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Goburin.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Lizardman.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Skull.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Mummy.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Ether.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Stick.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Clothes.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

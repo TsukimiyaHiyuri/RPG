@@ -42,6 +42,7 @@ public:
 	void setIsEquip(bool f) { isEquipt = f; }
 	int getSellGold() { return this->sellGold; }
 	int getBuyGold() { return this->buyGold; }
+	void setDescription();
 };
 
 #endif

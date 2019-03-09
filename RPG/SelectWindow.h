@@ -36,10 +36,10 @@ public:
 	SelectWindow(Player *p, Sound *sound);
 	void setList();
 	void drawSelectWindow();
-	void drawAll();
+	bool drawAll();
 	void changeIsHide();
 	void moveSelector();
-	void select();
+	bool select();
 	void init();
 	bool getIsHide() { return isHide; }
 	void setItemNum(int n) { this->itemNum = n; }

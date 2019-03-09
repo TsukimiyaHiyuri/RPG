@@ -10,6 +10,7 @@ Potion::Potion(){
 	this->isEquipt = false;
 	this->buyGold = 15;
 	this->sellGold = 7;
+	this->setDescription();
 }
 
 void Potion::use(Player *player) {

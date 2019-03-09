@@ -3,10 +3,13 @@
 #include "TownMap.h"
 #include "Slime.h"
 #include "Bat.h"
+#include "Matango.h"
+#include "Alraune.h"
 #include "ShopNPC.h"
 #include "Potion.h"
-#include "Armors.h"
-#include "Sord.h"
+#include "Ether.h"
+#include "Stick.h"
+#include "Clothes.h"
 #include "DxLib.h"
 #include <iostream>
 
@@ -179,15 +182,17 @@ void WorldMap::setNPC() {
 	std::vector<std::string> npc2;
 	npc2.push_back("いらっしゃい！\n何か買っていくか？");
 
-	Item *item[3] = { new Potion(), new Sord(), new Armors() };
-	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 3, this->sound);
+	Item *item[4] = { new Potion(), new Ether(), new Stick(), new Clothes() };
+	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 4, this->sound);
 }
 
 // このマップに現れる敵の設定
 void WorldMap::setEnemy() {
 	this->enemy[0] = new Slime(0, this->sound);
 	this->enemy[1] = new Bat(0, this->sound);
-	this->enemyNum = 2;
+	this->enemy[2] = new Matango(0, this->sound);
+	this->enemy[3] = new Alraune(0, this->sound);
+	this->enemyNum = 4;
 }
 
 // マップチップを描画する

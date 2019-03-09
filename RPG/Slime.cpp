@@ -20,7 +20,7 @@ Slime::Slime(int x, Sound *sound) {
 }
 
 void Slime::loadGraphic() {
-	this->graphic = LoadGraph("sraim.png");
+	this->graphic = LoadGraph("Enemy/sraim.png");
 }
 
 std::string Slime::attack(Player *player) {

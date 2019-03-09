@@ -20,7 +20,7 @@ Bat::Bat(int x, Sound *sound) {
 }
 
 void Bat::loadGraphic() {
-	this->graphic = LoadGraph("bat.png");
+	this->graphic = LoadGraph("Enemy/bat.png");
 }
 
 std::string Bat::attack(Player *player) {

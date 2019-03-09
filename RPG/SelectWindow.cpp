@@ -63,7 +63,7 @@ void SelectWindow::moveSelector() {
 }
 
 // 決定ボタン、キャンセルボタンの処理
-void SelectWindow::select() {
+bool SelectWindow::select() {
 	if (!this->isHide) {
 		if (Key[KEY_INPUT_Z] == 1) {
 			Key[KEY_INPUT_Z]++;
@@ -75,7 +75,7 @@ void SelectWindow::select() {
 
 				player->useItem(this->itemNum, this->player);
 				this->init();
-				break;
+				return true;
 
 			case Throw:
 				// SEをならす
@@ -83,7 +83,7 @@ void SelectWindow::select() {
 
 				player->throwItem(this->itemNum);
 				this->init();
-				break;
+				return true;
 
 			case Equip:
 				player->equipItem(this->itemNum, player);
@@ -100,13 +100,14 @@ void SelectWindow::select() {
 			this->init();
 		}
 	}
+	return false;
 }
 
 // 描画、カーソル移動、選択の処理をまとめたもの
-void SelectWindow::drawAll() {
+bool SelectWindow::drawAll() {
 	this->drawSelectWindow();
 	this->moveSelector();
-	this->select();
+	return this->select();
 }
 
 void SelectWindow::init() {
