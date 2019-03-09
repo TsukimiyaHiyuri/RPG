@@ -199,10 +199,10 @@
       <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
     <ClCompile Include="Stick.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
     <ClCompile Include="Clothes.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -351,10 +351,10 @@
       <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
     <ClInclude Include="Stick.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
     <ClInclude Include="Clothes.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

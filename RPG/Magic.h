@@ -7,6 +7,11 @@
 #include <string>
 #define MAXMAGICNUM 8
 #define CURE 30
+#define MEGCURE 120
+#define FIRE 20
+#define MEGFIRE 70
+#define THUNDER 15
+#define MEGTHUNDER 50
 
 class Player;
 class Enemy;
@@ -52,6 +57,24 @@ public:
 class Cure : public Magic {
 public:
 	Cure();
+	virtual bool use(Player *p, std::string *n = 0);
+};
+
+class MegFire : public Magic {
+public:
+	MegFire();
+	virtual bool use(Player *p, Enemy *e, std::string *n = 0);
+};
+
+class MegThunder : public Magic {
+public:
+	MegThunder();
+	virtual bool use(Player *p, Enemy *e[], std::string *n = 0);
+};
+
+class MegCure : public Magic {
+public:
+	MegCure();
 	virtual bool use(Player *p, std::string *n = 0);
 };
 #endif
