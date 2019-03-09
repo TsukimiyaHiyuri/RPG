@@ -68,10 +68,7 @@ void EquipmentWindow::moveSelector() {
 			}
 		}
 
-		// アイテムが使われたときにselectNumが所持品の数を超えたときの処理
-		if (this->selectNum >= this->player->getBelongingsNum()) {
-			this->selectNum = this->player->getBelongingsNum() - 1;
-		}
+		
 	}
 }
 
@@ -105,7 +102,12 @@ void EquipmentWindow::drawAll() {
 	this->moveSelector();
 	this->select();
 
-	this->selectWindow->drawAll();
+	if (this->selectWindow->drawAll()) {
+		// アイテムが使われたときにselectNumが所持品の数を超えたときの処理
+		if (this->selectNum >= this->player->getBelongingsNum()) {
+			this->selectNum = this->player->getBelongingsNum() - 1;
+		}
+	}
 }
 
 bool EquipmentWindow::canSelect() {
