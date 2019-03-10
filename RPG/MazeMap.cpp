@@ -9,6 +9,9 @@
 #include "Sord.h"
 #include "SnowMap.h"
 #include "Skeleton.h"
+#include "Clown.h"
+#include "Dragon.h"
+#include "Cassowary.h"
 #include <iostream>
 
 MazeMap::MazeMap(Sound *sound) {
@@ -248,5 +251,8 @@ void MazeMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 // ‚±‚Ìƒ}ƒbƒv‚ÉŒ»‚ê‚é“G‚ÌÝ’è
 void MazeMap::setEnemy() {
 	this->enemy[0] = new Skeleton(0, this->sound);
-	this->enemyNum = 1;
+	this->enemy[1] = new Clown(0, this->sound);
+	this->enemy[2] = new Dragon(0, this->sound);
+	this->enemy[3] = new Cassowary(0, this->sound);
+	this->enemyNum = 4;
 }

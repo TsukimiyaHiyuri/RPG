@@ -9,10 +9,10 @@ Alraune::Alraune(int x, Sound *sound) {
 		6,
 		3,
 		3,
-		6,
+		7,
 		2,
-		5,
-		2
+		6,
+		3
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

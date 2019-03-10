@@ -11,8 +11,8 @@ Bat::Bat(int x, Sound *sound) {
 		5,
 		7,
 		3,
-		4,
-		4
+		10,
+		5
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

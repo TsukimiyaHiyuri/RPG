@@ -11,8 +11,8 @@ Slime::Slime(int x, Sound *sound) {
 		5,
 		4,
 		2,
-		2,
-		100
+		4,
+		2
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);
