@@ -9,7 +9,7 @@ Bat::Bat(int x, Sound *sound) {
 		14,
 		5,
 		5,
-		4,
+		7,
 		3,
 		4,
 		4

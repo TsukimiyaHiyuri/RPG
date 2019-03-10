@@ -8,8 +8,8 @@ Hero::Hero(Sound *sound) {
 	this->status.maxMp = 5;
 	this->status.hp = 20;
 	this->status.mp = 5;
-	this->status.str = 7;
-	this->status.def = 2;
+	this->status.str = 6;
+	this->status.def = 4;
 	this->status.exp = 0;
 	this->status.gold = 100;
 
@@ -49,7 +49,9 @@ void Hero::setLevelTable() {
 // レベルアップ時の関数
 void Hero::levelUp(std::string *s) {
 	if (this->status.lv < MAXLEVEL) {
-		if (this->status.exp >= this->levelTable[this->status.lv - 1]) {
+		int originLv = this->getLv();
+		bool isLevelUp = false;
+		while (this->status.exp >= this->levelTable[this->status.lv - 1]) {
 			// レベルアップのSEをならす
 			this->sound->playSE(LevelUpSE, false);
 
@@ -57,25 +59,31 @@ void Hero::levelUp(std::string *s) {
 			this->status.lv++;
 
 			// 各ステータスを上げる
-			this->addMaxHp(15);
-			this->addMaxMp(5);
-			this->addStr(3);
-			this->addDef(2);
+			this->addMaxHp(10);
+			this->addMaxMp(4);
+			this->addStr(2);
+			this->addDef(1);
 			this->setHp(this->getMaxHp());
 			this->setMp(this->getMaxMp());
 
+			isLevelUp = true;
+		}
+
+		if(isLevelUp) {
 			*s += this->getName() + "は Lv" + std::to_string(this->getLv()) + " になった！\n";
 
 			// レベルによって魔法を習得
-			switch (this->getLv()) {
-			case 2:
-				this->learnMagic(new Cure());
-				*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
-				break;
-			case 5:
-				this->learnMagic(new Thunder());
-				*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
-				break;
+			while (originLv < this->getLv()) {
+				switch (++originLv) {
+				case 2:
+					this->learnMagic(new Cure());
+					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+					break;
+				case 4:
+					this->learnMagic(new Fire());
+					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+					break;
+				}
 			}
 		}
 	}

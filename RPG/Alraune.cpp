@@ -9,7 +9,7 @@ Alraune::Alraune(int x, Sound *sound) {
 		6,
 		3,
 		3,
-		3,
+		6,
 		2,
 		5,
 		2
