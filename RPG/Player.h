@@ -82,6 +82,7 @@ public:
 	int getAllDef();
 	direct getDirect() { return this->direction; }
 	bool getIsSpeak() { return this->isSpeak; }
+	int getNextLv();
 
 	void setHp(int h) { status.hp = h; }
 	void setMp(int m) { status.mp = m; }

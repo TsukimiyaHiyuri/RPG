@@ -297,3 +297,7 @@ void Player::damage(int n) {
 		this->status.hp = 0;
 	}
 }
+
+int Player::getNextLv() {
+	return this->levelTable[this->getLv() - 1] - this->status.exp;
+}

@@ -9,9 +9,9 @@
 #define CURE 30
 #define MEGCURE 120
 #define FIRE 20
-#define MEGFIRE 70
+#define MEGFIRE 55
 #define THUNDER 15
-#define MEGTHUNDER 50
+#define MEGTHUNDER 35
 
 class Player;
 class Enemy;

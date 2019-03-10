@@ -92,7 +92,7 @@ MegFire::MegFire() {
 	this->name = "メガファイア";
 	this->learnLv = 1;
 	this->type = AttackSolo;
-	this->useMp = 5;
+	this->useMp = 11;
 	this->discription = "敵１体に大ダメージ";
 	this->setDiscription();
 }
@@ -114,7 +114,7 @@ MegThunder::MegThunder() {
 	this->name = "メガサンダー";
 	this->learnLv = 1;
 	this->type = AttackAll;
-	this->useMp = 7;
+	this->useMp = 14;
 	this->discription = "敵全体に大ダメージ";
 	this->setDiscription();
 }
@@ -139,7 +139,7 @@ MegCure::MegCure() {
 	this->name = "メガキュアー";
 	this->learnLv = 1;
 	this->type = CureSolo;
-	this->useMp = 5;
+	this->useMp = 18;
 	this->discription = "自分を大回復";
 	this->setDiscription();
 }

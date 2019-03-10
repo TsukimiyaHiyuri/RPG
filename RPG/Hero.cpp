@@ -42,7 +42,7 @@ Hero::Hero(Sound *sound) {
 void Hero::setLevelTable() {
 	this->levelTable[0] = 12;
 	for (int i = 1; i < MAXLEVEL - 1; i++) {
-		this->levelTable[i] = int(this->levelTable[i - 1] * 1.3);
+		this->levelTable[i] = this->levelTable[i - 1] + int(this->levelTable[0] * 1.3 * i);
 	}
 }
 
@@ -60,7 +60,7 @@ void Hero::levelUp(std::string *s) {
 
 			// 各ステータスを上げる
 			this->addMaxHp(5);
-			this->addMaxMp(2);
+			this->addMaxMp(3);
 			this->addStr(1);
 			if (this->getLv() % 2 == 0) {
 				this->addDef(1);
