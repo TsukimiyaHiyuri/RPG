@@ -66,7 +66,7 @@ int Battle::bossEncount(Player *player) {
 	return 0;
 }
 
-void Battle::battle(Player *player, bool *clearFlag, bool *gameOverFlag, Map *nowMap) {
+Map *Battle::battle(Player *player, bool *clearFlag, bool *gameOverFlag, Map *nowMap, Map *mapList[]) {
 	if (!this->isFinish) {
 		// プレイヤーのステータスを描画
 		this->drawStatus(player);
@@ -121,9 +121,6 @@ void Battle::battle(Player *player, bool *clearFlag, bool *gameOverFlag, Map *no
 			}
 		}
 
-		// ゲームオーバーの処理
-		this->gameOver(player, nowMap, gameOverFlag);
-
 		if ((this->enemyNum <= 0 || this->isEscape) && this->finishWindow->strIsEmpty()) {
 			if (this->finishWindowFlag) {
 				if (this->isBoss) {
@@ -135,7 +132,12 @@ void Battle::battle(Player *player, bool *clearFlag, bool *gameOverFlag, Map *no
 				this->finishAction(player);
 			}
 		}
+
+		// ゲームオーバーの処理
+		return this->gameOver(player, nowMap, gameOverFlag, mapList);
 	}
+
+	return nowMap;
 }
 
 // 生きてる敵を先頭に持ってくる
@@ -184,8 +186,10 @@ void Battle::init() {
 	this->exp = 0;
 	this->enemyNum = 0;
 	this->originEnemyNum = 0;
+	this->lookEnemyNum = 0;
 	this->isFinish = true;
 	this->isBoss = false;
+	this->isMyTurn = true;
 	this->finishWindowFlag = false;
 	this->isEscape = false;
 }
@@ -217,18 +221,18 @@ void Battle::escape(Player *player) {
 }
 
 // ゲームオーバーの処理
-void Battle::gameOver(Player *player, Map *nowMap, bool *gameOverFlag) {
+Map *Battle::gameOver(Player *player, Map *nowMap, bool *gameOverFlag, Map *mapList[]) {
 	if (player->getHp() <= 0 && this->finishWindow->strIsEmpty()) {
 		if (this->finishWindowFlag) {
 			player->setHp(player->getMaxHp());
 			player->setMp(player->getMaxMp());
 			player->setGold(player->getGold() / 2);
 			player->setPlayer(12, 14, UP);
-			nowMap = new WorldMap(this->sound);
 
 			*gameOverFlag = true;
 
 			this->init();
+			return mapList[World];
 		}
 		else {
 			std::string finishWindowStr;
@@ -238,6 +242,7 @@ void Battle::gameOver(Player *player, Map *nowMap, bool *gameOverFlag) {
 			this->finishWindowFlag = true;
 		}
 	}
+	return nowMap;
 }
 
 // 戦闘終了時の処理

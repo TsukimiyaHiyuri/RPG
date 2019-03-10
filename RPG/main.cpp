@@ -139,7 +139,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// í“¬‚Ìˆ—
-				battle->battle(hero, &clearFlag, &isGameOver, nowMap);
+				nowMap = battle->battle(hero, &clearFlag, &isGameOver, nowMap, mapList);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);
