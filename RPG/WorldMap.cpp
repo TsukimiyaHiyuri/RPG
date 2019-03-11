@@ -171,19 +171,21 @@ void WorldMap::setNPC() {
 	this->npcNum = 3;
 	std::vector<std::string> tmp;
 	tmp.push_back("ようこそ！");
-	tmp.push_back("ここは始まりの場所です。");
+	tmp.push_back("ここは始まりの場所だよ！");
+	tmp.push_back("橋を渡るたびに敵が強くなるから気をつけてね");
 
-	this->npc[0] = new NonPlayerCharacter(12, 13, "歩行ドットキャラ.bmp", tmp, DOWN);
+	this->npc[0] = new NonPlayerCharacter(12, 13, "Character/pipo-charachip001.png", tmp, DOWN);
 
 	std::vector<std::string> ttmp;
-	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");
-	this->npc[1] = new NonPlayerCharacter(19, 18, "歩行ドットキャラ.bmp", ttmp, DOWN);
+	ttmp.push_back("魔法攻撃は相手の防御に関係なくダメージを与えられる\nから強力だよ");
+	this->npc[1] = new NonPlayerCharacter(19, 18, "Character/pipo-charachip003b.png", ttmp, DOWN);
 
 	std::vector<std::string> npc2;
-	npc2.push_back("いらっしゃい！\n何か買っていくか？");
+	npc2.push_back("いらっしゃい！ここは俺は道具屋だ");
+	npc2.push_back("何か買っていくか？");
 
 	Item *item[3] = { new Potion(), new Stick(), new Clothes() };
-	this->npc[2] = new ShopNPC(25, 12, "歩行ドットキャラ.bmp", npc2, DOWN, item, 3, this->sound);
+	this->npc[2] = new ShopNPC(25, 12, "Character/pipo-charachip003a.png", npc2, DOWN, item, 3, this->sound);
 }
 
 // このマップに現れる敵の設定

@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "DxLib.h"
+#include <random>
 
 
 Enemy::Enemy()
@@ -30,7 +31,8 @@ void Enemy::setCordinate(int x, int y) {
 
 int Enemy::culculateDamage(Player *player) {
 	int damage = this->status.str;
-	damage += rand() % this->status.lv;
+	std::random_device rnd;
+	damage += rnd() % this->status.lv;
 
 	damage = damage > player->getAllDef() ? damage - player->getAllDef() : 1;
 	return damage;

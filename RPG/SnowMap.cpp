@@ -121,7 +121,7 @@ void SnowMap::loadMapTip() {
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);//‰æ‘œ‚ğ•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);//‰æ‘œ‚ğ•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
 	LoadDivGraph("map/t_snow01.png", 5, 1, 5, 32, 32, this->sea);//‰æ‘œ‚ğ•ªŠ„‚µ‚Äimage”z—ñ‚É•Û‘¶
-	this->boss = LoadGraph("pipo-charachip019.png", true);
+	this->boss = LoadGraph("Character/pipo-charachip019.png", true);
 }
 
 // •Ç‚Ì”»’è
@@ -163,7 +163,7 @@ Map *SnowMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 
 	if (x == 14 && y == 22) {
 		player->setPlayer(25, 10);
-		return list[Town];
+		return list[Maze];
 	}
 
 	return nowMap;

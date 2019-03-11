@@ -131,7 +131,7 @@ void TownMap::setMapSea() {
 void TownMap::loadMapTip() {
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);
-	LoadDivGraph("map/at_dang01.png", 5, 1, 5, 32, 32, this->sea);
+	LoadDivGraph("map/t_cave05.png", 5, 1, 5, 32, 32, this->sea);
 }
 
 // 壁の判定
@@ -186,16 +186,16 @@ Map *TownMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 void TownMap::setNPC() {
 	this->npcNum = 2;
 	std::vector<std::string> tmp;
-	tmp.push_back("ここは何でも屋です");
-	tmp.push_back("何か買っていきませんか？");
+	tmp.push_back("ここは何でも屋だ");
+	tmp.push_back("何か買っていくか？");
 
 	Item *item[4] = { new Potion(), new Ether(), new Armors(), new Sord()};
 
-	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 4, this->sound);
+	this->npc[0] = new ShopNPC(25, 15, "Character/pipo-charachip003a.png", tmp, DOWN, item, 4, this->sound);
 
 	std::vector<std::string> ttmp;
-	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");
-	this->npc[1] = new NonPlayerCharacter(19, 18, "歩行ドットキャラ.bmp", ttmp, DOWN);
+	ttmp.push_back("ここで出現するスカルは防御が堅いから魔法で\n攻めた方がいいぞ");
+	this->npc[1] = new NonPlayerCharacter(19, 18, "Character/pipo-charachip001.png", ttmp, DOWN);
 }
 
 void TownMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {

@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "DxLib.h"
 
 Hero::Hero(Sound *sound) {
 	// statusの初期値
@@ -8,9 +9,9 @@ Hero::Hero(Sound *sound) {
 	this->status.maxMp = 10;
 	this->status.hp = 30;
 	this->status.mp = 10;
-	this->status.str = 6;
+	this->status.str = 1000;
 	this->status.def = 4;
-	this->status.exp = 0;
+	this->status.exp = 1000;
 	this->status.gold = 100;
 
 	// 所持品系の初期値
@@ -36,6 +37,11 @@ Hero::Hero(Sound *sound) {
 	this->setLevelTable();
 
 	this->sound = sound;
+}
+
+// 主人公のマップチップをロード
+void Hero::loadGraphic() {
+	LoadDivGraph("Character/pipo-charachip001a.png", 3 * 4, 3, 4, 32, 32, this->graphic);//画像を分割してimage配列に保存
 }
 
 // レベルテーブルを設定する

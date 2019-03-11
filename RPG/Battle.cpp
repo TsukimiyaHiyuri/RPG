@@ -4,6 +4,7 @@
 #include "Bat.h"
 #include "BossEnemy.h"
 #include "DxLib.h"
+#include <random>
 
 Battle::Battle(Sound *sound) {
 	this->gold = 0;
@@ -22,12 +23,13 @@ Battle::Battle(Sound *sound) {
 	}
 }
 
+// “G‚Ì’Ç‰Á
+// ’Ç‰Á‚µ‚½“G‚Ì”‚ðenemyNum‚É‘ã“ü
 int Battle::encount(Player *player, Map *nowMap) {
 	if (nowMap->getIsEncount() && this->isFinish == true) {
-		// “G‚Ì’Ç‰Á
-		// ’Ç‰Á‚µ‚½“G‚Ì”‚ðenemyNum‚É‘ã“ü
-
-		this->enemyNum = (rand() % 3) + 1;
+	
+		std::random_device rnd;
+		this->enemyNum = (rnd() % 3) + 1;
 		for (int i = 0; i < this->enemyNum; i++) {
 			if (i == 0) {
 				this->enemy[i] = nowMap->getEnemy(rand() % nowMap->getEnemyNum(), WIDTH / (this->enemyNum * 2));
