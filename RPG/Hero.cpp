@@ -9,9 +9,9 @@ Hero::Hero(Sound *sound) {
 	this->status.maxMp = 10;
 	this->status.hp = 30;
 	this->status.mp = 10;
-	this->status.str = 1000;
+	this->status.str = 6;
 	this->status.def = 4;
-	this->status.exp = 1000;
+	this->status.exp = 0;
 	this->status.gold = 100;
 
 	// Š•iŒn‚Ì‰Šú’l
