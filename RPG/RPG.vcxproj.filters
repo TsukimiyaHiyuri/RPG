@@ -213,6 +213,12 @@
     <ClCompile Include="Cassowary.cpp">
       <Filter>ソース ファイル\EnemyCode</Filter>
     </ClCompile>
+    <ClCompile Include="SuperSord.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SuperArmor.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Key.h">
@@ -373,6 +379,12 @@
     </ClInclude>
     <ClInclude Include="Cassowary.h">
       <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperSord.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperArmor.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

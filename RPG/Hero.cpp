@@ -79,6 +79,7 @@ void Hero::levelUp(std::string *s) {
 					this->learnMagic(new Cure());
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
 					break;
+
 				case 4:
 					this->learnMagic(new Fire());
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
@@ -104,6 +105,10 @@ void Hero::levelUp(std::string *s) {
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
 					break;
 
+				case 14:
+					this->learnMagic(new MaxCure());
+					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+					break;
 				}
 			}
 		}

@@ -4,9 +4,10 @@
 #include "DxLib.h"
 #include "ShopNPC.h"
 #include "Item.h"
-#include "Potion.h"
-#include "Armors.h"
-#include "Sord.h"
+#include "HighPotion.h"
+#include "Ether.h"
+#include "SuperArmor.h"
+#include "SuperSord.h"
 #include "SnowMap.h"
 #include "Skeleton.h"
 #include "Clown.h"
@@ -208,7 +209,7 @@ Map *MazeMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 	int y = player->gety();
 
 	if (x == 14 && y == 33) {
-		player->setPlayer(14, 10);
+		player->setPlayer(25, 10);
 		return list[Town];
 	}
 
@@ -225,9 +226,9 @@ void MazeMap::setNPC() {
 	tmp.push_back("ここは何でも屋です");
 	tmp.push_back("何か買っていきませんか？");
 
-	Item *item[3] = { new Potion(), new Armors(), new Sord() };
+	Item *item[4] = { new HighPotion(), new Ether(), new SuperSord(), new SuperArmor() };
 
-	this->npc[0] = new ShopNPC(16, 24, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3, this->sound);
+	this->npc[0] = new ShopNPC(16, 24, "歩行ドットキャラ.bmp", tmp, DOWN, item, 4, this->sound);
 
 	std::vector<std::string> ttmp;
 	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");

@@ -162,3 +162,26 @@ bool MegCure::use(Player *player, std::string *n) {
 	}
 	return false;
 }
+
+MaxCure::MaxCure() {
+	this->name = "マックスキュアー";
+	this->learnLv = 1;
+	this->type = CureSolo;
+	this->useMp = 10;
+	this->discription = "自分を全回復";
+	this->setDiscription();
+}
+
+bool MaxCure::use(Player *player, std::string *n) {
+	if (player->getMp() >= this->useMp) {
+		player->addMp(-this->useMp);
+
+			player->setHp(player->getMaxHp());
+
+		*n += player->getName() + "は" + this->getName() + "を唱えた！\n";
+		*n += player->getName() + "のHPが全回復した";
+
+		return true;
+	}
+	return false;
+}

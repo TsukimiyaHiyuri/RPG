@@ -9,10 +9,10 @@ BossEnemy::BossEnemy(int x, Sound *sound) {
 		500,
 		100,
 		100,
-		35,
-		40,
-		10,
-		10
+		38,
+		25,
+		500,
+		100
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

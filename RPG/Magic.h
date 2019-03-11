@@ -78,4 +78,11 @@ public:
 	MegCure();
 	virtual bool use(Player *p, std::string *n = 0);
 };
+
+class MaxCure : public Magic {
+public:
+	MaxCure();
+	virtual bool use(Player *p, std::string *n = 0);
+};
+
 #endif
