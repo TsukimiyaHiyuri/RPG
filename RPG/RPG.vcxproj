@@ -185,7 +185,6 @@
     <ClCompile Include="Mummy.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Global.cpp" />
     <ClCompile Include="Potion.cpp" />
     <ClCompile Include="SelectWindow.cpp" />
     <ClCompile Include="ShopItemWindow.cpp" />
