@@ -5,14 +5,14 @@ Lizardman::Lizardman(int x, Sound *sound) {
 	this->setStatus(
 		"リザードマン",
 		8,
-		35,
-		35,
-		10,
-		10,
-		15,
-		15,
 		40,
-		16
+		40,
+		10,
+		10,
+		18,
+		10,
+		50,
+		20
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

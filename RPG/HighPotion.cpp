@@ -6,8 +6,8 @@ HighPotion::HighPotion() {
 	this->name = "ハイポーション";
 	this->description = "大きく回復する";
 	this->isEquipt = false;
-	this->buyGold = 15;
-	this->sellGold = 7;
+	this->buyGold = 40;
+	this->sellGold = 20;
 	this->setDescription();
 }
 

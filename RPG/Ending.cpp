@@ -17,7 +17,7 @@ void Ending::setList() {
 	this->list[0] = "・プログラム\n　　月宮ひゆり";
 	this->list[1] = "・サウンド\n　　魔王魂　様";
 	this->list[2] = "・敵イラスト\n　　Material World　様";
-	this->list[3] = "・マップチップ\n　　ぴぽや倉庫　様";
+	this->list[3] = "・マップチップ\n　　ねくら　様";
 	this->list[4] = "・背景イラスト\n　　ぴぽや倉庫　様";
 }
 

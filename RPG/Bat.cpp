@@ -9,10 +9,10 @@ Bat::Bat(int x, Sound *sound) {
 		14,
 		5,
 		5,
-		4,
+		8,
 		3,
-		4,
-		4
+		10,
+		5
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

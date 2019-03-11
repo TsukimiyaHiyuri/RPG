@@ -47,7 +47,7 @@ public:
 
 	bool getIsHide() { return this->isHide; }
 	void changeIsHide() { this->isHide = !this->isHide; }
-
+	void init();
 };
 
 #endif

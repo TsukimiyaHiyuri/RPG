@@ -1,7 +1,7 @@
 #pragma once
 #include "Item.h"
 #include "Player.h"
-#define HIGHPOTION 50
+#define HIGHPOTION 70
 
 class Player;
 

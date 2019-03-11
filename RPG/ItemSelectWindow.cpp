@@ -25,10 +25,10 @@ void ItemSelectWindow::drawItemSelectWindow() {
 
 		for (int i = 0; i < this->list.size(); i++) {
 			if (i == this->selectNum) {
-				DrawFormatString(ITEMSELECTWINDOWX1, ITEMSELECTWINDOWY1 + ITEMSELECTWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", list[i].c_str());
+				DrawFormatString(ITEMSELECTWINDOWX1 + 5, ITEMSELECTWINDOWY1 + 5 + ITEMSELECTWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", list[i].c_str());
 			}
 			else {
-				DrawFormatString(ITEMSELECTWINDOWX1, ITEMSELECTWINDOWY1 + ITEMSELECTWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
+				DrawFormatString(ITEMSELECTWINDOWX1 + 5, ITEMSELECTWINDOWY1 + 5 + ITEMSELECTWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 			}
 		}
 	}

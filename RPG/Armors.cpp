@@ -4,13 +4,13 @@ Armors::Armors() {
 	this->canEquip = true;
 	this->canUse = false;
 	this->str = 0;
-	this->def = 15;
+	this->def = 5;
 	this->name = "ŠZ";
 	this->description = "ˆê”Ê“I‚ÈŠZ";
 	this->type = Armor;
 	this->isEquipt = false;
-	this->buyGold = 15;
-	this->sellGold = 7;
+	this->buyGold = 250;
+	this->sellGold = 125;
 	this->setDescription();
 }
 

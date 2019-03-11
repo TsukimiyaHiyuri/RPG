@@ -3,6 +3,7 @@
 #include "DxLib.h"
 #include "Map.h"
 #include "Key.h"
+#include <random>
 
 
 Player::Player(Sound *sound) {
@@ -36,11 +37,6 @@ void Player::move() {
 void Player::stop() {
 	this->moveX = 0, this->moveY = 0;
 	this->isMove = false;
-}
-
-// 主人公のマップチップをロード
-void Player::loadGraphic() {
-	LoadDivGraph("歩行ドットキャラ.bmp", 3 * 4, 3, 4, 32, 32, this->graphic);//画像を分割してimage配列に保存
 }
 
 // 主人公の描画
@@ -236,11 +232,18 @@ int Player::getAllDef() {
 void Player::attack(Enemy *e, std::string *n) {
 	// SEをならす
 	this->sound->playSE(AttackSE, true);
-	int damage = this->getAllStr() - e->getDef() > 1 ? this->getAllStr() - e->getDef() : 1;
+	int damage = this->culcurateDamage(e);
 	e->damage(damage);
 
 	*n = this->getName() + "の攻撃！\n";
 	*n += e->getName() + "に" + std::to_string(damage) + "のダメージ！";
+}
+
+int Player::culcurateDamage(Enemy *enemy) {
+	std::random_device rnd;
+	int damage = this->getAllStr() + (rnd() % this->getLv());
+	damage = damage - enemy->getDef() > 1 ? damage - enemy->getDef() : 1;
+	return damage;
 }
 
 // 引数の魔法を習得する
@@ -296,4 +299,8 @@ void Player::damage(int n) {
 	else {
 		this->status.hp = 0;
 	}
+}
+
+int Player::getNextLv() {
+	return this->levelTable[this->getLv() - 1] - this->status.exp;
 }

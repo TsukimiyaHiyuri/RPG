@@ -60,7 +60,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				sound->playBGM(GameOverBGM);
 			}
 
-			DrawFormatString(200, 200, GetColor(255, 255, 255), "GAME OVER");
+			DrawFormatString(280, 220, GetColor(255, 255, 255), "GAME OVER");
 
 			if (Key[KEY_INPUT_Z] == 1) {
 				Key[KEY_INPUT_Z]++;
@@ -139,16 +139,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 
 				// 戦闘の処理
-				battle->battle(hero, &clearFlag, &isGameOver, nowMap);
+				nowMap = battle->battle(hero, &clearFlag, &isGameOver, nowMap, mapList);
 				if (battle->getIsFinish()) {
 					sound->stopBGM(BattleBGM);
 					sound->stopBGM(BossBattleBGM);
 					moveEncountNum = 0;
 				}
 			}
-
-			// プレイヤーの座標を表示
-			DrawFormatString(0, 0, GetColor(255, 255, 255), "X: %d, Y: %d", hero->getx(), hero->gety());
 		}
 	}
 

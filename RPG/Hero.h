@@ -7,5 +7,6 @@ public:
 	Hero(Sound *sound);
 	virtual void setLevelTable();
 	virtual void levelUp(std::string *s);
+	virtual void loadGraphic();
 };
 

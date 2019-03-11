@@ -47,10 +47,10 @@ void EnemyListWindow::drawEnemyListWindow() {
 		DrawBox(ENEMYLISTWINDOWX1, ENEMYLISTWINDOWY1, ENEMYLISTWINDOWX2, ENEMYLISTWINDOWY2, GetColor(0, 0, 0), true);
 		for (int i = 0; i < this->liveNum; i++) {
 			if (i == this->selectNum) {
-				DrawFormatString(ENEMYLISTWINDOWX1, ENEMYLISTWINDOWY1 + ENEMYLISTWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", this->enemy[i]->getName().c_str());
+				DrawFormatString(ENEMYLISTWINDOWX1 + 5, ENEMYLISTWINDOWY1 + 5 + ENEMYLISTWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", this->enemy[i]->getName().c_str());
 			}
 			else {
-				DrawFormatString(ENEMYLISTWINDOWX1, ENEMYLISTWINDOWY1 + ENEMYLISTWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", this->enemy[i]->getName().c_str());
+				DrawFormatString(ENEMYLISTWINDOWX1 + 5, ENEMYLISTWINDOWY1 + 5 + ENEMYLISTWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", this->enemy[i]->getName().c_str());
 			}
 		}
 	}

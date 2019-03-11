@@ -4,11 +4,15 @@
 #include "DxLib.h"
 #include "ShopNPC.h"
 #include "Item.h"
-#include "Potion.h"
-#include "Armors.h"
-#include "Sord.h"
+#include "HighPotion.h"
+#include "Ether.h"
+#include "SuperArmor.h"
+#include "SuperSord.h"
 #include "SnowMap.h"
 #include "Skeleton.h"
+#include "Clown.h"
+#include "Dragon.h"
+#include "Cassowary.h"
 #include <iostream>
 
 MazeMap::MazeMap(Sound *sound) {
@@ -163,7 +167,7 @@ void MazeMap::setMapSea() {
 void MazeMap::loadMapTip() {
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->ground);
 	LoadDivGraph("map/m_mori.png", 3 * 13, 3, 13, 32, 32, this->bridge);
-	LoadDivGraph("map/at_dang01.png", 5, 1, 5, 32, 32, this->sea);
+	LoadDivGraph("map/t_cave05.png", 5, 1, 5, 32, 32, this->sea);
 }
 
 // 壁の判定
@@ -205,7 +209,7 @@ Map *MazeMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 	int y = player->gety();
 
 	if (x == 14 && y == 33) {
-		player->setPlayer(14, 10);
+		player->setPlayer(25, 10);
 		return list[Town];
 	}
 
@@ -219,16 +223,17 @@ Map *MazeMap::changeMap(Player *player, Map *nowMap, Map *list[]) {
 void MazeMap::setNPC() {
 	this->npcNum = 2;
 	std::vector<std::string> tmp;
-	tmp.push_back("ここは何でも屋です");
-	tmp.push_back("何か買っていきませんか？");
+	tmp.push_back("ここは何でも屋だ");
+	tmp.push_back("何か買っていくか？");
 
-	Item *item[3] = { new Potion(), new Armors(), new Sord() };
+	Item *item[4] = { new HighPotion(), new Ether(), new SuperSord(), new SuperArmor() };
 
-	this->npc[0] = new ShopNPC(16, 24, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3, this->sound);
+	this->npc[0] = new ShopNPC(16, 24, "Character/pipo-charachip003a.png", tmp, DOWN, item, 4, this->sound);
 
 	std::vector<std::string> ttmp;
-	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");
-	this->npc[1] = new NonPlayerCharacter(19, 18, "歩行ドットキャラ.bmp", ttmp, DOWN);
+	ttmp.push_back("この先にはボスがいるよ");
+	ttmp.push_back("しっかり準備してから挑もう");
+	this->npc[1] = new NonPlayerCharacter(24, 10, "Character/pipo-charachip001.png", ttmp, DOWN);
 }
 
 void MazeMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
@@ -248,5 +253,8 @@ void MazeMap::drawMapTip(int drawx, int drawy, int pointx, int pointy) {
 // このマップに現れる敵の設定
 void MazeMap::setEnemy() {
 	this->enemy[0] = new Skeleton(0, this->sound);
-	this->enemyNum = 1;
+	this->enemy[1] = new Clown(0, this->sound);
+	this->enemy[2] = new Dragon(0, this->sound);
+	this->enemy[3] = new Cassowary(0, this->sound);
+	this->enemyNum = 4;
 }

@@ -10,7 +10,7 @@ void Magic::setStr(std::string *n, int damage, Enemy *e, Player *p) {
 }
 
 void Magic::setDiscription() {
-	this->discription += "\n消費MP: " + std::to_string(this->useMp);
+	this->discription += "\n\n消費MP: " + std::to_string(this->useMp);
 }
 
 Fire::Fire() {
@@ -64,7 +64,7 @@ Cure::Cure() {
 	this->name = "キュアー";
 	this->learnLv = 1;
 	this->type = CureSolo;
-	this->useMp = 5;
+	this->useMp = 4;
 	this->discription = "自分を小回復";
 	this->setDiscription();
 }
@@ -92,7 +92,7 @@ MegFire::MegFire() {
 	this->name = "メガファイア";
 	this->learnLv = 1;
 	this->type = AttackSolo;
-	this->useMp = 5;
+	this->useMp = 11;
 	this->discription = "敵１体に大ダメージ";
 	this->setDiscription();
 }
@@ -114,7 +114,7 @@ MegThunder::MegThunder() {
 	this->name = "メガサンダー";
 	this->learnLv = 1;
 	this->type = AttackAll;
-	this->useMp = 7;
+	this->useMp = 14;
 	this->discription = "敵全体に大ダメージ";
 	this->setDiscription();
 }
@@ -139,7 +139,7 @@ MegCure::MegCure() {
 	this->name = "メガキュアー";
 	this->learnLv = 1;
 	this->type = CureSolo;
-	this->useMp = 5;
+	this->useMp = 8;
 	this->discription = "自分を大回復";
 	this->setDiscription();
 }
@@ -157,6 +157,29 @@ bool MegCure::use(Player *player, std::string *n) {
 
 		*n += player->getName() + "は" + this->getName() + "を唱えた！\n";
 		*n += player->getName() + "のHPが" + std::to_string(MEGCURE) + "回復した";
+
+		return true;
+	}
+	return false;
+}
+
+MaxCure::MaxCure() {
+	this->name = "マックスキュアー";
+	this->learnLv = 1;
+	this->type = CureSolo;
+	this->useMp = 10;
+	this->discription = "自分を全回復";
+	this->setDiscription();
+}
+
+bool MaxCure::use(Player *player, std::string *n) {
+	if (player->getMp() >= this->useMp) {
+		player->addMp(-this->useMp);
+
+			player->setHp(player->getMaxHp());
+
+		*n += player->getName() + "は" + this->getName() + "を唱えた！\n";
+		*n += player->getName() + "のHPが全回復した";
 
 		return true;
 	}

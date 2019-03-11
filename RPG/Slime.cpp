@@ -9,9 +9,9 @@ Slime::Slime(int x, Sound *sound) {
 		8,
 		5,
 		5,
+		6,
 		2,
-		2,
-		2,
+		4,
 		2
 	);
 	this->loadGraphic();
