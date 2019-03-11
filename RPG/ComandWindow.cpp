@@ -35,10 +35,10 @@ void ComandWindow::drawComandWindow() {
 
 	for (int i = 0; i < this->list.size(); i++) {
 		if (i == this->selectNum) {
-			DrawFormatString(COMANDWINDOWX1, COMANDWINDOWY1 + COMANDWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", list[i].c_str());
+			DrawFormatString(COMANDWINDOWX1 + 5, COMANDWINDOWY1 + 5 + COMANDWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", list[i].c_str());
 		}
 		else {
-			DrawFormatString(COMANDWINDOWX1, COMANDWINDOWY1 + COMANDWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
+			DrawFormatString(COMANDWINDOWX1 + 5, COMANDWINDOWY1 + 5 + COMANDWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", list[i].c_str());
 		}
 	}
 }

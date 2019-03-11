@@ -9,10 +9,10 @@ Cassowary::Cassowary(int x, Sound *sound) {
 		50,
 		10,
 		10,
-		23,
-		18,
-		100,
-		35
+		22,
+		14,
+		75,
+		25
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

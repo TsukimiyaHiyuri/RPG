@@ -3,6 +3,7 @@
 #include "DxLib.h"
 #include "ShopNPC.h"
 #include "Item.h"
+#include "Ether.h"
 #include "Potion.h"
 #include "Armors.h"
 #include "Sord.h"
@@ -188,9 +189,9 @@ void TownMap::setNPC() {
 	tmp.push_back("ここは何でも屋です");
 	tmp.push_back("何か買っていきませんか？");
 
-	Item *item[3] = { new Potion(), new Armors(), new Sord()};
+	Item *item[4] = { new Potion(), new Ether(), new Armors(), new Sord()};
 
-	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 3, this->sound);
+	this->npc[0] = new ShopNPC(25, 15, "歩行ドットキャラ.bmp", tmp, DOWN, item, 4, this->sound);
 
 	std::vector<std::string> ttmp;
 	ttmp.push_back("ここには道具屋がいるから\nお金が貯まったら何か買ってみるといいよ！");

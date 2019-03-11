@@ -33,14 +33,17 @@ void ItemWindow::drawItemWindow() {
 			}
 
 			if (i == this->selectNum) {
-				DrawFormatString(ITEMWINDOWX1, ITEMWINDOWY1 + ITEMWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(ITEMWINDOWX1 + 5, ITEMWINDOWY1 + ITEMWINDOWINTERBAL * i, GetColor(0, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
 			}
 			else {
-				DrawFormatString(ITEMWINDOWX1, ITEMWINDOWY1 + ITEMWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
+				DrawFormatString(ITEMWINDOWX1 + 5, ITEMWINDOWY1 + ITEMWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", (equipt + player->getBelonging(i)->getName()).c_str());
 			}
+		}
 
-			/* アイテムの説明欄の描画はここに記入 */
-
+		// アイテムの説明を描画
+		if (this->player->getBelonging(this->selectNum) > 0) {
+			DrawBox(ITEMWINDOWDISCRIPTIONX1, ITEMWINDOWDISCRIPTIONY1, ITEMWINDOWDISCRIPTIONX2, ITEMWINDOWDISCRIPTIONY2, GetColor(0, 0, 0), true);
+			DrawFormatString(ITEMWINDOWDISCRIPTIONX1 + 5, ITEMWINDOWDISCRIPTIONY1 + 5, GetColor(255, 255, 255), "%s", player->getBelonging(this->selectNum)->getDescription().c_str());
 		}
 	}
 }

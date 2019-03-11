@@ -25,7 +25,7 @@ Hero::Hero(Sound *sound) {
 	// 描画系の初期値
 	this->direction = UP;
 	this->isMove = false;
-	setPlayer(10, 10);
+	this->setPlayer(12, 14, UP);
 	this->moveX = 0, this->moveY = 0;
 	loadGraphic();
 
@@ -59,12 +59,10 @@ void Hero::levelUp(std::string *s) {
 			this->status.lv++;
 
 			// 各ステータスを上げる
-			this->addMaxHp(5);
+			this->addMaxHp(7);
 			this->addMaxMp(3);
-			this->addStr(1);
-			if (this->getLv() % 2 == 0) {
-				this->addDef(1);
-			}
+			this->addStr(2);
+			this->addDef(1);
 			this->setHp(this->getMaxHp());
 			this->setMp(this->getMaxMp());
 
@@ -91,6 +89,11 @@ void Hero::levelUp(std::string *s) {
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
 					break;
 
+				case 8:
+					this->learnMagic(new MegCure());
+					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
+					break;
+
 				case 10:
 					this->learnMagic(new MegThunder());
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
@@ -101,10 +104,6 @@ void Hero::levelUp(std::string *s) {
 					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
 					break;
 
-				case 14:
-					this->learnMagic(new MegCure());
-					*s += this->magic[this->learnMagicNum - 1]->getName() + "の魔法を習得した！\n";
-					break;
 				}
 			}
 		}

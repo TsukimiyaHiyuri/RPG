@@ -4,7 +4,7 @@ Clothes::Clothes() {
 	this->canEquip = true;
 	this->canUse = false;
 	this->str = 0;
-	this->def = 3;
+	this->def = 2;
 	this->name = "•z‚Ì•ž";
 	this->description = "‚½‚¾‚Ì•ž";
 	this->type = Armor;

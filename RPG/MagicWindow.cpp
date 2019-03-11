@@ -33,9 +33,12 @@ void MagicWindow::drawMagicWindow() {
 			else {
 				DrawFormatString(MAGICWINDOWX1, MAGICWINDOWY1 + MAGICWINDOWINTERBAL * i, GetColor(255, 255, 255), "%s", this->player->getMagic(i)->getName().c_str());
 			}
+		}
 
-			/* –‚–@‚Ìà–¾—“‚Ì•`‰æ‚Í‚±‚±‚É‹L“ü */
-
+		// –‚–@‚Ìà–¾‚ð•`‰æ
+		if (this->player->getLearnMagicNum() > 0) {
+			DrawBox(MAGICWINDOWDISCRIPTIONX1, MAGICWINDOWDISCRIPTIONY1, MAGICWINDOWDISCRIPTIONX2, MAGICWINDOWDISCRIPTIONY2, GetColor(0, 0, 0), true);
+			DrawFormatString(MAGICWINDOWDISCRIPTIONX1 + 5, MAGICWINDOWDISCRIPTIONY1 + 5, GetColor(255, 255, 255), "%s", this->player->getMagic(this->selectNum)->getDiscription().c_str());
 		}
 	}
 }

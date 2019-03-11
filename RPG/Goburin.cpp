@@ -9,10 +9,10 @@ Goburin::Goburin(int x, Sound *sound) {
 		35,
 		5,
 		5,
-		15,
+		18,
 		8,
-		40,
-		20
+		35,
+		15
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

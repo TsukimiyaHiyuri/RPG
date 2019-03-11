@@ -5,14 +5,14 @@ Dragon::Dragon(int x, Sound *sound) {
 	this->setStatus(
 		"ƒhƒ‰ƒSƒ“",
 		16,
-		80,
-		80,
+		75,
+		75,
 		10,
 		10,
-		26,
-		25,
-		150,
-		50
+		24,
+		18,
+		90,
+		28
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

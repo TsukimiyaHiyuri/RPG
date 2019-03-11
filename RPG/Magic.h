@@ -7,7 +7,7 @@
 #include <string>
 #define MAXMAGICNUM 8
 #define CURE 30
-#define MEGCURE 120
+#define MEGCURE 70
 #define FIRE 20
 #define MEGFIRE 55
 #define THUNDER 15
@@ -38,6 +38,7 @@ public:
 	virtual bool use(Player *p, Enemy *e[], std::string *n = 0) { return true; }
 	MagicType getType() { return this->type; }
 	std::string getName() { return this->name; }
+	std::string getDiscription() { return this->discription; }
 	void setDiscription();
 	void setStr(std::string *n, int damage, Enemy *e, Player *p);
 };

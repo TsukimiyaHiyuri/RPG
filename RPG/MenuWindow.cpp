@@ -92,7 +92,7 @@ void MenuWindow::select() {
 			// SE‚ğ‚È‚ç‚·
 			this->sound->playSE(CancelSE, true);
 
-			this->changeIsHide();
+			this->init();
 		}
 	}
 }

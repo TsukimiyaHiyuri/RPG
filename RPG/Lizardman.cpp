@@ -9,10 +9,10 @@ Lizardman::Lizardman(int x, Sound *sound) {
 		40,
 		10,
 		10,
-		17,
+		18,
 		10,
 		50,
-		23
+		20
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

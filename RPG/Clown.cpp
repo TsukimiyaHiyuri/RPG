@@ -9,10 +9,10 @@ Clown::Clown(int x, Sound *sound) {
 		50,
 		10,
 		10,
-		25,
-		20,
-		120,
-		40
+		22,
+		15,
+		80,
+		28
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

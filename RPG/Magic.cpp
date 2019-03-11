@@ -10,7 +10,7 @@ void Magic::setStr(std::string *n, int damage, Enemy *e, Player *p) {
 }
 
 void Magic::setDiscription() {
-	this->discription += "\n消費MP: " + std::to_string(this->useMp);
+	this->discription += "\n\n消費MP: " + std::to_string(this->useMp);
 }
 
 Fire::Fire() {
@@ -64,7 +64,7 @@ Cure::Cure() {
 	this->name = "キュアー";
 	this->learnLv = 1;
 	this->type = CureSolo;
-	this->useMp = 5;
+	this->useMp = 4;
 	this->discription = "自分を小回復";
 	this->setDiscription();
 }
@@ -139,7 +139,7 @@ MegCure::MegCure() {
 	this->name = "メガキュアー";
 	this->learnLv = 1;
 	this->type = CureSolo;
-	this->useMp = 18;
+	this->useMp = 8;
 	this->discription = "自分を大回復";
 	this->setDiscription();
 }

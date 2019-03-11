@@ -9,10 +9,10 @@ Mummy::Mummy(int x, Sound *sound) {
 		35,
 		5,
 		5,
-		15,
+		16,
 		9,
 		30,
-		20
+		14
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

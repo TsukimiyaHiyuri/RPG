@@ -8,9 +8,9 @@
 #include "ComandWindow.h"
 #include "Sound.h"
 #include <string>
-#define ENEMYLISTWINDOWX1 210 
+#define ENEMYLISTWINDOWX1 360
 #define ENEMYLISTWINDOWY1 300
-#define ENEMYLISTWINDOWX2 350
+#define ENEMYLISTWINDOWX2 500
 #define ENEMYLISTWINDOWY2 400
 #define ENEMYLISTWINDOWINTERBAL 20
 

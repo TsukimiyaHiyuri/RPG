@@ -9,7 +9,7 @@ Slime::Slime(int x, Sound *sound) {
 		8,
 		5,
 		5,
-		4,
+		6,
 		2,
 		4,
 		2
