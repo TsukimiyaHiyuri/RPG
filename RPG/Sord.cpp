@@ -3,14 +3,14 @@
 Sord::Sord() {
 	this->canEquip = true;
 	this->canUse = false;
-	this->str = 15;
+	this->str = 8;
 	this->def = 0;
 	this->name = "Œ•";
 	this->description = "ˆê”Ê“I‚ÈŒ•";
 	this->type = Weapon;
 	this->isEquipt = false;
-	this->buyGold = 15;
-	this->sellGold = 7;
+	this->buyGold = 300;
+	this->sellGold = 150;
 	this->setDescription();
 }
 

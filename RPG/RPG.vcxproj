@@ -157,8 +157,11 @@
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleWindow.cpp" />
     <ClCompile Include="BossEnemy.cpp" />
+    <ClCompile Include="Cassowary.cpp" />
     <ClCompile Include="Clothes.cpp" />
+    <ClCompile Include="Clown.cpp" />
     <ClCompile Include="ComandWindow.cpp" />
+    <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyListWindow.cpp" />
@@ -196,6 +199,8 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StatusWindow.cpp" />
     <ClCompile Include="Stick.cpp" />
+    <ClCompile Include="SuperArmor.cpp" />
+    <ClCompile Include="SuperSord.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TownMap.cpp" />
     <ClCompile Include="WorldMap.cpp" />
@@ -208,10 +213,13 @@
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleWindow.h" />
     <ClInclude Include="BossEnemy.h" />
+    <ClInclude Include="Cassowary.h" />
     <ClInclude Include="Clothes.h" />
+    <ClInclude Include="Clown.h" />
     <ClInclude Include="ComandType.h" />
     <ClInclude Include="ComandWindow.h" />
     <ClInclude Include="Dim.h" />
+    <ClInclude Include="Dragon.h" />
     <ClInclude Include="Ending.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyListWindow.h" />
@@ -248,6 +256,8 @@
     <ClInclude Include="Status.h" />
     <ClInclude Include="StatusWindow.h" />
     <ClInclude Include="Stick.h" />
+    <ClInclude Include="SuperArmor.h" />
+    <ClInclude Include="SuperSord.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TownMap.h" />
     <ClInclude Include="WorldMap.h" />

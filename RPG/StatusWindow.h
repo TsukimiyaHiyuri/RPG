@@ -10,7 +10,7 @@
 #define DRAWYSTATUS1 30
 #define DRAWXSTATUS2 400
 #define DRAWYSTATUS2 250
-#define STATUSMENUNUM 9
+#define STATUSMENUNUM 10
 #define STATUSINTERBAL 20
 
 class Player;
@@ -26,6 +26,7 @@ enum StatusMenu {
 	def = 6,
 	experience = 7,
 	gold = 8,
+	nextLv = 9
 };
 
 class StatusWindow {

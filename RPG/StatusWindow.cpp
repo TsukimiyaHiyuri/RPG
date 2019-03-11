@@ -23,6 +23,7 @@ void StatusWindow::setList() {
 	this->list[def] = "DEF: " + std::to_string(player->getAllDef());
 	this->list[experience] = "EXP: " + std::to_string(player->getExp());
 	this->list[gold] = "GOLD: " + std::to_string(player->getGold());
+	this->list[nextLv] = "ŽŸ‚ÌƒŒƒxƒ‹‚Ü‚Å: " + std::to_string(player->getNextLv());
 }
 
 // €–Ú‚Ì•`‰æ

@@ -204,6 +204,21 @@
     <ClCompile Include="Clothes.cpp">
       <Filter>ソース ファイル\ItemCode</Filter>
     </ClCompile>
+    <ClCompile Include="Clown.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Cassowary.cpp">
+      <Filter>ソース ファイル\EnemyCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SuperSord.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SuperArmor.cpp">
+      <Filter>ソース ファイル\ItemCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Key.h">
@@ -354,6 +369,21 @@
       <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
     <ClInclude Include="Clothes.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Clown.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Cassowary.h">
+      <Filter>ヘッダー ファイル\EnemyCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperSord.h">
+      <Filter>ヘッダー ファイル\ItemCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperArmor.h">
       <Filter>ヘッダー ファイル\ItemCode</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,15 +4,15 @@
 Skeleton::Skeleton(int x, Sound *sound) {
 	this->setStatus(
 		"ƒXƒPƒ‹ƒgƒ“",
-		15,
+		10,
 		60,
 		60,
 		5,
 		5,
-		35,
-		40,
+		24,
+		20,
 		100,
-		50
+		30
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

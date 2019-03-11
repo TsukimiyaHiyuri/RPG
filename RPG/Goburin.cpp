@@ -5,14 +5,14 @@ Goburin::Goburin(int x, Sound *sound) {
 	this->setStatus(
 		"ƒSƒuƒŠƒ“",
 		5,
-		30,
-		30,
+		35,
+		35,
 		5,
 		5,
-		13,
-		10,
-		20,
-		10
+		18,
+		8,
+		35,
+		15
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

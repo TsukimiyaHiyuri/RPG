@@ -9,10 +9,10 @@ Matango::Matango(int x, Sound *sound) {
 		10,
 		5,
 		5,
-		3,
+		8,
 		2,
-		6,
-		3
+		10,
+		5
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

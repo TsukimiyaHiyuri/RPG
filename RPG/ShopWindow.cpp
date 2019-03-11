@@ -69,8 +69,7 @@ bool ShopWindow::select() {
 
 			// SE‚ð‚È‚ç‚·
 			this->sound->playSE(CancelSE, true);
-			
-			this->isHide = true;
+			this->init();
 			return false;
 		}
 	}
@@ -101,4 +100,9 @@ bool ShopWindow::drawAll(Player *player, ShopNPC *shopNPC) {
 	}
 
 	return ans;
+}
+
+void ShopWindow::init() {
+	this->isHide = true;
+	this->selectNum = 0;
 }

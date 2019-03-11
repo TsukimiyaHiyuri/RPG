@@ -5,14 +5,14 @@ Mummy::Mummy(int x, Sound *sound) {
 	this->setStatus(
 		"ƒ}ƒ~[",
 		6,
-		25,
-		25,
+		35,
+		35,
 		5,
 		5,
-		11,
-		10,
-		20,
-		10
+		16,
+		9,
+		30,
+		14
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

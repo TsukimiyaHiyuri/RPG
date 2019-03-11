@@ -9,10 +9,10 @@ Skull::Skull(int x, Sound *sound) {
 		20,
 		5,
 		5,
-		11,
-		18,
+		16,
 		35,
-		12
+		30,
+		15
 	);
 	this->loadGraphic();
 	this->setCordinate(x, CORDINATEY);

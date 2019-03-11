@@ -54,7 +54,7 @@ public:
 	Player() {}
 	Player(Sound *sound);
 	void move();
-	void loadGraphic();
+	virtual void loadGraphic() {}
 	void stop();
 	void drawHero(int *moveCounter);
 	void scroll(int *MoveCounter, int *ScrollX, int *ScrollY, int *EncountNum);
@@ -82,6 +82,7 @@ public:
 	int getAllDef();
 	direct getDirect() { return this->direction; }
 	bool getIsSpeak() { return this->isSpeak; }
+	int getNextLv();
 
 	void setHp(int h) { status.hp = h; }
 	void setMp(int m) { status.mp = m; }
@@ -105,6 +106,7 @@ public:
 	void attack(Enemy *e, std::string *n = 0);
 	int getLearnMagicNum() { return this->learnMagicNum; }
 	void damage(int n);
+	int culcurateDamage(Enemy *enemy);
 
 	void learnMagic(Magic *magic);
 
