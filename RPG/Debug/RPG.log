@@ -1,4 +1,76 @@
 ﻿cl : コマンド ライン warning D9025: '/D_UNICODE' より '/U_UNICODE' が優先されます。
 cl : コマンド ライン warning D9025: '/DUNICODE' より '/UUNICODE' が優先されます。
+  WorldMap.cpp
+  TownMap.cpp
+  Title.cpp
+  SuperSord.cpp
+  SuperArmor.cpp
+  Stick.cpp
+  StatusWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\statuswindow.cpp(33): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Sound.cpp
+  Sord.cpp
+  SnowMap.cpp
+  Slime.cpp
+  Skull.cpp
+  Skeleton.cpp
+  ShopWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\shopwindow.cpp(23): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+c:\cygwin64\home\jupil\game\rpg\rpg\shopwindow.cpp(50): warning C4018: '>=': signed と unsigned の数値を比較しようとしました。
+  ShopNPC.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\shopnpc.cpp(39): warning C4018: '>=': signed と unsigned の数値を比較しようとしました。
+  ShopItemWindow.cpp
+  SelectWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\selectwindow.cpp(26): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Potion.cpp
+  Player.cpp
+  NonPlayerCharacter.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\nonplayercharacter.cpp(32): warning C4018: '>=': signed と unsigned の数値を比較しようとしました。
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+  コンパイル中...
+  Mummy.cpp
+  MenuWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\menuwindow.cpp(27): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  MazeMap.cpp
+  Matango.cpp
+  Map.cpp
+  main.cpp
+  MagicWindow.cpp
+  Magic.cpp
+  Lizardman.cpp
+  Key.cpp
+  ItemWindow.cpp
+  ItemSelectWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\itemselectwindow.cpp(26): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Item.cpp
+  HighPotion.cpp
   Hero.cpp
+  Goburin.cpp
+  Ether.cpp
+  EquipmentWindow.cpp
+  EnemyListWindow.cpp
+  Enemy.cpp
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+  コンパイル中...
+  Ending.cpp
+  Dragon.cpp
+  ComandWindow.cpp
+c:\cygwin64\home\jupil\game\rpg\rpg\comandwindow.cpp(36): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Clown.cpp
+  Clothes.cpp
+  Cassowary.cpp
+  BossEnemy.cpp
+  BattleWindow.cpp
+  Battle.cpp
+  Bat.cpp
+  BackGround.cpp
+  Armors.cpp
+  Alraune.cpp
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
   RPG.vcxproj -> C:\cygwin64\home\jupil\game\RPG\Debug\RPG.exe
+c:\cygwin64\home\jupil\game\rpg\rpg\battle.cpp(112): warning C6385: 'enemy' から無効なデータを読み取っています: 読み取り可能なサイズは '32' バイトですが、'lookEnemyNum' バイトを読み取る可能性があります。
+c:\cygwin64\home\jupil\game\rpg\rpg\hero.cpp(60): warning C6385: 'this->levelTable' から無効なデータを読み取っています: 読み取り可能なサイズは '392' バイトですが、'396' バイトを読み取る可能性があります。
+c:\cygwin64\home\jupil\game\rpg\rpg\main.cpp(17): warning C28251: 'WinMain' に対する整合性のない注釈: このインスタンスには 注釈なし が含まれます。c:\program files (x86)\windows kits\8.1\include\um\winbase.h(905) を参照してください。
